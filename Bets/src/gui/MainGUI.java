@@ -93,8 +93,6 @@ public class MainGUI extends JFrame {
 					.addContainerGap())
 		);
 		localePane.setLayout(gl_localePane);
-		loginRegisterBtn = new JButton();
-		loginRegisterBtn.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.loginRegisterBtn.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		GroupLayout gl_mainPane = new GroupLayout(mainPane);
 		gl_mainPane.setHorizontalGroup(
 			gl_mainPane.createParallelGroup(Alignment.LEADING)

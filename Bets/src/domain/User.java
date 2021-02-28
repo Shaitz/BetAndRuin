@@ -12,7 +12,6 @@ public class User
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@GeneratedValue
 	private Integer id;
-	//private static Integer id;
 	private String username;
 	private String password;
 	
@@ -23,7 +22,6 @@ public class User
 	
 	public User(Integer id, String username, String password)
 	{
-		//++id;
 		super();
 		this.id = id;
 		this.username = username;

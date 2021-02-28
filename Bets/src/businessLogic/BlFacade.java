@@ -46,4 +46,22 @@ public interface BlFacade  {
 	 * @return collection of dates
 	 */
 	@WebMethod public Vector<Date> getEventsMonth(Date date);
+	
+	/**
+	 * This method checks if the login is successful or not
+	 * 
+	 * @param username of the account to be checked
+	 * @param password of the account to be checked
+	 * @return true if the authentication was successful
+	 */
+	@WebMethod public boolean validateLogin(String username, String password);
+	
+	/**
+	 * This method registers a new user to the database
+	 * 
+	 * @param username of the account to be created
+	 * @param password of the account to be created
+	 * @return true if the register was successful
+	 */
+	@WebMethod public boolean registerUser(String username, String password);
 }
