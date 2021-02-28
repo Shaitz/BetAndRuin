@@ -2,12 +2,17 @@ package domain;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class User 
 {
-	//@Id ?
+	@Id
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
+	@GeneratedValue
+	private Integer id;
+	//private static Integer id;
 	private String username;
 	private String password;
 	
@@ -16,10 +21,28 @@ public class User
 		super();
 	}
 	
-	public User(String username, String password)
+	public User(Integer id, String username, String password)
 	{
+		//++id;
+		super();
+		this.id = id;
 		this.username = username;
 		this.password = password;
+	}
+	
+	public User(String username, String password)
+	{
+		super();
+		this.username = username;
+		this.password = password;
+	}
+	
+	/**
+	 * Gets the user's id
+	 */
+	public int getId()
+	{
+		return id;
 	}
 	
 	/**
@@ -37,7 +60,6 @@ public class User
 	{ 
 		return this.password; 
 	}
-	
 	
 	/**
 	 * Sets the user's name with the given one
@@ -59,6 +81,6 @@ public class User
 	
 	public String toString()
 	{
-		return username + "\n" + password;
+		return id + "\t" + username + "\t" + password;
 	}
 }

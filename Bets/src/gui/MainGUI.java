@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -19,6 +18,9 @@ import javax.swing.SwingConstants;
 
 import businessLogic.BlFacade;
 import domain.Event;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 public class MainGUI extends JFrame {
@@ -29,6 +31,7 @@ public class MainGUI extends JFrame {
 	protected JLabel selectOptionLbl;
 	private JButton browseQuestionsBtn;
 	private JButton createQuestionBtn;
+	private JButton loginRegisterBtn;
 	private JPanel localePane;
 	private JRadioButton euskaraRbtn;
 	private JRadioButton castellanoRbtn;
@@ -63,32 +66,81 @@ public class MainGUI extends JFrame {
 			}
 		});
 
-		this.setBounds(100, 100, 500, 300);
+		this.setBounds(100, 100, 564, 390);
 
 		this.initializeMainPane();
 		this.setContentPane(mainPane);
+		GroupLayout gl_localePane = new GroupLayout(localePane);
+		gl_localePane.setHorizontalGroup(
+			gl_localePane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_localePane.createSequentialGroup()
+					.addGap(104)
+					.addComponent(euskaraRbtn)
+					.addGap(46)
+					.addComponent(castellanoRbtn)
+					.addGap(47)
+					.addComponent(englishRbtn)
+					.addContainerGap(154, Short.MAX_VALUE))
+		);
+		gl_localePane.setVerticalGroup(
+			gl_localePane.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_localePane.createSequentialGroup()
+					.addContainerGap(57, Short.MAX_VALUE)
+					.addGroup(gl_localePane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(euskaraRbtn)
+						.addComponent(castellanoRbtn)
+						.addComponent(englishRbtn))
+					.addContainerGap())
+		);
+		localePane.setLayout(gl_localePane);
+		loginRegisterBtn = new JButton();
+		loginRegisterBtn.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.loginRegisterBtn.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		GroupLayout gl_mainPane = new GroupLayout(mainPane);
+		gl_mainPane.setHorizontalGroup(
+			gl_mainPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_mainPane.createSequentialGroup()
+					.addGroup(gl_mainPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(selectOptionLbl, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE)
+						.addComponent(browseQuestionsBtn, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE)
+						.addComponent(createQuestionBtn, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE)
+						.addComponent(localePane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(loginRegisterBtn, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
+		gl_mainPane.setVerticalGroup(
+			gl_mainPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_mainPane.createSequentialGroup()
+					.addGap(1)
+					.addComponent(selectOptionLbl, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+					.addGap(6)
+					.addComponent(browseQuestionsBtn, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+					.addGap(6)
+					.addComponent(createQuestionBtn, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(loginRegisterBtn, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+					.addGap(13)
+					.addComponent(localePane, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		mainPane.setLayout(gl_mainPane);
 
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
-		this.pack();
+		//this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	private void initializeMainPane() {
 		mainPane = new JPanel();
-		mainPane.setLayout(new GridLayout(4, 1, 0, 0));
 
 		selectOptionLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").
 				getString("SelectUseCase"));
 		selectOptionLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		mainPane.add(selectOptionLbl);
 
 		initializeBrowseQuestionsBtn();
-		mainPane.add(browseQuestionsBtn);
 		initializeCreateQuestionBtn();
-		mainPane.add(createQuestionBtn);
+		initializeLoginRegisterBtn();
 
 		initializeLocalePane();
-		mainPane.add(localePane);
 	}
 
 	private void initializeBrowseQuestionsBtn() {
@@ -119,17 +171,27 @@ public class MainGUI extends JFrame {
 		});
 	}
 
+	private void initializeLoginRegisterBtn()
+	{
+		loginRegisterBtn = new JButton();
+		loginRegisterBtn.setText(ResourceBundle.getBundle("Etiquetas").getString("LoginRegister"));
+		loginRegisterBtn.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				LoginRegisterGUI loginRegisterWindow = new LoginRegisterGUI(businessLogic);
+				loginRegisterWindow.setVisible(true);
+			}
+		});
+	}
+	
 	private void initializeLocalePane() {
 		localePane = new JPanel();
 
 		initializeEuskaraRbtn();
-		localePane.add(euskaraRbtn);
 
 		initializeCastellanoRbtn();
-		localePane.add(castellanoRbtn);
 
 		initializeEnglishRbtn();
-		localePane.add(englishRbtn);
 	}
 
 	private void initializeEuskaraRbtn() {
@@ -177,6 +239,8 @@ public class MainGUI extends JFrame {
 				getString("BrowseQuestions"));
 		createQuestionBtn.setText(ResourceBundle.getBundle("Etiquetas").
 				getString("CreateQuestion"));
+		loginRegisterBtn.setText(ResourceBundle.getBundle("Etiquetas").
+				getString("LoginRegister"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
 }
