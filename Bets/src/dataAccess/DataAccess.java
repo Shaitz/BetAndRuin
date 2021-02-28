@@ -1,5 +1,6 @@
 package dataAccess;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.Event;
 import domain.Question;
+import domain.User;
 import exceptions.QuestionAlreadyExist;
 
 /**
@@ -178,6 +180,49 @@ public class DataAccess  {
 		// @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 		db.getTransaction().commit();
 		return q;
+	}
+	
+	public User createUser(String username, String password) {
+		User nU = new User(username, password);
+		List<User> checkList = getAllUsers();
+		if(!checkList.contains(nU)) {
+			db.getTransaction().begin();
+			db.persist(nU);
+			db.getTransaction().commit();
+		}
+		return nU;
+	}
+	
+	public List<User> getAllUsers(){
+		return db.createQuery("SELECT u FROM User u", User.class).getResultList();
+	}
+	
+	public List<User> getUserWithUsername(String username){
+		return db.createQuery("SELECT u FROM User u WHERE u.username == \"" + username + "\"", User.class).getResultList();
+	}
+	
+	public User getUserWithUsernamePassword(String username, String password){
+		User ret;
+		List<User> checkList = db.createQuery("SELECT u FROM User u WHERE u.username = \"" + username + "\" and u.password = \"" + password + "\"", User.class).getResultList();
+		try {
+			ret = checkList.get(0);
+		}
+		catch(Exception e) {
+			ret = null;
+		}
+		return ret;
+	}
+	
+	public boolean changePasswordOfUser(String username, String password, String nPassword) {
+		try {
+			User toChange = getUserWithUsernamePassword(username, password);
+			db.getTransaction().begin();
+			toChange.setPassword(nPassword);
+			return true;
+		}
+		catch (Exception e) {
+			return false;
+		}
 	}
 
 	/**
