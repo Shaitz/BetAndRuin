@@ -17,6 +17,7 @@ import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import configuration.UtilDate;
+import domain.Bet;
 import domain.Event;
 import domain.Question;
 import domain.User;
@@ -218,11 +219,20 @@ public class DataAccess  {
 			User toChange = getUserWithUsernamePassword(username, password);
 			db.getTransaction().begin();
 			toChange.setPassword(nPassword);
+			db.getTransaction().commit();
 			return true;
 		}
 		catch (Exception e) {
 			return false;
 		}
+	}
+	
+	public boolean placeBet(User user, Question question, double amount) {
+		User toChange = getUserWithUsernamePassword(user.getUsername(), user.getPassword());
+		db.getTransaction().begin();
+		boolean ret = toChange.placeBet(question, amount);
+		db.getTransaction().commit();
+		return ret;
 	}
 
 	/**

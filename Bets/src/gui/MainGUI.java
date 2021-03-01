@@ -18,6 +18,8 @@ import javax.swing.SwingConstants;
 
 import businessLogic.BlFacade;
 import domain.Event;
+import domain.User;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -31,12 +33,15 @@ public class MainGUI extends JFrame {
 	protected JLabel selectOptionLbl;
 	private JButton browseQuestionsBtn;
 	private JButton createQuestionBtn;
-	private JButton loginRegisterBtn;
+	protected JButton loginRegisterBtn;
 	private JPanel localePane;
 	private JRadioButton euskaraRbtn;
 	private JRadioButton castellanoRbtn;
 	private JRadioButton englishRbtn;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JLabel userLabel;
+	
+	private User loggedUser = null;
 
 	private BlFacade businessLogic;
 
@@ -66,7 +71,7 @@ public class MainGUI extends JFrame {
 			}
 		});
 
-		this.setBounds(100, 100, 564, 390);
+		this.setBounds(100, 100, 572, 420);
 
 		this.initializeMainPane();
 		this.setContentPane(mainPane);
@@ -93,37 +98,40 @@ public class MainGUI extends JFrame {
 					.addContainerGap())
 		);
 		localePane.setLayout(gl_localePane);
+		userLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.lblNewLabel.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		GroupLayout gl_mainPane = new GroupLayout(mainPane);
 		gl_mainPane.setHorizontalGroup(
-			gl_mainPane.createParallelGroup(Alignment.LEADING)
+			gl_mainPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_mainPane.createSequentialGroup()
 					.addGroup(gl_mainPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(selectOptionLbl, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE)
-						.addComponent(browseQuestionsBtn, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE)
-						.addComponent(createQuestionBtn, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE)
 						.addComponent(localePane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(loginRegisterBtn, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
+						.addComponent(loginRegisterBtn, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE)
+						.addComponent(createQuestionBtn, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE)
+						.addComponent(browseQuestionsBtn, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE)
+						.addComponent(selectOptionLbl, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE)
+						.addComponent(userLabel))
+					.addGap(62))
 		);
 		gl_mainPane.setVerticalGroup(
-			gl_mainPane.createParallelGroup(Alignment.LEADING)
+			gl_mainPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_mainPane.createSequentialGroup()
-					.addGap(1)
+					.addContainerGap(19, Short.MAX_VALUE)
+					.addComponent(userLabel)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(selectOptionLbl, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-					.addGap(6)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(browseQuestionsBtn, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
-					.addGap(6)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(createQuestionBtn, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(loginRegisterBtn, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-					.addGap(13)
-					.addComponent(localePane, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(localePane, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
 		);
 		mainPane.setLayout(gl_mainPane);
 
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
-		//this.pack();
+//		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
@@ -176,8 +184,12 @@ public class MainGUI extends JFrame {
 		loginRegisterBtn.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				LoginRegisterGUI loginRegisterWindow = new LoginRegisterGUI(businessLogic);
-				loginRegisterWindow.setVisible(true);
+				if(loggedUser == null) {
+					LoginRegisterGUI loginRegisterWindow = new LoginRegisterGUI(getThis(), businessLogic);
+					loginRegisterWindow.setVisible(true);
+				}
+				else
+					setUser(null);
 			}
 		});
 	}
@@ -240,5 +252,22 @@ public class MainGUI extends JFrame {
 		loginRegisterBtn.setText(ResourceBundle.getBundle("Etiquetas").
 				getString("LoginRegister"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
+	}
+	
+	public void setUser(User nUser) {
+		if(nUser == null) {
+			loggedUser = null;
+			loginRegisterBtn.setText("Login/Register");
+			userLabel.setText("No logged user");
+		}
+		else {
+			loggedUser = nUser;
+			loginRegisterBtn.setText("Log out");
+			userLabel.setText("Logged user: " + loggedUser.getUsername());
+		}
+	}
+	
+	private MainGUI getThis() {
+		return this;
 	}
 }

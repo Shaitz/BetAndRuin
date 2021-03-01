@@ -1,5 +1,8 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -14,6 +17,7 @@ public class User
 	private Integer id;
 	private String username;
 	private String password;
+	private ArrayList<Bet> betList;
 	
 	public User()
 	{
@@ -75,6 +79,29 @@ public class User
 	public void setPassword(String password)
 	{
 		this.password = password;
+	}
+	
+	/**
+	 * Places a bet in the indicated question with the indicated amount and registers it if the amount is no less than the minimum
+	 * @param question Question in which place the bet
+	 * @param bet Amount to put
+	 * @return True if the bet was placed successfully, false otherwise
+	 */
+	public boolean placeBet(Question question, double bet) {
+		if(bet <= question.getBetMinimum())
+			return false;
+		else {
+			betList.add(new Bet(question, bet, 1.2));
+			return true;
+		}
+	}
+	
+	/**
+	 * Returns a list containing the list of bets made by this user
+	 * @return List with bets
+	 */
+	public List<Bet> getBets(){
+		return betList;
 	}
 	
 	public String toString()

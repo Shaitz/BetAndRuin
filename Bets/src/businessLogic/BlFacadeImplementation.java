@@ -123,6 +123,15 @@ public class BlFacadeImplementation implements BlFacade {
 		return registered;
 	}
 	
+	public User getRegisteredUser(String username, String password) 
+	{
+		dbManager.open(false);
+		User u = dbManager.getUserWithUsernamePassword(username, password);
+		User ret = u != null ? u : null;
+		dbManager.close();
+		return ret;
+	}
+	
 	public void close() {
 		dbManager.close();
 	}

@@ -8,6 +8,7 @@ import javax.jws.WebService;
 
 import domain.Event;
 import domain.Question;
+import domain.User;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -64,4 +65,13 @@ public interface BlFacade  {
 	 * @return true if the register was successful
 	 */
 	@WebMethod public boolean registerUser(String username, String password);
+	
+	/**
+	 * This method returns the user that contains the same username and password as the stated one
+	 * 
+	 * @param username of the account
+	 * @param password of the account
+	 * @return user containing the information. If there's not, returns null
+	 */
+	@WebMethod public User getRegisteredUser(String username, String password);
 }

@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+import java.awt.Color;
 
 public class LoginRegisterGUI extends JFrame{
 
@@ -31,14 +32,16 @@ public class LoginRegisterGUI extends JFrame{
 	private JButton closeBtn = new JButton(ResourceBundle.getBundle("Etiquetas").
 			getString("Close"));
 	private BlFacade businessLogic;
+	private MainGUI previous;
 
 	public void setBusinessLogic(BlFacade bl) {
 		businessLogic = bl;
 	}
 	
-	public LoginRegisterGUI(BlFacade bl)
+	public LoginRegisterGUI(MainGUI main, BlFacade bl)
 	{
 		businessLogic = bl;
+		previous = main;
 		try {
 			jbInit();
 		}
@@ -78,6 +81,7 @@ public class LoginRegisterGUI extends JFrame{
 		
 		
 		JTextArea validText = new JTextArea();
+		validText.setBackground(new Color(240, 240, 240));
 		validText.setEditable(false);
 		
 		this.buttonLogin.addActionListener(new ActionListener()
@@ -85,12 +89,19 @@ public class LoginRegisterGUI extends JFrame{
 			public void actionPerformed(ActionEvent e)
 			{
 				String username = textUsernameReg.getText();
-				String password = textPasswordReg.getText();
+				String password = String.valueOf(textPasswordReg.getPassword());
 				
-				if (businessLogic.validateLogin(username, password))
-					validText.setText("Successful login!");
-				else
-					validText.setText("Error. Try again.");
+				if(username.isEmpty() || password.isEmpty()) 
+					validText.setText("At least one compulsory area was not filled correctly");
+				else {
+					if (businessLogic.validateLogin(username, password)) {
+						validText.setText("Successful login!");
+						previous.setUser(businessLogic.getRegisteredUser(username, password));
+						jButton_actionPerformed(e);
+					}
+					else
+						validText.setText("Error. Try again.");
+				}
 			}
 		});
 		
@@ -99,12 +110,19 @@ public class LoginRegisterGUI extends JFrame{
 			public void actionPerformed(ActionEvent e)
 			{
 				String username = textUsernameReg.getText();
-				String password = textPasswordReg.getText();
+				String password = String.valueOf(textPasswordReg.getPassword());
 				
-				if (businessLogic.registerUser(username, password))
-					validText.setText("Registered successfully!");
-				else
-					validText.setText("Error. Try again.");
+				if(username.isEmpty() || password.isEmpty())
+					validText.setText("At least one compulsory area was not filled correctly");
+				else {
+					if (businessLogic.registerUser(username, password)) {
+						validText.setText("Registered successfully!");
+						previous.setUser(businessLogic.getRegisteredUser(username, password));
+						jButton_actionPerformed(e);
+					}
+					else
+						validText.setText("Error. Try again.");
+				}
 			}
 		});
 		
