@@ -82,7 +82,7 @@ public class ProfileGUI extends JFrame{
 		
 		JLabel labelPassword = new JLabel("Password: "); //$NON-NLS-1$ //$NON-NLS-2$
 		
-		textID = new JTextField(loggedUser.getId());
+		textID = new JTextField(String.valueOf(loggedUser.getId()));
 		textID.setEditable(false);
 		textID.setColumns(10);
 		
