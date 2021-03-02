@@ -214,6 +214,17 @@ public class DataAccess  {
 		return ret;
 	}
 	
+	public boolean changeUsername(String username, String password, String newUsername)
+	{
+		User user = this.getUserWithUsernamePassword(username, password);
+		
+		db.getTransaction().begin();
+		user.setUsername(newUsername);
+		db.getTransaction().commit();
+		
+		return user.getUsername() != username;
+	}
+	
 	public boolean changePasswordOfUser(String username, String password, String nPassword) {
 		try {
 			User toChange = getUserWithUsernamePassword(username, password);
@@ -235,6 +246,7 @@ public class DataAccess  {
 		return ret;
 	}
 
+	
 	/**
 	 * This method retrieves from the database the events of a given date 
 	 * 

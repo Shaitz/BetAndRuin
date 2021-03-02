@@ -74,4 +74,22 @@ public interface BlFacade  {
 	 * @return user containing the information. If there's not, returns null
 	 */
 	@WebMethod public User getRegisteredUser(String username, String password);
+	
+	/**
+	 * This method changes the desired user's username
+	 * 
+	 * @param username of the account
+	 * @param password of the account
+	 * @return true if the change was successful, false otherwise
+	 */
+	@WebMethod public boolean changeUsername(String username, String password, String newUsername);
+	
+	/**
+	 * This method changes the desired user's password
+	 * 
+	 * @param username of the account
+	 * @param password of the account
+	 * @return true if the change was successful, false otherwise
+	 */
+	@WebMethod public boolean changePassword(String username, String password, String newPassword);
 }
