@@ -214,7 +214,7 @@ public class DataAccess  {
 		return ret;
 	}
 	
-	public boolean changeUsername(String username, String password, String newUsername)
+	public User changeUsername(String username, String password, String newUsername)
 	{
 		User user = this.getUserWithUsernamePassword(username, password);
 		
@@ -222,19 +222,19 @@ public class DataAccess  {
 		user.setUsername(newUsername);
 		db.getTransaction().commit();
 		
-		return user.getUsername() != username;
+		return user;
 	}
 	
-	public boolean changePasswordOfUser(String username, String password, String nPassword) {
+	public User changePasswordOfUser(String username, String password, String nPassword) {
 		try {
 			User toChange = getUserWithUsernamePassword(username, password);
 			db.getTransaction().begin();
 			toChange.setPassword(nPassword);
 			db.getTransaction().commit();
-			return true;
+			return toChange;
 		}
 		catch (Exception e) {
-			return false;
+			return null;
 		}
 	}
 	

@@ -118,10 +118,10 @@ public class ProfileGUI extends JFrame{
 				buttonAccept.setVisible(false);
 				
 				if (textUsername.getText() != null && textUsername.getText() != "" && textUsername.getText() != loggedUser.getUsername())
-					businessLogic.changeUsername(loggedUser.getUsername(), loggedUser.getPassword(), textUsername.getText());
+					loggedUser = businessLogic.changeUsername(loggedUser.getUsername(), loggedUser.getPassword(), textUsername.getText());
 				
 				if (textPassword.getText() != null && textPassword.getText() != "" && textPassword.getText() != loggedUser.getPassword())
-					businessLogic.changePassword(loggedUser.getUsername(), loggedUser.getPassword(), textPassword.getText());
+					loggedUser = businessLogic.changePassword(loggedUser.getUsername(), loggedUser.getPassword(), textPassword.getText());
 				
 				
 				textUsername.setEditable(false);

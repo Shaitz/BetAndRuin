@@ -130,20 +130,20 @@ public class BlFacadeImplementation implements BlFacade {
 		return ret;
 	}
 	
-	public boolean changeUsername(String username, String password, String newUsername)
+	public User changeUsername(String username, String password, String newUsername)
 	{
 		dbManager.open(false);
-		boolean success = dbManager.changeUsername(username, password, newUsername);
+		dbManager.changeUsername(username, password, newUsername);
 		dbManager.close();
-		return success;
+		return new User(newUsername, password);
 	}
 	
-	public boolean changePassword(String username, String password, String newPassword)
+	public User changePassword(String username, String password, String newPassword)
 	{
 		dbManager.open(false);
-		boolean success = dbManager.changePasswordOfUser(username, password, newPassword);
+		dbManager.changePasswordOfUser(username, password, newPassword);
 		dbManager.close();
-		return success;
+		return new User(username, newPassword);
 	}
 	
 	public void close() {

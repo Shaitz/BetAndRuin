@@ -80,16 +80,16 @@ public interface BlFacade  {
 	 * 
 	 * @param username of the account
 	 * @param password of the account
-	 * @return true if the change was successful, false otherwise
+	 * @return user with changed username
 	 */
-	@WebMethod public boolean changeUsername(String username, String password, String newUsername);
+	@WebMethod public User changeUsername(String username, String password, String newUsername);
 	
 	/**
 	 * This method changes the desired user's password
 	 * 
 	 * @param username of the account
 	 * @param password of the account
-	 * @return true if the change was successful, false otherwise
+	 * @return user with new password
 	 */
-	@WebMethod public boolean changePassword(String username, String password, String newPassword);
+	@WebMethod public User changePassword(String username, String password, String newPassword);
 }
