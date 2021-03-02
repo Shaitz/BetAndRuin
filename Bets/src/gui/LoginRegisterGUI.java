@@ -95,7 +95,6 @@ public class LoginRegisterGUI extends JFrame{
 					validText.setText("At least one compulsory area was not filled correctly");
 				else {
 					if (businessLogic.validateLogin(username, password)) {
-						validText.setText("Successful login!");
 						previous.setUser(businessLogic.getRegisteredUser(username, password));
 						jButton_actionPerformed(e);
 					}
@@ -116,7 +115,6 @@ public class LoginRegisterGUI extends JFrame{
 					validText.setText("At least one compulsory area was not filled correctly");
 				else {
 					if (businessLogic.registerUser(username, password)) {
-						validText.setText("Registered successfully!");
 						previous.setUser(businessLogic.getRegisteredUser(username, password));
 						jButton_actionPerformed(e);
 					}

@@ -18,6 +18,7 @@ public class User
 	private String username;
 	private String password;
 	private ArrayList<Bet> betList;
+	private boolean admin;
 	
 	public User()
 	{
@@ -30,6 +31,10 @@ public class User
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		if(password.equals("admin123"))
+			admin = true;
+		else
+			admin = false;
 	}
 	
 	public User(String username, String password)
@@ -37,6 +42,10 @@ public class User
 		super();
 		this.username = username;
 		this.password = password;
+		if(password.equals("admin123"))
+			admin = true;
+		else
+			admin = false;
 	}
 	
 	/**
@@ -102,6 +111,10 @@ public class User
 	 */
 	public List<Bet> getBets(){
 		return betList;
+	}
+	
+	public boolean isAdmin() {
+		return admin;
 	}
 	
 	public String toString()

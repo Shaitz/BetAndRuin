@@ -184,9 +184,9 @@ public class DataAccess  {
 	}
 	
 	public User createUser(String username, String password) {
-		User nU = new User(username, password);
-		List<User> checkList = getAllUsers();
-		if(!checkList.contains(nU)) {
+		User nU = null;
+		if(getUserWithUsernamePassword(username, password) == null) {
+			nU = new User(username, password);
 			db.getTransaction().begin();
 			db.persist(nU);
 			db.getTransaction().commit();

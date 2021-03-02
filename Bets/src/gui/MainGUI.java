@@ -42,6 +42,7 @@ public class MainGUI extends JFrame {
 	private JLabel userLabel;
 	
 	private User loggedUser = null;
+	private boolean admin = false;
 
 	private BlFacade businessLogic;
 
@@ -164,6 +165,7 @@ public class MainGUI extends JFrame {
 
 	private void initializeCreateQuestionBtn() {
 		createQuestionBtn = new JButton();
+		createQuestionBtn.setEnabled(false);
 		createQuestionBtn.setText(ResourceBundle.getBundle("Etiquetas").
 				getString("CreateQuestion"));
 		createQuestionBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -254,16 +256,29 @@ public class MainGUI extends JFrame {
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
 	
+	private void setMode() {
+		if(loggedUser != null && loggedUser.isAdmin()) {
+			admin = true;
+			createQuestionBtn.setEnabled(true);
+		}
+		else {
+			admin = false;
+			createQuestionBtn.setEnabled(false);
+		}
+	}
+	
 	public void setUser(User nUser) {
 		if(nUser == null) {
 			loggedUser = null;
 			loginRegisterBtn.setText("Login/Register");
 			userLabel.setText("No logged user");
+			setMode();
 		}
 		else {
 			loggedUser = nUser;
 			loginRegisterBtn.setText("Log out");
 			userLabel.setText("Logged user: " + loggedUser.getUsername());
+			setMode();
 		}
 	}
 	
