@@ -108,8 +108,7 @@ public class BlFacadeImplementation implements BlFacade {
 	public boolean validateLogin(String username, String password)
 	{
 		dbManager.open(false);
-		User u = dbManager.getUserWithUsernamePassword(username, password);
-		boolean success = u != null ? true : false;
+		boolean success = dbManager.getUserWithUsernamePassword(username, password) != null;
 		dbManager.close();
 		return success;
 	}
@@ -117,8 +116,7 @@ public class BlFacadeImplementation implements BlFacade {
 	public boolean registerUser(String username, String password)
 	{
 		dbManager.open(false);
-		User u = dbManager.createUser(username, password);
-		boolean registered = u != null ? true : false;
+		boolean registered = dbManager.createUser(username, password) != null;
 		dbManager.close();
 		return registered;
 	}
