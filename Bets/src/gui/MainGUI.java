@@ -317,7 +317,7 @@ public class MainGUI extends JFrame {
 	
 	public User getUser()
 	{
-		return this.loggedUser;
+		return loggedUser;
 	}
 	
 	private MainGUI getThis() {

@@ -128,6 +128,8 @@ public class ProfileGUI extends JFrame{
 				textPassword.setEditable(false);
 				
 				buttonChange.setVisible(true);
+				
+				previous.setUser(loggedUser);
 			}
 		});
 		
