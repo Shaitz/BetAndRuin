@@ -24,6 +24,7 @@ public class BlFacadeImplementation implements BlFacade {
 
 	DataAccess dbManager;
 	ConfigXML config = ConfigXML.getInstance();
+	private User user = null;
 
 	public BlFacadeImplementation()  {		
 		System.out.println("Creating BlFacadeImplementation instance");
@@ -108,17 +109,17 @@ public class BlFacadeImplementation implements BlFacade {
 	public boolean validateLogin(String username, String password)
 	{
 		dbManager.open(false);
-		boolean success = dbManager.getUserWithUsernamePassword(username, password) != null;
+		this.user = dbManager.getUserWithUsernamePassword(username, password);
 		dbManager.close();
-		return success;
+		return this.user != null;
 	}
 	
 	public boolean registerUser(String username, String password)
 	{
 		dbManager.open(false);
-		boolean registered = dbManager.createUser(username, password) != null;
+		this.user = dbManager.createUser(username, password);
 		dbManager.close();
-		return registered;
+		return this.user != null;
 	}
 	
 	public User getRegisteredUser(String username, String password) 
@@ -132,20 +133,23 @@ public class BlFacadeImplementation implements BlFacade {
 	
 	public User changeUsername(String username, String password, String newUsername)
 	{
-		User toChange;
 		dbManager.open(false);
-		toChange = dbManager.changeUsername(username, password, newUsername);
+		this.user = dbManager.changeUsername(username, password, newUsername);
 		dbManager.close();
-		return toChange;
+		return this.user;
 	}
 	
 	public User changePassword(String username, String password, String newPassword)
 	{
-		User toChange;
 		dbManager.open(false);
-		toChange = dbManager.changePasswordOfUser(username, password, newPassword);
+		this.user = dbManager.changePasswordOfUser(username, password, newPassword);
 		dbManager.close();
-		return toChange;
+		return this.user;
+	}
+	
+	public User getUser()
+	{
+		return this.user;
 	}
 	
 	public void close() {

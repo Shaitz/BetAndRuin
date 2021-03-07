@@ -31,15 +31,14 @@ public class ProfileGUI extends JFrame{
 	private BlFacade businessLogic;
 	private JButton closeBtn = new JButton(ResourceBundle.getBundle("Etiquetas").
 			getString("Close"));
-	private JButton buttonChange = new JButton("Change username and/or password");
-	private JButton buttonCancelBet = new JButton("Cancel Bet");
-	private JButton buttonAccept = new JButton("Accept");
+	private JButton buttonChange = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ChangeUP"));
+	private JButton buttonCancelBet = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CancelBet"));
+	private JButton buttonAccept = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Accept"));
 	private JComboBox comboBets = new JComboBox();
 	private JTextField textID;
 	private JTextField textUsername;
 	private JTextField textPassword;
 	private MainGUI previous;
-	private User loggedUser;
 	
 	public void setBusinessLogic(BlFacade bl) {
 		businessLogic = bl;
@@ -49,7 +48,6 @@ public class ProfileGUI extends JFrame{
 	{
 		businessLogic = bl;
 		previous = main;
-		loggedUser = previous.getUser();
 		try {
 			jbInit();
 		}
@@ -76,27 +74,27 @@ public class ProfileGUI extends JFrame{
 		textArea.setBackground(SystemColor.menu);
 		textArea.setText(ResourceBundle.getBundle("Etiquetas").getString("Profile"));
 		
-		JLabel labelID = new JLabel("ID: "); //$NON-NLS-1$ //$NON-NLS-2$
+		JLabel labelID = new JLabel("ID: "); 
 		
-		JLabel labelUsername = new JLabel("Username: "); //$NON-NLS-1$ //$NON-NLS-2$
+		JLabel labelUsername = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Username")); 
 		
-		JLabel labelPassword = new JLabel("Password: "); //$NON-NLS-1$ //$NON-NLS-2$
+		JLabel labelPassword = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Password")); 
 		
-		textID = new JTextField(String.valueOf(loggedUser.getId()));
+		textID = new JTextField(String.valueOf(businessLogic.getUser().getId()));
 		textID.setEditable(false);
 		textID.setColumns(10);
 		
-		textUsername = new JTextField(loggedUser.getUsername());
+		textUsername = new JTextField(businessLogic.getUser().getUsername());
 		textUsername.setEditable(false);
 		textUsername.setColumns(10);
 		
-		textPassword = new JTextField(loggedUser.getPassword());
+		textPassword = new JTextField(businessLogic.getUser().getPassword());
 		textPassword.setEditable(false);
 		textPassword.setColumns(10);
 		
 		buttonAccept.setVisible(false);
 		
-		JLabel labelBets = new JLabel("Bets: ");
+		JLabel labelBets = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Bets"));
 		
 		this.buttonChange.addActionListener(new ActionListener()
 		{
@@ -117,11 +115,11 @@ public class ProfileGUI extends JFrame{
 			{
 				buttonAccept.setVisible(false);
 				
-				if (textUsername.getText() != null && textUsername.getText() != "" && textUsername.getText() != loggedUser.getUsername())
-					loggedUser = businessLogic.changeUsername(loggedUser.getUsername(), loggedUser.getPassword(), textUsername.getText());
+				if (textUsername.getText() != null && textUsername.getText() != "" && textUsername.getText() != businessLogic.getUser().getUsername())
+					businessLogic.changeUsername(businessLogic.getUser().getUsername(), businessLogic.getUser().getPassword(), textUsername.getText());
 				
-				if (textPassword.getText() != null && textPassword.getText() != "" && textPassword.getText() != loggedUser.getPassword())
-					loggedUser = businessLogic.changePassword(loggedUser.getUsername(), loggedUser.getPassword(), textPassword.getText());
+				if (textPassword.getText() != null && textPassword.getText() != "" && textPassword.getText() != businessLogic.getUser().getPassword())
+					businessLogic.changePassword(businessLogic.getUser().getUsername(), businessLogic.getUser().getPassword(), textPassword.getText());
 				
 				
 				textUsername.setEditable(false);
@@ -129,14 +127,11 @@ public class ProfileGUI extends JFrame{
 				
 				buttonChange.setVisible(true);
 				
-				previous.setUser(loggedUser);
+				previous.setUser(businessLogic.getUser());
 			}
 		});
 		
-		
-		
-		
-		
+
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -212,10 +207,6 @@ public class ProfileGUI extends JFrame{
 					.addContainerGap())
 		);
 		getContentPane().setLayout(groupLayout);
-		
-		
-		
-
 }
 	/**
 	 * Initialize the contents of the frame.

@@ -43,7 +43,7 @@ public class MainGUI extends JFrame {
 	private JLabel userLabel;
 	
 	private User loggedUser = null;
-	private boolean admin = false;
+	//private boolean admin = false;
 
 	private BlFacade businessLogic;
 
@@ -58,7 +58,6 @@ public class MainGUI extends JFrame {
 
 	public MainGUI() {
 		super();
-
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -150,10 +149,9 @@ public class MainGUI extends JFrame {
 	{
 		mainPane = new JPanel();
 
-		selectOptionLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").
-				getString("SelectUseCase"));
+		selectOptionLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("SelectUseCase"));
 		selectOptionLbl.setHorizontalAlignment(SwingConstants.CENTER);
-
+		
 		initializeBrowseQuestionsBtn();
 		initializeCreateQuestionBtn();
 		initializeLoginRegisterBtn();
@@ -194,7 +192,7 @@ public class MainGUI extends JFrame {
 	private void initializeLoginRegisterBtn()
 	{
 		loginRegisterBtn = new JButton();
-		loginRegisterBtn.setText(ResourceBundle.getBundle("Etiquetas").getString("LoginRegister"));
+		loginRegisterBtn.setText(ResourceBundle.getBundle("Etiquetas").getString("Login/Register"));
 		loginRegisterBtn.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -212,7 +210,7 @@ public class MainGUI extends JFrame {
 	
 	private void initializeProfileButton()
 	{
-		buttonProfile = new JButton("My Profile");
+		buttonProfile = new JButton("Profile");
 		buttonProfile.setEnabled(false);
 		buttonProfile.addActionListener(new java.awt.event.ActionListener() 
 		{
@@ -280,8 +278,17 @@ public class MainGUI extends JFrame {
 				getString("BrowseQuestions"));
 		createQuestionBtn.setText(ResourceBundle.getBundle("Etiquetas").
 				getString("CreateQuestion"));
-		loginRegisterBtn.setText(ResourceBundle.getBundle("Etiquetas").
-				getString("LoginRegister"));
+		if (loggedUser == null)
+		{
+			loginRegisterBtn.setText(ResourceBundle.getBundle("Etiquetas").
+					getString("Login/Register"));
+			userLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("NotLogged"));
+		}
+		else
+		{
+			loginRegisterBtn.setText(ResourceBundle.getBundle("Etiquetas").getString("LogOut"));
+			userLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("LoggedUser") + loggedUser.getUsername());
+		}
 		buttonProfile.setText(ResourceBundle.getBundle("Etiquetas").
 				getString("Profile"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
@@ -289,11 +296,11 @@ public class MainGUI extends JFrame {
 	
 	private void setMode() {
 		if(loggedUser != null && loggedUser.isAdmin()) {
-			admin = true;
+			//admin = true;
 			createQuestionBtn.setEnabled(true);
 		}
 		else {
-			admin = false;
+			//admin = false;
 			createQuestionBtn.setEnabled(false);
 		}
 	}
@@ -301,23 +308,16 @@ public class MainGUI extends JFrame {
 	public void setUser(User nUser) {
 		if(nUser == null) {
 			loggedUser = null;
-			loginRegisterBtn.setText("Login/Register");
-			userLabel.setText("No logged user");
+			redraw();
 			buttonProfile.setEnabled(false);
 			setMode();
 		}
 		else {
-			loggedUser = nUser;
-			loginRegisterBtn.setText("Log out");
-			userLabel.setText("Logged user: " + loggedUser.getUsername());
+			loggedUser = businessLogic.getUser();
+			redraw();
 			buttonProfile.setEnabled(true);
 			setMode();
 		}
-	}
-	
-	public User getUser()
-	{
-		return loggedUser;
 	}
 	
 	private MainGUI getThis() {

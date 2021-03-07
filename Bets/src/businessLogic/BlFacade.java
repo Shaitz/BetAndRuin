@@ -92,4 +92,11 @@ public interface BlFacade  {
 	 * @return user with new password
 	 */
 	@WebMethod public User changePassword(String username, String password, String newPassword);
+	
+	/**
+	 * This method gets the logged user in the application
+	 * 
+	 * @return logged user
+	 */
+	@WebMethod public User getUser();
 }
