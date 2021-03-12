@@ -26,7 +26,10 @@ import com.toedter.calendar.JCalendar;
 
 import businessLogic.BlFacade;
 import configuration.UtilDate;
+import domain.Bet;
 import domain.Question;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 public class BrowseQuestionsGUI extends JFrame {
 
@@ -44,6 +47,7 @@ public class BrowseQuestionsGUI extends JFrame {
 	private JButton closeBtn = new JButton(ResourceBundle.getBundle("Etiquetas").
 			getString("Close"));
 
+	private JButton btnBet = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Bet"));
 	// Code for JCalendar
 	private JCalendar calendar = new JCalendar();
 	private Calendar previousCalendar;
@@ -51,6 +55,9 @@ public class BrowseQuestionsGUI extends JFrame {
 	private JScrollPane eventScrollPane = new JScrollPane();
 	private JScrollPane questionScrollPane = new JScrollPane();
 
+	private JTextField textBet = new JTextField();
+	private JTextArea textBetState = new JTextArea();
+	
 	private Vector<Date> datesWithEventsInCurrentMonth = new Vector<Date>();
 
 	private JTable eventTable= new JTable();
@@ -68,6 +75,7 @@ public class BrowseQuestionsGUI extends JFrame {
 			ResourceBundle.getBundle("Etiquetas").getString("QuestionN"), 
 			ResourceBundle.getBundle("Etiquetas").getString("Question")
 	};
+	private JTextField textBetAmount;
 
 
 	public void setBusinessLogic(BlFacade bl) {
@@ -207,13 +215,49 @@ public class BrowseQuestionsGUI extends JFrame {
 					Vector<Object> row = new Vector<Object>();
 					row.add(q.getQuestionNumber());
 					row.add(q.getQuestion());
-					questionTableModel.addRow(row);	
+					questionTableModel.addRow(row);
 				}
 				questionTable.getColumnModel().getColumn(0).setPreferredWidth(25);
 				questionTable.getColumnModel().getColumn(1).setPreferredWidth(268);
 			}
 		});
 
+		questionTable.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{	
+				if (businessLogic.getUser() != null)
+					btnBet.setEnabled(true);
+				else
+					btnBet.setEnabled(false);
+			}
+		});
+		
+		this.btnBet.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				int i = eventTable.getSelectedRow();
+				domain.Event ev = (domain.Event)eventTableModel.getValueAt(i,2); // obtain ev object
+				Vector<Question> queries = ev.getQuestions(); // get available questions in event
+				
+				int j = questionTable.getSelectedRow();
+				String currentQ = (String)questionTable.getValueAt(j, 1); // get selected string of question 
+				domain.Question quest = new Question();
+				
+				for (domain.Question q: queries)
+					if (currentQ.equals(q.getQuestion()))
+						quest = q; // get the selected question
+				int betAmount = Integer.parseInt(textBet.getText());
+				
+				if (businessLogic.placeBet(quest, betAmount))
+					textBetState.setText("Bet successful!");
+				else
+					textBetState.setText("Error, please try again.");
+			}
+		});
+		
 		eventScrollPane.setViewportView(eventTable);
 		eventTableModel = new DefaultTableModel(null, eventColumnNames);
 
@@ -230,6 +274,17 @@ public class BrowseQuestionsGUI extends JFrame {
 
 		this.getContentPane().add(eventScrollPane, null);
 		this.getContentPane().add(questionScrollPane, null);
+		
+		btnBet.setEnabled(false);
+		btnBet.setBounds(569, 318, 89, 23);
+		getContentPane().add(btnBet);
+		
+		textBet.setBounds(572, 287, 86, 20);
+		getContentPane().add(textBet);
+		textBet.setColumns(10);
+		
+		textBetState.setBounds(569, 352, 89, 22);
+		getContentPane().add(textBetState);
 	}
 
 	private void jButton2_actionPerformed(ActionEvent e) {

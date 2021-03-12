@@ -1,6 +1,13 @@
 package domain;
 
-public class Bet {
+import javax.persistence.*;
+
+@Entity
+public class Bet 
+{
+	@Id
+	@GeneratedValue (strategy=GenerationType.IDENTITY)
+	private int questionId;
 	private Question question;
 	private double placedBet;
 	private double benefits;

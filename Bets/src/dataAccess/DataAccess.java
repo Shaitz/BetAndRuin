@@ -239,13 +239,12 @@ public class DataAccess  {
 	}
 	
 	public boolean placeBet(User user, Question question, double amount) {
-		User toChange = getUserWithUsernamePassword(user.getUsername(), user.getPassword());
+		User userToChange = this.getUserWithUsernamePassword(user.getUsername(), user.getPassword());
 		db.getTransaction().begin();
-		boolean ret = toChange.placeBet(question, amount);
+		boolean ret = userToChange.placeBet(question, amount);
 		db.getTransaction().commit();
 		return ret;
 	}
-
 	
 	/**
 	 * This method retrieves from the database the events of a given date 

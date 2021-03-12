@@ -9,6 +9,7 @@ import javax.jws.WebService;
 
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
+import domain.Bet;
 import domain.Event;
 import domain.Question;
 import domain.User;
@@ -145,6 +146,20 @@ public class BlFacadeImplementation implements BlFacade {
 		this.user = dbManager.changePasswordOfUser(username, password, newPassword);
 		dbManager.close();
 		return this.user;
+	}
+	
+	/**
+	 * Places a bet in the indicated question with the indicated amount and registers it if the amount is no less than the minimum
+	 * @param question Question in which place the bet
+	 * @param bet Amount to put
+	 * @return True if the bet was placed successfully, false otherwise
+	 */
+	public boolean placeBet(Question question, double bet) 
+	{
+		dbManager.open(false);
+		boolean betState = dbManager.placeBet(this.user, question, bet);
+		dbManager.close();
+		return betState;
 	}
 	
 	public User getUser()

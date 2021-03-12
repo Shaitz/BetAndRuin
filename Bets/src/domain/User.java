@@ -17,6 +17,8 @@ public class User
 	private Integer id;
 	private String username;
 	private String password;
+	@ManyToOne
+	@ElementCollection
 	private ArrayList<Bet> betList;
 	private boolean admin;
 	
@@ -31,6 +33,7 @@ public class User
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		this.betList = new ArrayList<Bet>();
 		if(password.equals("admin123"))
 			admin = true;
 		else
@@ -42,6 +45,7 @@ public class User
 		super();
 		this.username = username;
 		this.password = password;
+		this.betList = new ArrayList<Bet>();
 		if(password.equals("admin123"))
 			admin = true;
 		else
@@ -100,7 +104,10 @@ public class User
 		if(bet <= question.getBetMinimum())
 			return false;
 		else {
-			betList.add(new Bet(question, bet, 1.2));
+			if (betList == null)
+				betList = new ArrayList<Bet>();
+			
+			this.betList.add(new Bet(question, bet, 1.2));
 			return true;
 		}
 	}

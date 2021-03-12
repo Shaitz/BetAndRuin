@@ -99,4 +99,12 @@ public interface BlFacade  {
 	 * @return logged user
 	 */
 	@WebMethod public User getUser();
+	
+	/**
+	 * Places a bet in the indicated question with the indicated amount and registers it if the amount is no less than the minimum
+	 * @param question Question in which place the bet
+	 * @param bet Amount to put
+	 * @return True if the bet was placed successfully, false otherwise
+	 */
+	@WebMethod public boolean placeBet(Question question, double bet);
 }
