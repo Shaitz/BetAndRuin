@@ -219,7 +219,7 @@ public class ProfileGUI extends JFrame{
 		}
 		buttonCancelBet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean succesfull = businessLogic.getUser().removeBet((Bet) comboBets.getSelectedItem());
+				boolean succesfull = businessLogic.removeBet((Bet) comboBets.getSelectedItem());
 				if(succesfull)
 					removeText.setText("Bet removed successfully");
 				else

@@ -248,8 +248,15 @@ public class DataAccess  {
 	
 	public boolean removeBet(User user, Bet bet) {
 		User userToChange = this.getUserWithUsernamePassword(user.getUsername(), user.getPassword());
+		List<Bet> betlist = userToChange.getBets();
+		Bet userBet = null;
+		
+		for (Bet b : betlist)
+			if (bet.getQuestion().getQuestionNumber().equals(b.getQuestion().getQuestionNumber()))
+				userBet = b;
+		
 		db.getTransaction().begin();
-		boolean ret = userToChange.removeBet(bet);
+		boolean ret = userToChange.removeBet(userBet);
 		db.getTransaction().commit();
 		return ret;
 	}

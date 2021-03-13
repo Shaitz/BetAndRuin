@@ -113,14 +113,17 @@ public class User
 		}
 	}
 	
-	public boolean removeBet(Bet bet) {
+	public boolean removeBet(Bet bet) 
+	{
 		boolean toCheck = false;
-		if(betList.contains(bet)) {
+		if(betList.contains(bet)) 
+		{
 			betList.remove(bet);
 			toCheck = true;
 		}
 		return toCheck;
 	}
+	
 	
 	/**
 	 * Returns a list containing the list of bets made by this user
