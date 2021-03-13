@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import javax.swing.JButton;
@@ -31,11 +32,12 @@ public class ProfileGUI extends JFrame{
 	private JButton buttonChange = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ChangeUP"));
 	private JButton buttonCancelBet = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CancelBet"));
 	private JButton buttonAccept = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Accept"));
-	private JComboBox<Bet> comboBets = new JComboBox<Bet>();
+	private JComboBox<String> comboBets = new JComboBox<String>();
 	private JTextField textID;
 	private JTextField textUsername;
 	private JTextField textPassword;
 	private MainGUI previous;
+	private HashMap<String, Bet> betsAndNames = new HashMap<String, Bet>();
 	
 	public void setBusinessLogic(BlFacade bl) {
 		businessLogic = bl;
@@ -214,12 +216,17 @@ public class ProfileGUI extends JFrame{
 					.addContainerGap())
 		);
 		getContentPane().setLayout(groupLayout);
+		// Adds all the bets of the user to the comboBox so it shows a list with bets
+		String question;
 		for(Bet b : businessLogic.getUser().getBets()) {
-			comboBets.addItem(b);
+			question = b.getQuestion().getQuestion() + " || " + b.getPlacedBet();
+			betsAndNames.put(question, b);
+			comboBets.addItem(question);
 		}
+		
 		buttonCancelBet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean succesfull = businessLogic.removeBet((Bet) comboBets.getSelectedItem());
+				boolean succesfull = businessLogic.removeBet(betsAndNames.get(comboBets.getSelectedItem()));
 				if(succesfull)
 					removeText.setText("Bet removed successfully");
 				else
