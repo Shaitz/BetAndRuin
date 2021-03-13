@@ -6,6 +6,7 @@ import java.util.Vector;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
+import domain.Bet;
 import domain.Event;
 import domain.Question;
 import domain.User;
@@ -107,4 +108,11 @@ public interface BlFacade  {
 	 * @return True if the bet was placed successfully, false otherwise
 	 */
 	@WebMethod public boolean placeBet(Question question, double bet);
+	
+	/**
+	 * Removes a bet previously registered by the user and returns the status of the operation
+	 * @param bet Bet to be removed
+	 * @return True if the operation has been made succesfully. False otherwise
+	 */
+	@WebMethod public boolean removeBet(Bet bet);
 }

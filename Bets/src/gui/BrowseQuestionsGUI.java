@@ -242,8 +242,7 @@ public class BrowseQuestionsGUI extends JFrame {
 				domain.Event ev = (domain.Event)eventTableModel.getValueAt(i,2); // obtain ev object
 				Vector<Question> queries = ev.getQuestions(); // get available questions in event
 				
-				int j = questionTable.getSelectedRow();
-				String currentQ = (String)questionTable.getValueAt(j, 1); // get selected string of question 
+				String currentQ = (String)questionTable.getValueAt(i, 1); // get selected string of question 
 				domain.Question quest = new Question();
 				
 				for (domain.Question q: queries)

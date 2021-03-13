@@ -162,6 +162,13 @@ public class BlFacadeImplementation implements BlFacade {
 		return betState;
 	}
 	
+	public boolean removeBet(Bet bet) {
+		dbManager.open(false);
+		boolean removeState = dbManager.removeBet(this.user, bet);
+		dbManager.close();
+		return removeState;
+	}
+	
 	public User getUser()
 	{
 		return this.user;

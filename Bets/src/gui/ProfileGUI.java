@@ -1,10 +1,7 @@
 package gui;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
@@ -12,18 +9,18 @@ import java.util.ResourceBundle;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import businessLogic.BlFacade;
-import domain.User;
+import domain.Bet;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.SystemColor;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
+import java.awt.Color;
 
 public class ProfileGUI extends JFrame{
 
@@ -34,7 +31,7 @@ public class ProfileGUI extends JFrame{
 	private JButton buttonChange = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ChangeUP"));
 	private JButton buttonCancelBet = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CancelBet"));
 	private JButton buttonAccept = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Accept"));
-	private JComboBox comboBets = new JComboBox();
+	private JComboBox<Bet> comboBets = new JComboBox<Bet>();
 	private JTextField textID;
 	private JTextField textUsername;
 	private JTextField textPassword;
@@ -131,10 +128,14 @@ public class ProfileGUI extends JFrame{
 			}
 		});
 		
+		JTextArea removeText = new JTextArea();
+		removeText.setBackground(new Color(240, 240, 240));
+		removeText.setText(ResourceBundle.getBundle("Etiquetas").getString("ProfileGUI.removeText.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		
 
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(92, Short.MAX_VALUE)
 					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE)
@@ -156,11 +157,11 @@ public class ProfileGUI extends JFrame{
 										.addComponent(labelUsername)
 										.addComponent(labelPassword))
 									.addGap(18)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(textPassword, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-										.addComponent(textUsername, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-										.addComponent(comboBets, 0, 198, Short.MAX_VALUE)
-										.addComponent(buttonCancelBet, Alignment.TRAILING))))
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+										.addComponent(textPassword, GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+										.addComponent(textUsername, GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+										.addComponent(comboBets, 0, 205, Short.MAX_VALUE)
+										.addComponent(buttonCancelBet))))
 							.addContainerGap(66, GroupLayout.PREFERRED_SIZE))))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(130, Short.MAX_VALUE)
@@ -169,11 +170,15 @@ public class ProfileGUI extends JFrame{
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(86)
 					.addComponent(buttonChange)
-					.addContainerGap(95, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(215, Short.MAX_VALUE))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 					.addGap(141)
-					.addComponent(buttonAccept)
-					.addContainerGap(154, Short.MAX_VALUE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(10)
+							.addComponent(removeText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(buttonAccept))
+					.addContainerGap(156, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -202,11 +207,25 @@ public class ProfileGUI extends JFrame{
 					.addComponent(buttonChange)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(buttonAccept)
-					.addGap(55)
+					.addGap(15)
+					.addComponent(removeText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
 					.addComponent(closeBtn, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
 		getContentPane().setLayout(groupLayout);
+		for(Bet b : businessLogic.getUser().getBets()) {
+			comboBets.addItem(b);
+		}
+		buttonCancelBet.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean succesfull = businessLogic.getUser().removeBet((Bet) comboBets.getSelectedItem());
+				if(succesfull)
+					removeText.setText("Bet removed successfully");
+				else
+					removeText.setText("Something happened and the bet wasn't successfully removed");
+			}
+		});
 }
 	/**
 	 * Initialize the contents of the frame.

@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.*;
@@ -110,6 +111,15 @@ public class User
 			this.betList.add(new Bet(question, bet, 1.2));
 			return true;
 		}
+	}
+	
+	public boolean removeBet(Bet bet) {
+		boolean toCheck = false;
+		if(betList.contains(bet)) {
+			betList.remove(bet);
+			toCheck = true;
+		}
+		return toCheck;
 	}
 	
 	/**

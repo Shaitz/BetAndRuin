@@ -246,6 +246,14 @@ public class DataAccess  {
 		return ret;
 	}
 	
+	public boolean removeBet(User user, Bet bet) {
+		User userToChange = this.getUserWithUsernamePassword(user.getUsername(), user.getPassword());
+		db.getTransaction().begin();
+		boolean ret = userToChange.removeBet(bet);
+		db.getTransaction().commit();
+		return ret;
+	}
+	
 	/**
 	 * This method retrieves from the database the events of a given date 
 	 * 
