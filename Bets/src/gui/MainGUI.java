@@ -32,7 +32,7 @@ public class MainGUI extends JFrame {
 	private JPanel mainPane;
 	protected JLabel selectOptionLbl;
 	private JButton browseQuestionsBtn;
-	private JButton createQuestionBtn;
+	private JButton adminOptionsBtn;
 	protected JButton loginRegisterBtn;
 	private JButton buttonProfile;
 	private JPanel localePane;
@@ -110,7 +110,7 @@ public class MainGUI extends JFrame {
 					.addGroup(gl_mainPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(localePane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(loginRegisterBtn, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE)
-						.addComponent(createQuestionBtn, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE)
+						.addComponent(adminOptionsBtn, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE)
 						.addComponent(browseQuestionsBtn, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE)
 						.addComponent(selectOptionLbl, GroupLayout.PREFERRED_SIZE, 548, GroupLayout.PREFERRED_SIZE))
 					.addGap(62))
@@ -132,7 +132,7 @@ public class MainGUI extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(browseQuestionsBtn, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(createQuestionBtn, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+					.addComponent(adminOptionsBtn, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(loginRegisterBtn, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
@@ -174,11 +174,11 @@ public class MainGUI extends JFrame {
 	}
 
 	private void initializeCreateQuestionBtn() {
-		createQuestionBtn = new JButton();
-		createQuestionBtn.setEnabled(false);
-		createQuestionBtn.setText(ResourceBundle.getBundle("Etiquetas").
-				getString("CreateQuestion"));
-		createQuestionBtn.addActionListener(new java.awt.event.ActionListener() {
+		adminOptionsBtn = new JButton();
+		adminOptionsBtn.setEnabled(false);
+		adminOptionsBtn.setText(ResourceBundle.getBundle("Etiquetas").
+				getString("AdminOptions"));
+		adminOptionsBtn.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				CreateQuestionGUI createQuestionWindow = new CreateQuestionGUI(businessLogic,
@@ -276,8 +276,8 @@ public class MainGUI extends JFrame {
 				getString("SelectUseCase"));
 		browseQuestionsBtn.setText(ResourceBundle.getBundle("Etiquetas").
 				getString("BrowseQuestions"));
-		createQuestionBtn.setText(ResourceBundle.getBundle("Etiquetas").
-				getString("CreateQuestion"));
+		adminOptionsBtn.setText(ResourceBundle.getBundle("Etiquetas").
+				getString("AdminOptions"));
 		if (loggedUser == null)
 		{
 			loginRegisterBtn.setText(ResourceBundle.getBundle("Etiquetas").
@@ -297,11 +297,11 @@ public class MainGUI extends JFrame {
 	private void setMode() {
 		if(loggedUser != null && loggedUser.isAdmin()) {
 			//admin = true;
-			createQuestionBtn.setEnabled(true);
+			adminOptionsBtn.setEnabled(true);
 		}
 		else {
 			//admin = false;
-			createQuestionBtn.setEnabled(false);
+			adminOptionsBtn.setEnabled(false);
 		}
 	}
 	

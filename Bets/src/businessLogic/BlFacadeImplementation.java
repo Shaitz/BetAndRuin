@@ -174,6 +174,11 @@ public class BlFacadeImplementation implements BlFacade {
 		return this.user;
 	}
 	
+	public User getUser(int id) {
+		// TODO
+		dbManager.open(initializeMode);
+	}
+	
 	public void close() {
 		dbManager.close();
 	}
