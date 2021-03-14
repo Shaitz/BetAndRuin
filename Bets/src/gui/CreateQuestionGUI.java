@@ -139,6 +139,15 @@ public class CreateQuestionGUI extends JFrame {
 		eventDateLbl.setBounds(new Rectangle(40, 15, 140, 25));
 		eventDateLbl.setBounds(40, 16, 140, 25);
 		getContentPane().add(eventDateLbl);
+		
+		JButton addMoneyBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AddMoney")); //$NON-NLS-1$ //$NON-NLS-2$
+		addMoneyBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		addMoneyBtn.setBounds(440, 279, 89, 23);
+		getContentPane().add(addMoneyBtn);
 
 
 		// Code for JCalendar

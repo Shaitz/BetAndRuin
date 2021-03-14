@@ -198,6 +198,18 @@ public class DataAccess  {
 		return db.createQuery("SELECT u FROM User u", User.class).getResultList();
 	}
 	
+	public User getUserByID(Integer id) {
+		User ret;
+		List<User> checkList = db.createQuery("SELECT u FROM User u WHERE u.id = " + id, User.class).getResultList();
+		try {
+			ret = checkList.get(0);
+		}
+		catch (Exception e) {
+			ret = null;
+		}
+		return ret;
+	}
+	
 	public List<User> getUserWithUsername(String username){
 		return db.createQuery("SELECT u FROM User u WHERE u.username == \"" + username + "\"", User.class).getResultList();
 	}
