@@ -1,5 +1,10 @@
 package domain;
 
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+@XmlAccessorType(XmlAccessType.FIELD)
+@Embeddable
 public class Wallet {
 	
 	private int currency;

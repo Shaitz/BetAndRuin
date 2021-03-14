@@ -124,7 +124,6 @@ public class LoginRegisterGUI extends JFrame{
 			}
 		});
 		
-		
 		GroupLayout groupLayout = new GroupLayout(this.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

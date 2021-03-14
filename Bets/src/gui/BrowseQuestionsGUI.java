@@ -54,9 +54,6 @@ public class BrowseQuestionsGUI extends JFrame {
 	private Calendar currentCalendar;
 	private JScrollPane eventScrollPane = new JScrollPane();
 	private JScrollPane questionScrollPane = new JScrollPane();
-
-	private JTextField textBet = new JTextField();
-	private JTextArea textBetState = new JTextArea();
 	
 	private Vector<Date> datesWithEventsInCurrentMonth = new Vector<Date>();
 
@@ -75,7 +72,6 @@ public class BrowseQuestionsGUI extends JFrame {
 			ResourceBundle.getBundle("Etiquetas").getString("QuestionN"), 
 			ResourceBundle.getBundle("Etiquetas").getString("Question")
 	};
-	private JTextField textBetAmount;
 
 
 	public void setBusinessLogic(BlFacade bl) {
@@ -98,7 +94,7 @@ public class BrowseQuestionsGUI extends JFrame {
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("BrowseQuestions"));
-
+		
 		eventDateLbl.setBounds(new Rectangle(40, 15, 140, 25));
 		questionLbl.setBounds(138, 248, 406, 14);
 		eventLbl.setBounds(295, 19, 259, 16);
@@ -249,12 +245,9 @@ public class BrowseQuestionsGUI extends JFrame {
 				for (domain.Question q: queries)
 					if (currentQ.equals(q.getQuestion()))
 						quest = q; // get the selected question
-				int betAmount = Integer.parseInt(textBet.getText());
 				
-				if (businessLogic.placeBet(quest, betAmount))
-					textBetState.setText("Bet successful!");
-				else
-					textBetState.setText("Error, please try again.");
+				BetQuestionGUI betBet = new BetQuestionGUI(businessLogic, ev, quest);
+				betBet.setVisible(true);
 			}
 		});
 		
@@ -276,17 +269,11 @@ public class BrowseQuestionsGUI extends JFrame {
 		this.getContentPane().add(questionScrollPane, null);
 		
 		btnBet.setEnabled(false);
-		btnBet.setBounds(569, 318, 89, 23);
+		btnBet.setBounds(569, 318, 89, 35);
 		getContentPane().add(btnBet);
-		
-		textBet.setBounds(572, 287, 86, 20);
-		getContentPane().add(textBet);
-		textBet.setColumns(10);
-		
-		textBetState.setBounds(569, 352, 89, 22);
-		getContentPane().add(textBetState);
 	}
 
+	
 	private void jButton2_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
 	}
