@@ -41,6 +41,4 @@ public class Bet
 	public void setBenefits(double benefits) {
 		this.benefits = benefits;
 	}
-	
-	
 }
