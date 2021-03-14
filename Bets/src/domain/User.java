@@ -22,6 +22,7 @@ public class User
 	@ElementCollection
 	private ArrayList<Bet> betList;
 	private boolean admin;
+	private Wallet personalWallet;
 	
 	public User()
 	{
@@ -39,6 +40,21 @@ public class User
 			admin = true;
 		else
 			admin = false;
+		personalWallet = new Wallet();
+	}
+	
+	public User(Integer id, String username, String password, int initialCurrency)
+	{
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.betList = new ArrayList<Bet>();
+		if(password.equals("admin123"))
+			admin = true;
+		else
+			admin = false;
+		personalWallet = new Wallet(initialCurrency);
 	}
 	
 	public User(String username, String password)
@@ -51,6 +67,20 @@ public class User
 			admin = true;
 		else
 			admin = false;
+		personalWallet = new Wallet();
+	}
+	
+	public User(String username, String password, int initialCurrency)
+	{
+		super();
+		this.username = username;
+		this.password = password;
+		this.betList = new ArrayList<Bet>();
+		if(password.equals("admin123"))
+			admin = true;
+		else
+			admin = false;
+		personalWallet = new Wallet(initialCurrency);
 	}
 	
 	/**
@@ -135,6 +165,16 @@ public class User
 	
 	public boolean isAdmin() {
 		return admin;
+	}
+	
+	public int increaseCurrency(int amount) {
+		personalWallet.addMoney(amount);
+		return personalWallet.getCurrency();
+	}
+	
+	public int decreaseCurrency(int amount) {
+		personalWallet.removeMoney(amount);
+		return personalWallet.getCurrency();
 	}
 	
 	public String toString()
