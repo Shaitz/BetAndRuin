@@ -81,7 +81,7 @@ public class BetInfoGUI extends JFrame
 		
 		JTextArea textBetAnswer = new JTextArea();
 		textBetAnswer.setEditable(false);
-		textBetAnswer.setText(ResourceBundle.getBundle("Etiquetas").getString("BetInfoGUI.textArea_2.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		textBetAnswer.setText("");
 		
 		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());

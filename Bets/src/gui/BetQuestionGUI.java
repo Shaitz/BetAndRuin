@@ -91,7 +91,7 @@ public class BetQuestionGUI extends JFrame
 		textArea_1.setText(""); //$NON-NLS-1$ //$NON-NLS-2$
 		
 		textField = new JTextField();
-		textField.setText(ResourceBundle.getBundle("Etiquetas").getString("BetQuestionGUI.textField.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		textField.setText("");
 		textField.setColumns(10);
 		
 		JLabel lbAmountLeft = new JLabel("Amount Left:"); //$NON-NLS-1$ //$NON-NLS-2$
