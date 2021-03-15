@@ -22,6 +22,7 @@ public class User
 	@ElementCollection
 	private ArrayList<Bet> betList;
 	private boolean admin;
+	@Embedded
 	private Wallet personalWallet;
 	
 	public User()

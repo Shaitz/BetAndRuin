@@ -30,8 +30,8 @@ public class ProfileGUI extends JFrame{
 	private JButton closeBtn = new JButton(ResourceBundle.getBundle("Etiquetas").
 			getString("Close"));
 	private JButton buttonChange = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ChangeUP"));
-	private JButton buttonCancelBet = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CancelBet"));
 	private JButton buttonAccept = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Accept"));
+	private JButton btnViewBetInfo = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ProfileGUI.btnNewButton.text"));
 	private JComboBox<String> comboBets = new JComboBox<String>();
 	private JTextField textID;
 	private JTextField textUsername;
@@ -66,6 +66,8 @@ public class ProfileGUI extends JFrame{
 				jButton_actionPerformed(e);
 			}
 		});
+		
+		this.initializeBrowseQuestionsBtn();
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setEditable(false);
@@ -134,10 +136,11 @@ public class ProfileGUI extends JFrame{
 		removeText.setBackground(new Color(240, 240, 240));
 		removeText.setText(ResourceBundle.getBundle("Etiquetas").getString("ProfileGUI.removeText.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		
+		
 
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(92, Short.MAX_VALUE)
 					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE)
@@ -163,7 +166,7 @@ public class ProfileGUI extends JFrame{
 										.addComponent(textPassword, GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
 										.addComponent(textUsername, GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
 										.addComponent(comboBets, 0, 205, Short.MAX_VALUE)
-										.addComponent(buttonCancelBet))))
+										.addComponent(btnViewBetInfo))))
 							.addContainerGap(66, GroupLayout.PREFERRED_SIZE))))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(130, Short.MAX_VALUE)
@@ -173,14 +176,14 @@ public class ProfileGUI extends JFrame{
 					.addGap(86)
 					.addComponent(buttonChange)
 					.addContainerGap(215, Short.MAX_VALUE))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(141)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(10)
 							.addComponent(removeText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addComponent(buttonAccept))
-					.addContainerGap(156, Short.MAX_VALUE))
+					.addContainerGap(178, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -203,9 +206,9 @@ public class ProfileGUI extends JFrame{
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(labelBets)
 						.addComponent(comboBets, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(buttonCancelBet)
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnViewBetInfo)
+					.addGap(13)
 					.addComponent(buttonChange)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(buttonAccept)
@@ -223,17 +226,21 @@ public class ProfileGUI extends JFrame{
 			betsAndNames.put(question, b);
 			comboBets.addItem(question);
 		}
-		
-		buttonCancelBet.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				boolean succesfull = businessLogic.removeBet(betsAndNames.get(comboBets.getSelectedItem()));
-				if(succesfull)
-					removeText.setText("Bet removed successfully");
-				else
-					removeText.setText("Something happened and the bet wasn't successfully removed");
+}
+	
+	private void initializeBrowseQuestionsBtn() {
+		btnViewBetInfo = new JButton();
+		btnViewBetInfo.setText(ResourceBundle.getBundle("Etiquetas").
+				getString("BrowseQuestions"));
+		btnViewBetInfo.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				BetInfoGUI viewBetInfo = new BetInfoGUI(businessLogic);
+				viewBetInfo.setVisible(true);
 			}
 		});
-}
+	}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
