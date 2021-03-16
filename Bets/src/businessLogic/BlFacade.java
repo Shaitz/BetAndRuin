@@ -107,7 +107,7 @@ public interface BlFacade  {
 	 * @param id Id of the user to search
 	 * @return logged user
 	 */
-	@WebMethod public User getUser(int id);
+	@WebMethod public double addMoneyToUser(int id, double amount);
 	
 	/**
 	 * Places a bet in the indicated question with the indicated amount and registers it if the amount is no less than the minimum

@@ -7,18 +7,18 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @Embeddable
 public class Wallet {
 	
-	private int currency;
+	private double currency;
 	private String bankAccount;
 	
 	public Wallet() {
 		currency = 0;
 	}
 	
-	public Wallet(int initialAmount) {
+	public Wallet(double initialAmount) {
 		currency = initialAmount;
 	}
 	
-	public int getCurrency() {
+	public double getCurrency() {
 		return currency;
 	}
 	
@@ -30,11 +30,11 @@ public class Wallet {
 		bankAccount = newAccount;
 	}
 	
-	public void addMoney(int amount) {
+	public void addMoney(double amount) {
 		currency += amount;
 	}
 	
-	public boolean removeMoney(int amount) {
+	public boolean removeMoney(double amount) {
 		if(currency - amount < 0)
 			return false;
 		else 

@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.BlFacade;
+import domain.User;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -19,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
 
 public class AddFundsGUI extends JFrame {
 
@@ -47,7 +49,7 @@ public class AddFundsGUI extends JFrame {
 	 */
 	public void jbInit() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(new Dimension(300, 160));
+		this.setSize(new Dimension(416, 160));
 		setBounds(100, 100, 300, 160);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -70,18 +72,18 @@ public class AddFundsGUI extends JFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
+					.addGap(10)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblNewLabel)
 						.addComponent(lblNewLabel_1))
 					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(userField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(amountField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(243, Short.MAX_VALUE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(amountField)
+						.addComponent(userField, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
+					.addContainerGap(62, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(addFundsBtn)
-					.addPreferredGap(ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addComponent(goBackBtn)
 					.addGap(145))
 		);
@@ -100,14 +102,28 @@ public class AddFundsGUI extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(addFundsBtn)
 						.addComponent(goBackBtn))
-					.addContainerGap(141, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 		
 		addFundsBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!userField.getText().equals("") && !amountField.getText().equals("")) {
-					User toAdd = businessLogic.
+				String user = userField.getText();
+				String amount = amountField.getText();
+				if(!user.equals("") && !amount.equals("")) {
+					double toAdd = -1;
+					try {
+						toAdd = businessLogic.addMoneyToUser(Integer.parseInt(user),Double.parseDouble(amount));
+					}
+					catch (Exception ex) {
+						ex.printStackTrace();
+					}
+					if(toAdd == -1) {
+						System.out.println("Something went wrong");
+					}
+					else {
+						closeTab();
+					}
 				}
 			}
 		});

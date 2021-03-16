@@ -133,13 +133,14 @@ public class User
 	 * @return True if the bet was placed successfully, false otherwise
 	 */
 	public boolean placeBet(Question question, double bet) {
-		if(bet <= question.getBetMinimum())
+		if(bet <= question.getBetMinimum() || personalWallet.getCurrency() < bet)
 			return false;
 		else {
 			if (betList == null)
 				betList = new ArrayList<Bet>();
 			
 			this.betList.add(new Bet(question, bet, 1.2));
+			decreaseCurrency(bet);
 			return true;
 		}
 	}
@@ -168,12 +169,12 @@ public class User
 		return admin;
 	}
 	
-	public int increaseCurrency(int amount) {
+	public double increaseCurrency(double amount) {
 		personalWallet.addMoney(amount);
 		return personalWallet.getCurrency();
 	}
 	
-	public int decreaseCurrency(int amount) {
+	public double decreaseCurrency(double amount) {
 		personalWallet.removeMoney(amount);
 		return personalWallet.getCurrency();
 	}

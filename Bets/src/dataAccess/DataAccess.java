@@ -250,6 +250,16 @@ public class DataAccess  {
 		}
 	}
 	
+	public double addMoneyToUser(int id, double amount) {
+		User user = this.getUserByID(id);
+		if(user == null)
+			return -1;
+		db.getTransaction().begin();
+		double ret = user.increaseCurrency(amount);
+		db.getTransaction().commit();
+		return ret;
+	}
+	
 	public boolean placeBet(User user, Question question, double amount) {
 		User userToChange = this.getUserWithUsernamePassword(user.getUsername(), user.getPassword());
 		db.getTransaction().begin();

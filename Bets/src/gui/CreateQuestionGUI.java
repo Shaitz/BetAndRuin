@@ -143,7 +143,8 @@ public class CreateQuestionGUI extends JFrame {
 		JButton addMoneyBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AddMoney")); //$NON-NLS-1$ //$NON-NLS-2$
 		addMoneyBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				AddFundsGUI addFundsGUI = new AddFundsGUI(businessLogic);
+				addFundsGUI.setVisible(true);
 			}
 		});
 		addMoneyBtn.setBounds(440, 279, 89, 23);
