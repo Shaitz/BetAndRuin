@@ -235,7 +235,7 @@ public class ProfileGUI extends JFrame{
 		btnViewBetInfo.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				BetInfoGUI viewBetInfo = new BetInfoGUI(businessLogic);
+				BetInfoGUI viewBetInfo = new BetInfoGUI(businessLogic, betsAndNames, (String)comboBets.getSelectedItem());
 				viewBetInfo.setVisible(true);
 			}
 		});

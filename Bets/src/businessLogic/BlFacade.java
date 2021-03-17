@@ -115,7 +115,7 @@ public interface BlFacade  {
 	 * @param bet Amount to put
 	 * @return True if the bet was placed successfully, false otherwise
 	 */
-	@WebMethod public boolean placeBet(Question question, double bet);
+	@WebMethod public boolean placeBet(Question question, double bet, String answer);
 	
 	/**
 	 * Removes a bet previously registered by the user and returns the status of the operation

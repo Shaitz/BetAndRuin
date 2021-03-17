@@ -11,11 +11,13 @@ public class Bet
 	private Question question;
 	private double placedBet;
 	private double benefits;
+	private String answer;
 	
-	public Bet(Question question, double placedBet, double benefits) {
+	public Bet(Question question, double placedBet, double benefits, String answer) {
 		this.question = question;
 		this.placedBet = placedBet;
 		this.benefits = benefits;
+		this.answer = answer;
 	}
 
 	public Question getQuestion() {
@@ -40,5 +42,15 @@ public class Bet
 
 	public void setBenefits(double benefits) {
 		this.benefits = benefits;
+	}
+	
+	public String getAnswer()
+	{
+		return this.answer;
+	}
+	
+	public void setAnswer(String answer)
+	{
+		this.answer = answer;
 	}
 }

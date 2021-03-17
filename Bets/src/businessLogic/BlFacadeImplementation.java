@@ -154,10 +154,10 @@ public class BlFacadeImplementation implements BlFacade {
 	 * @param bet Amount to put
 	 * @return True if the bet was placed successfully, false otherwise
 	 */
-	public boolean placeBet(Question question, double bet) 
+	public boolean placeBet(Question question, double bet, String answer) 
 	{
 		dbManager.open(false);
-		boolean betState = dbManager.placeBet(this.user, question, bet);
+		boolean betState = dbManager.placeBet(this.user, question, bet, answer);
 		dbManager.close();
 		return betState;
 	}

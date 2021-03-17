@@ -132,14 +132,24 @@ public class User
 	 * @param bet Amount to put
 	 * @return True if the bet was placed successfully, false otherwise
 	 */
-	public boolean placeBet(Question question, double bet) {
+	public boolean placeBet(Question question, double bet, String answer) {
+		
+		//System.out.println(increaseCurrency(22)); // for testing purposes, only admins can add money
+		
 		if(bet <= question.getBetMinimum() || personalWallet.getCurrency() < bet)
 			return false;
 		else {
 			if (betList == null)
 				betList = new ArrayList<Bet>();
+			List<Bet> betList = this.getBets();
 			
-			this.betList.add(new Bet(question, bet, 1.2));
+			for (Bet b : betList) // check if user has already bet this question
+			{
+				if (b.getQuestion().getQuestionNumber().equals(question.getQuestionNumber()))
+					return false;
+			}
+			
+			this.betList.add(new Bet(question, bet, 1.2, answer));
 			decreaseCurrency(bet);
 			return true;
 		}
@@ -167,6 +177,11 @@ public class User
 	
 	public boolean isAdmin() {
 		return admin;
+	}
+	
+	public Wallet getWallet()
+	{
+		return this.personalWallet;
 	}
 	
 	public double increaseCurrency(double amount) {

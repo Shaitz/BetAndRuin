@@ -260,10 +260,10 @@ public class DataAccess  {
 		return ret;
 	}
 	
-	public boolean placeBet(User user, Question question, double amount) {
+	public boolean placeBet(User user, Question question, double amount, String answer) {
 		User userToChange = this.getUserWithUsernamePassword(user.getUsername(), user.getPassword());
 		db.getTransaction().begin();
-		boolean ret = userToChange.placeBet(question, amount);
+		boolean ret = userToChange.placeBet(question, amount, answer);
 		db.getTransaction().commit();
 		return ret;
 	}
