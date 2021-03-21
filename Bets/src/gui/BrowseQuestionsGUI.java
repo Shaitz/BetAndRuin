@@ -28,6 +28,8 @@ import businessLogic.BlFacade;
 import configuration.UtilDate;
 import domain.Bet;
 import domain.Question;
+import enums.QuestionTypes;
+
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
@@ -246,8 +248,27 @@ public class BrowseQuestionsGUI extends JFrame {
 					if (currentQ.equals(q.getQuestion()))
 						quest = q; // get the selected question
 				
-				BetQuestionGUI betBet = new BetQuestionGUI(businessLogic, ev, quest);
-				betBet.setVisible(true);
+				/*if (quest.getType().equals(QuestionTypes.FIXED))
+				{
+					BetQuestionGUI betBet = new BetQuestionGUI(businessLogic, ev, quest);
+					betBet.setVisible(true);
+				}
+				else if (quest.getType().equals(QuestionTypes.DYNAMIC))
+				{
+					BetQuestionGUI betBet = new BetQuestionGUI(businessLogic, ev, quest);
+					betBet.setVisible(true);
+				}
+				else if (quest.getType().equals(QuestionTypes.FREE))
+				{
+					BetQuestionGUI betBet = new BetQuestionGUI(businessLogic, ev, quest);
+					betBet.setVisible(true);
+				}
+				else
+				{*/
+					BetQuestionGUI betBet = new BetQuestionGUI(businessLogic, ev, quest);
+					betBet.setVisible(true);
+				//}
+					
 			}
 		});
 		

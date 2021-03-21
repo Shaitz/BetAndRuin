@@ -174,6 +174,11 @@ public class BlFacadeImplementation implements BlFacade {
 		return this.user;
 	}
 	
+	public void refreshUser()
+	{
+		this.user = this.getRegisteredUser(this.user.getUsername(), this.getUser().getPassword());
+	}
+	
 	public double addMoneyToUser(int id, double amount) {
 		dbManager.open(false);
 		double ret = dbManager.addMoneyToUser(id, amount);

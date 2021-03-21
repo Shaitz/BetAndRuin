@@ -8,6 +8,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import enums.QuestionTypes;
+
 
 @SuppressWarnings("serial")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -24,7 +26,7 @@ public class Question implements Serializable {
 	private String question; 
 	private float betMinimum;
 	private String result;  
-
+	private QuestionTypes type;
 	@XmlIDREF
 	private Event event;
 
@@ -46,6 +48,15 @@ public class Question implements Serializable {
 		this.betMinimum=betMinimum;
 	}
 
+	public Question(Integer queryNumber, String query, float betMinimum, Event event, QuestionTypes type) {
+		super();
+		this.questionNumber = queryNumber;
+		this.question = query;
+		this.betMinimum=betMinimum;
+		this.event = event;
+		this.type = type;
+	}
+	
 	/**
 	 * Gets the  number of the question
 	 * 
@@ -141,6 +152,16 @@ public class Question implements Serializable {
 		this.event = event;
 	}
 
+	public void setType(QuestionTypes type)
+	{
+		this.type = type;
+	}
+	
+	public QuestionTypes getType()
+	{
+		return this.type;
+	}
+	
 	@Override
 	public String toString(){
 		return questionNumber + ";" + question + ";" + Float.toString(betMinimum);

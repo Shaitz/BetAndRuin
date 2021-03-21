@@ -121,6 +121,7 @@ public class BetQuestionGUI extends JFrame
 				}
 				else
 					textPrint.setText("Error. Try Again");
+				businessLogic.refreshUser();
 			}
 		});
 		
