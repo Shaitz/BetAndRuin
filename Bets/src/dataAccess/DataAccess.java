@@ -279,6 +279,8 @@ public class DataAccess  {
 		
 		db.getTransaction().begin();
 		boolean ret = userToChange.removeBet(userBet);
+		if(ret)
+			userToChange.increaseCurrency(userBet.getPlacedBet() * 0.75);
 		db.getTransaction().commit();
 		return ret;
 	}

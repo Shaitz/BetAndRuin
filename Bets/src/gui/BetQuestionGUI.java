@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
@@ -101,6 +102,16 @@ public class BetQuestionGUI extends JFrame
 			{
 				if (!textAmount.getText().equals("") && !textAnswer.getText().equals(""))
 				{
+//					Iterator<Question> it = ev.getQuestions().iterator();
+//					boolean found = false;
+//					Question actual = null;
+//					System.out.println(ev);
+//					while (it.hasNext() && !found) {
+//						actual = (Question) it.next();
+//						if(actual.getQuestionNumber().equals(q.getQuestionNumber()))
+//							found = true;
+//					}
+//					if(found && businessLogic.placeBet(actual, Double.parseDouble(textAmount.getText()), textAnswer.getText()))
 					if(businessLogic.placeBet(q, Double.parseDouble(textAmount.getText()), textAnswer.getText()))
 					{
 						textPrint.setText("Bet Successful!");
