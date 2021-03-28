@@ -17294,7 +17294,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -144,
-											"top": 320,
+											"top": 192,
 											"height": 13
 										},
 										{
@@ -17305,7 +17305,7 @@
 											},
 											"font": "Arial;13;1",
 											"left": 37,
-											"top": 461,
+											"top": 397,
 											"width": 41.17724609375,
 											"height": 13,
 											"text": "Admin"
@@ -17319,7 +17319,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -144,
-											"top": 320,
+											"top": 192,
 											"width": 148.08447265625,
 											"height": 13,
 											"text": "(from Use Case Diagram)"
@@ -17333,14 +17333,14 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -144,
-											"top": 320,
+											"top": 192,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 32,
-									"top": 454,
+									"top": 390,
 									"width": 51.17724609375,
 									"height": 25,
 									"stereotypeLabel": {
@@ -17368,7 +17368,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -80,
-									"top": 312,
+									"top": 248,
 									"width": 10,
 									"height": 10
 								},
@@ -17384,7 +17384,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -80,
-									"top": 312,
+									"top": 248,
 									"width": 10,
 									"height": 10
 								},
@@ -17400,7 +17400,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -80,
-									"top": 312,
+									"top": 248,
 									"width": 10,
 									"height": 10
 								},
@@ -17416,7 +17416,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -80,
-									"top": 312,
+									"top": 248,
 									"width": 10,
 									"height": 10
 								}
@@ -17424,7 +17424,7 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 32,
-							"top": 400,
+							"top": 336,
 							"width": 51.17724609375,
 							"height": 80,
 							"nameCompartment": {
@@ -17548,7 +17548,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -56,
-									"top": 368,
+									"top": 360,
 									"width": 10,
 									"height": 10
 								},
@@ -17564,7 +17564,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -56,
-									"top": 368,
+									"top": 360,
 									"width": 10,
 									"height": 10
 								},
@@ -17580,7 +17580,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -56,
-									"top": 368,
+									"top": 360,
 									"width": 10,
 									"height": 10
 								},
@@ -17596,7 +17596,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -56,
-									"top": 368,
+									"top": 360,
 									"width": 10,
 									"height": 10
 								},
@@ -17612,7 +17612,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -56,
-									"top": 368,
+									"top": 360,
 									"width": 10,
 									"height": 10
 								}
@@ -17687,7 +17687,7 @@
 											"top": 563.5,
 											"width": 120,
 											"height": 13,
-											"text": "BrowseQuestion"
+											"text": "Placed bets info"
 										},
 										{
 											"_type": "LabelView",
@@ -17945,6 +17945,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
+									"left": -8,
 									"top": -104,
 									"width": 10,
 									"height": 10
@@ -17960,6 +17961,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
+									"left": -8,
 									"top": -104,
 									"width": 10,
 									"height": 10
@@ -17975,6 +17977,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
+									"left": -8,
 									"top": -104,
 									"width": 10,
 									"height": 10
@@ -17990,6 +17993,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
+									"left": -8,
 									"top": -104,
 									"width": 10,
 									"height": 10
@@ -18005,6 +18009,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
+									"left": -8,
 									"top": -104,
 									"width": 10,
 									"height": 10
@@ -18140,7 +18145,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -16,
-									"top": -40,
+									"top": -48,
 									"width": 10,
 									"height": 10
 								},
@@ -18156,7 +18161,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -16,
-									"top": -40,
+									"top": -48,
 									"width": 10,
 									"height": 10
 								},
@@ -18172,7 +18177,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -16,
-									"top": -40,
+									"top": -48,
 									"width": 10,
 									"height": 10
 								},
@@ -18188,7 +18193,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -16,
-									"top": -40,
+									"top": -48,
 									"width": 10,
 									"height": 10
 								},
@@ -18204,7 +18209,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -16,
-									"top": -40,
+									"top": -48,
 									"width": 10,
 									"height": 10
 								}
@@ -18803,8 +18808,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 162,
-									"top": 388,
+									"left": 152,
+									"top": 351,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -18824,8 +18829,8 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 158,
-									"top": 374,
+									"left": 152,
+									"top": 336,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -18845,8 +18850,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 169,
-									"top": 417,
+									"left": 153,
+									"top": 380,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -18866,8 +18871,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 104,
-									"top": 404,
+									"left": 108,
+									"top": 352,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -18887,8 +18892,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 102,
-									"top": 391,
+									"left": 110,
+									"top": 339,
 									"height": 13,
 									"alpha": 0.7853981633974483,
 									"distance": 40,
@@ -18908,8 +18913,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 107,
-									"top": 432,
+									"left": 104,
+									"top": 380,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -18929,8 +18934,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 219,
-									"top": 373,
+									"left": 196,
+									"top": 350,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -18949,8 +18954,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 214,
-									"top": 361,
+									"left": 194,
+									"top": 337,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -18969,8 +18974,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 231,
-									"top": 398,
+									"left": 201,
+									"top": 377,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -19019,7 +19024,7 @@
 								"$ref": "AAAAAAF36inos1KV00I="
 							},
 							"lineStyle": 1,
-							"points": "83:432;249:387",
+							"points": "83:374;223:371",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF36inotFLgJ2Y="
@@ -19947,7 +19952,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -592,
-											"top": -448,
+											"top": -464,
 											"height": 13
 										},
 										{
@@ -19958,7 +19963,7 @@
 											},
 											"font": "Arial;13;1",
 											"left": 480,
-											"top": 323.5,
+											"top": 315.5,
 											"width": 118,
 											"height": 13,
 											"text": "AddMoneyToWallet"
@@ -19972,7 +19977,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -592,
-											"top": -448,
+											"top": -464,
 											"width": 148.08447265625,
 											"height": 13,
 											"text": "(from Use Case Diagram)"
@@ -19986,14 +19991,14 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -592,
-											"top": -448,
+											"top": -464,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 475,
-									"top": 316.5,
+									"top": 308.5,
 									"width": 129.158203125,
 									"height": 25,
 									"stereotypeLabel": {
@@ -20021,7 +20026,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -296,
-									"top": -224,
+									"top": -232,
 									"width": 10,
 									"height": 10
 								},
@@ -20037,7 +20042,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -296,
-									"top": -224,
+									"top": -232,
 									"width": 10,
 									"height": 10
 								},
@@ -20053,7 +20058,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -296,
-									"top": -224,
+									"top": -232,
 									"width": 10,
 									"height": 10
 								},
@@ -20069,7 +20074,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -296,
-									"top": -224,
+									"top": -232,
 									"width": 10,
 									"height": 10
 								},
@@ -20085,7 +20090,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -296,
-									"top": -224,
+									"top": -232,
 									"width": 10,
 									"height": 10
 								}
@@ -20093,7 +20098,7 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 448,
-							"top": 312,
+							"top": 304,
 							"width": 182,
 							"height": 35,
 							"nameCompartment": {
@@ -21055,8 +21060,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 690,
-									"top": 335,
+									"left": 689,
+									"top": 332,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -21076,8 +21081,8 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 690,
-									"top": 350,
+									"left": 689,
+									"top": 347,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -21097,8 +21102,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 689,
-									"top": 306,
+									"left": 690,
+									"top": 303,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -21118,8 +21123,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 725,
-									"top": 336,
+									"left": 724,
+									"top": 334,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -21140,7 +21145,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 722,
-									"top": 349,
+									"top": 347,
 									"height": 13,
 									"alpha": 0.7853981633974483,
 									"distance": 40,
@@ -21161,7 +21166,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 729,
-									"top": 308,
+									"top": 306,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -21181,8 +21186,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 656,
-									"top": 336,
+									"left": 655,
+									"top": 332,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -21201,8 +21206,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 658,
-									"top": 350,
+									"left": 657,
+									"top": 345,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -21222,7 +21227,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 651,
-									"top": 309,
+									"top": 305,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -21267,7 +21272,7 @@
 								"$ref": "AAAAAAF4eadcceS3tjA="
 							},
 							"lineStyle": 1,
-							"points": "751:327;630:328",
+							"points": "751:326;630:323",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF4eagpJegzuk4="
@@ -23408,6 +23413,275 @@
 							"headQualifiersCompartment": {
 								"$ref": "AAAAAAF4ebSXYTUxhtU="
 							}
+						},
+						{
+							"_type": "UMLAssociationView",
+							"_id": "AAAAAAF4ec8tfTt18qA=",
+							"_parent": {
+								"$ref": "AAAAAAF36inotVMjOHM="
+							},
+							"model": {
+								"$ref": "AAAAAAF4ec8teDtxZws="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF4ec8tfjt2OfI=",
+									"_parent": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									},
+									"model": {
+										"$ref": "AAAAAAF4ec8teDtxZws="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 423,
+									"top": 324,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									},
+									"edgePosition": 1
+								},
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF4ec8tfzt3ED4=",
+									"_parent": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									},
+									"model": {
+										"$ref": "AAAAAAF4ec8teDtxZws="
+									},
+									"visible": null,
+									"font": "Arial;13;0",
+									"left": 420,
+									"top": 309,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 30,
+									"hostEdge": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									},
+									"edgePosition": 1
+								},
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF4ec8tfzt4Tf0=",
+									"_parent": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									},
+									"model": {
+										"$ref": "AAAAAAF4ec8teDtxZws="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 430,
+									"top": 353,
+									"height": 13,
+									"alpha": -1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									},
+									"edgePosition": 1
+								},
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF4ec8tfzt5wJg=",
+									"_parent": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									},
+									"model": {
+										"$ref": "AAAAAAF4ec8teDty43U="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 421,
+									"top": 324,
+									"height": 13,
+									"alpha": 0.5235987755982988,
+									"distance": 30,
+									"hostEdge": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									},
+									"edgePosition": 2
+								},
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF4ec8tfzt6GLU=",
+									"_parent": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									},
+									"model": {
+										"$ref": "AAAAAAF4ec8teDty43U="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 420,
+									"top": 311,
+									"height": 13,
+									"alpha": 0.7853981633974483,
+									"distance": 40,
+									"hostEdge": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									},
+									"edgePosition": 2
+								},
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF4ec8tfzt7rKk=",
+									"_parent": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									},
+									"model": {
+										"$ref": "AAAAAAF4ec8teDty43U="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 422,
+									"top": 352,
+									"height": 13,
+									"alpha": -0.5235987755982988,
+									"distance": 25,
+									"hostEdge": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									},
+									"edgePosition": 2
+								},
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF4ec8tfzt86jo=",
+									"_parent": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									},
+									"model": {
+										"$ref": "AAAAAAF4ec8teDtzpt0="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 426,
+									"top": 323,
+									"height": 13,
+									"alpha": -0.5235987755982988,
+									"distance": 30,
+									"hostEdge": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									}
+								},
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF4ec8tfzt9QCc=",
+									"_parent": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									},
+									"model": {
+										"$ref": "AAAAAAF4ec8teDtzpt0="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 421,
+									"top": 311,
+									"height": 13,
+									"alpha": -0.7853981633974483,
+									"distance": 40,
+									"hostEdge": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									}
+								},
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF4ec8tgDt++Vs=",
+									"_parent": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									},
+									"model": {
+										"$ref": "AAAAAAF4ec8teDtzpt0="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 436,
+									"top": 349,
+									"height": 13,
+									"alpha": 0.5235987755982988,
+									"distance": 25,
+									"hostEdge": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									}
+								},
+								{
+									"_type": "UMLQualifierCompartmentView",
+									"_id": "AAAAAAF4ec8tgDt/5yc=",
+									"_parent": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									},
+									"model": {
+										"$ref": "AAAAAAF4ec8teDty43U="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLQualifierCompartmentView",
+									"_id": "AAAAAAF4ec8tgDuAIzQ=",
+									"_parent": {
+										"$ref": "AAAAAAF4ec8tfTt18qA="
+									},
+									"model": {
+										"$ref": "AAAAAAF4ec8teDtzpt0="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"width": 10,
+									"height": 10
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF4eacWZePMZ48="
+							},
+							"tail": {
+								"$ref": "AAAAAAF36inos1KmKYY="
+							},
+							"lineStyle": 1,
+							"points": "399:351;455:339",
+							"showVisibility": true,
+							"nameLabel": {
+								"$ref": "AAAAAAF4ec8tfjt2OfI="
+							},
+							"stereotypeLabel": {
+								"$ref": "AAAAAAF4ec8tfzt3ED4="
+							},
+							"propertyLabel": {
+								"$ref": "AAAAAAF4ec8tfzt4Tf0="
+							},
+							"tailRoleNameLabel": {
+								"$ref": "AAAAAAF4ec8tfzt5wJg="
+							},
+							"tailPropertyLabel": {
+								"$ref": "AAAAAAF4ec8tfzt6GLU="
+							},
+							"tailMultiplicityLabel": {
+								"$ref": "AAAAAAF4ec8tfzt7rKk="
+							},
+							"headRoleNameLabel": {
+								"$ref": "AAAAAAF4ec8tfzt86jo="
+							},
+							"headPropertyLabel": {
+								"$ref": "AAAAAAF4ec8tfzt9QCc="
+							},
+							"headMultiplicityLabel": {
+								"$ref": "AAAAAAF4ec8tgDt++Vs="
+							},
+							"tailQualifiersCompartment": {
+								"$ref": "AAAAAAF4ec8tgDt/5yc="
+							},
+							"headQualifiersCompartment": {
+								"$ref": "AAAAAAF4ec8tgDuAIzQ="
+							}
 						}
 					]
 				},
@@ -23530,9 +23804,37 @@
 									"$ref": "AAAAAAF4ebRdmzMfjGk="
 								}
 							}
+						},
+						{
+							"_type": "UMLAssociation",
+							"_id": "AAAAAAF4ec8teDtxZws=",
+							"_parent": {
+								"$ref": "AAAAAAF36inotVNIqkw="
+							},
+							"end1": {
+								"_type": "UMLAssociationEnd",
+								"_id": "AAAAAAF4ec8teDty43U=",
+								"_parent": {
+									"$ref": "AAAAAAF4ec8teDtxZws="
+								},
+								"reference": {
+									"$ref": "AAAAAAF36inotVNIqkw="
+								},
+								"navigable": false
+							},
+							"end2": {
+								"_type": "UMLAssociationEnd",
+								"_id": "AAAAAAF4ec8teDtzpt0=",
+								"_parent": {
+									"$ref": "AAAAAAF4ec8teDtxZws="
+								},
+								"reference": {
+									"$ref": "AAAAAAF4eacWZePKEZc="
+								}
+							}
 						}
 					],
-					"documentation": "#Login/Register\n\n\n##Register flow \n\n1. *User* enters **username** and **password**\n2. *User* clicks **Register**\n3. *System* adds new **user** to the **database**\n4. *System* closes **LoginRegisterGUI**\n\n##Register alternative\n\n3.A if **user** already exists in the database display error message\n3.C if one or more fields are empty dispaly error message\n\n##Login flow\n\n1. *User* enters **username** and **password**\n2. *User* clicks **Login**\n3. *System* retrieves **user** from the **database**\n4. *System* closes **LoginRegisterGUI**\n\n##Login alternative\n\n3.B if **user** dosn't exist in the database display error message\n3.C if one or more fields are empty dispaly error message\n\n## Precondition\n\n* No logged user\n"
+					"documentation": "#Login/Register\n\n\n##Register flow \n\n1. *User* enters **username** and **password**\n2. *User* clicks **Register**\n3. *System* adds new **user** to the **database**\n4. *System* closes **LoginRegisterGUI**\n\n##Register alternative\n\n* X.A *User* can quit at any moment, END\n* 3.B if **user** already exists in the database, display error message\n* 3.C if one or more fields are empty, dispaly error message\n\n##Login flow\n\n1. *User* enters **username** and **password**\n2. *User* clicks **Login**\n3. *System* retrieves **user** from the **database**\n4. *System* closes **LoginRegisterGUI**\n\n##Login alternative\n\n* X.A *User* can quit at any moment, END\n* 3.B if **user** dosn't exist in the database, display error message\n* 3.C if one or more fields are empty, dispaly error message\n\n## Precondition\n\n* No logged user\n"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -23563,7 +23865,7 @@
 					"_parent": {
 						"$ref": "AAAAAAF4MdCncnjSYCI="
 					},
-					"name": "BrowseQuestion",
+					"name": "Placed bets info",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -23593,7 +23895,8 @@
 								}
 							}
 						}
-					]
+					],
+					"documentation": "# Event flow\n\n## Main flow\n\n1. *User* gets into **Bet info**\n2. *System* displays the info about the selected bet\n\n## Alternative flow\n\n* X.A *User* can quit at any moment, END\n\n## Preconditions\n\n* User must be logged\n* At least one bet has to be registered"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -23660,7 +23963,7 @@
 							}
 						}
 					],
-					"documentation": "# Event flow\n\n## Main Flow\n1. *User* selects a **date**\n2. *System* displays the **events** of this **date**\n3. *User* selects an **event**\n4. *System* displays the **questions** asssociated to selected **event**\n\n## Alternative flow\nA2. If there are no events on this date, then **events** cannot be shown.\n\nB4. If there are no questions associated to the event, then questions cannot be shown.\n"
+					"documentation": "# Event flow\n\n## Main Flow\n\n1. *User* selects a **date**\n2. *System* displays the **events** of this **date**\n3. *User* selects an **event**\n4. *System* displays the **questions** asssociated to selected **event**\n\n## Alternative flow\n\n* X.A *User* can quit at any moment, END\n* 2.B If there are no events on this date, then **events** cannot be shown.\n* 4.C If there are no questions associated to the event, then questions cannot be shown.\n"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -23669,7 +23972,7 @@
 						"$ref": "AAAAAAF4MdCncnjSYCI="
 					},
 					"name": "Create question",
-					"documentation": "# Event flow\n\n## Main Flow\n1. *Admin* selects a **date**\n1. *System* displays the **events** of this **date**\n1. *Admin* selects an **event**\n1. *Admin* introduces a **question** and **minimum bet** \n1. *System* adds new **question** with **minimun bet** to the selected **event**\n\n## Alternative flow\nA2. There are no events on this date. Question cannot be added.\n\nB5. If *Admin* doesn't provide a **question** or a valid number for **minimum bet**, then question cannot be added.\n\nC5. If the event **date** is before current day, then question cannot be added.\n\n## Precondition\n\n* Must be logged as **Admin**\n"
+					"documentation": "# Event flow\n\n## Main Flow\n\n1. *Admin* selects a **date**\n2. *System* displays the **events** of this **date**\n3. *Admin* selects an **event**\n4. *Admin* introduces a **question** and **minimum bet** \n5. *System* adds new **question** with **minimun bet** to the selected **event**\n\n## Alternative flow\n\n* X.A *Admin* can quit at any moment, END\n* 2.B There are no events on this date. Question cannot be added.\n* 5.C If *Admin* doesn't provide a **question** or a valid number for **minimum bet**, then question cannot be added.\n* 5.D If the event **date** is before current day, then question cannot be added.\n\n## Precondition\n\n* Must be logged as **Admin**\n"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -23678,7 +23981,7 @@
 						"$ref": "AAAAAAF4MdCncnjSYCI="
 					},
 					"name": "Place bet",
-					"documentation": "# Event flow\n\n## Main Flow\n1. *User* selects a **question**\n2. *System* displays the **BetQuestionGUI** with the info of selected **question**\n3. *User* enters the **answer** and the amount of money he wants to bet\n4. *User* clicks **Bet** button\n5. *System* displays success message\n\n## Alternative flow\n5.A If there is no no money on his wallet, display error message\n\n5.B If there is an empty field, display error message\n\n## Precondition\n\n* Must be logged"
+					"documentation": "# Event flow\n\n## Main Flow\n\n1. *User* selects a **question**\n2. *System* displays the **BetQuestionGUI** with the info of selected **question**\n3. *User* enters the **answer** and the amount of money he wants to bet\n4. *User* clicks **Bet** button\n5. *System* displays success message\n\n## Alternative flow\n\n* X.A *User* can quit at any moment, END\n* 5.B If there is no no money on his wallet, display error message\n* 5.C If there is an empty field, display error message\n\n## Precondition\n\n* Must be logged"
 				},
 				{
 					"_type": "UMLActor",
@@ -23962,7 +24265,7 @@
 							}
 						}
 					],
-					"documentation": "# Event flow\n\n## Main Flow\n1. *User* selects a **Profile**\n2. *System* displays the **user's info**\n\n## Precondition\n\n* the *User* must be logged"
+					"documentation": "# Event flow\n\n## Main Flow\n1. *User* gets into **Profile**\n2. *System* displays the **user's info**\n\n## Alternative flow\n\n* X.A *User* can quit at any moment, END\n\n## Precondition\n\n* the *User* must be logged"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -23970,7 +24273,8 @@
 					"_parent": {
 						"$ref": "AAAAAAF4MdCncnjSYCI="
 					},
-					"name": "AddMoneyToWallet"
+					"name": "AddMoneyToWallet",
+					"documentation": "# Event flow\n\n## Main flow\n\n1. *Admin* gets in the **AddFundsGUI**\n2. *System* displays the **AddFundsGUI**\n3. *Admin* writes the ID of an existing *User* and indicates the amount of money to add\n4. *Admin* clicks on the **AddFunds** button\n5. *System* adds the indicated **money** to the indicated *User*\n\n## Alternative flow\n\n* X.A *Admin* can quit at any moment, END\n* 5.B Indicated *User* does not exist, display error message\n\n## Preconditions\n\n* *Admin* must be logged in"
 				},
 				{
 					"_type": "UMLActor",
@@ -24069,7 +24373,8 @@
 					"_parent": {
 						"$ref": "AAAAAAF4MdCncnjSYCI="
 					},
-					"name": "CancelBet"
+					"name": "CancelBet",
+					"documentation": "# Event flow\n\n## Main flow\n\n1. *User* clicks on the **Cancel bet** in the **BetInfoGUI**\n2. *System* removes the bet from the **Registered bets** of the *User*\n3. *System* disables the **Cancel bet** in the **BetInfoGUI**\n4. *System* adds 75% of the money form the **bet** into the *Walet* of the *User*\n\n## Precondition\n\n* User must be logged in\n* User must have at least one bet registered"
 				},
 				{
 					"_type": "UMLUseCase",
@@ -24078,7 +24383,7 @@
 						"$ref": "AAAAAAF4MdCncnjSYCI="
 					},
 					"name": "ChangeUsenamePassword",
-					"documentation": "# Event flow\n\n## Main Flow\n1. *User* selects a **Change Username and/or Password** button\n2. *System* sets **username** and **Password** fields as editable\n3. *User* changes **username** and/or **Password**\n4. *User* clicks **Accept**\n5. *System* sets **username** and **Password** fields as non editable and saves their value\n\n## Alternativ flow\n\n5.A "
+					"documentation": "# Event flow\n\n## Main Flow\n\n1. *User* selects a **Change Username and/or Password** button\n2. *System* sets **username** and **Password** fields as editable\n3. *User* changes **username** and/or **Password**\n4. *User* clicks **Accept**\n5. *System* sets **username** and **Password** fields as non editable and saves their value\n\n## Alternativ flow\n\n* 5.A If **Username** and **Password** match with those of an already existing *User*, changes are not made\n* 5.B If the **Username** and the **Password** haven't recieved any change, changes are not saved"
 				},
 				{
 					"_type": "UMLUseCase",
