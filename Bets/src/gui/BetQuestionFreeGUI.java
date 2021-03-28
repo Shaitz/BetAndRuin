@@ -22,22 +22,30 @@ import javax.swing.JTextArea;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 
-public class BetQuestionGUI extends JFrame
+public class BetQuestionFreeGUI extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	private JFrame frame;
-	private JButton closeBtn = new JButton("Close");
-	private JButton btnPlaceBet = new JButton("Place Bet");
-	private JLabel lbBetQuestion = new JLabel("Question:");
+	private JButton closeBtn = new JButton(ResourceBundle.getBundle("Etiquetas").
+			getString("Close"));
+	private JButton btnPlaceBet = new JButton(ResourceBundle.getBundle("Etiquetas").
+			getString("PlaceBet"));
+	private JLabel lbBetQuestion = new JLabel(ResourceBundle.getBundle("Etiquetas").
+			getString("Question"));
 	private JTextArea textBetQuestion = new JTextArea();
-	private JLabel lbAmountBet = new JLabel("Amount Bet:");	
-	private JLabel lbEventDate = new JLabel("Event Date:");
-	private JLabel lbAnswer = new JLabel("Answer:");
-	private JLabel lbAmountLeft = new JLabel("Amount Left:");
+	private JLabel lbAmountBet = new JLabel(ResourceBundle.getBundle("Etiquetas").
+			getString("Amount"));
+	private JLabel lbEventDate = new JLabel(ResourceBundle.getBundle("Etiquetas").
+			getString("EventDate"));
+	private JLabel lbAnswer = new JLabel(ResourceBundle.getBundle("Etiquetas").
+			getString("Answer"));
+	private JLabel lbAmountLeft = new JLabel(ResourceBundle.getBundle("Etiquetas").
+			getString("AmountLeft"));
 	private JTextArea textAmountLeft = new JTextArea();
 	private JTextArea textDate = new JTextArea();
 	private JTextArea textPrint = new JTextArea();
-	private JButton btnCheck = new JButton("Check");
+	private JButton btnCheck = new JButton(ResourceBundle.getBundle("Etiquetas").
+			getString("Check"));
 	private BlFacade businessLogic;
 	private Event ev;
 	private Question q;
@@ -51,7 +59,7 @@ public class BetQuestionGUI extends JFrame
 	/**
 	 * Create the application.
 	 */
-	public BetQuestionGUI(BlFacade bl, Event ev, Question q) 
+	public BetQuestionFreeGUI(BlFacade bl, Event ev, Question q) 
 	{
 		businessLogic = bl;
 		this.ev = ev;
@@ -73,7 +81,7 @@ public class BetQuestionGUI extends JFrame
 	{
 		frame = new JFrame();
 		this.setSize(new Dimension(550, 380));
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString(""));
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("BetPanel"));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -121,7 +129,6 @@ public class BetQuestionGUI extends JFrame
 				}
 				else
 					textPrint.setText("Error. Try Again");
-				businessLogic.refreshUser();
 			}
 		});
 		

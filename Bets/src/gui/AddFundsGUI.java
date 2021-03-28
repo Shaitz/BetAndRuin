@@ -59,9 +59,9 @@ public class AddFundsGUI extends JFrame {
 		
 		JButton goBackBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		
-		JLabel lblNewLabel = new JLabel("User:");
+		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Username"));
 		
-		JLabel lblNewLabel_1 = new JLabel("Funds to add:");
+		JLabel lblNewLabel_1 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Funds"));
 		
 		userField = new JTextField();
 		userField.setColumns(10);

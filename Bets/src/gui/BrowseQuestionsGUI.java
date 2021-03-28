@@ -265,7 +265,7 @@ public class BrowseQuestionsGUI extends JFrame {
 				}
 				else
 				{*/
-					BetQuestionGUI betBet = new BetQuestionGUI(businessLogic, ev, quest);
+					BetQuestionFreeGUI betBet = new BetQuestionFreeGUI(businessLogic, ev, quest);
 					betBet.setVisible(true);
 				//}
 					

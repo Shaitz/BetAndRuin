@@ -23,21 +23,31 @@ public class BetInfoGUI extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	private JFrame frame;
-	private JButton closeBtn = new JButton("Close");
-	private JButton btnRemoveBet = new JButton("Remove Bet");
+	private JButton closeBtn = new JButton(ResourceBundle.getBundle("Etiquetas").
+			getString("Close"));
+	private JButton btnRemoveBet = new JButton(ResourceBundle.getBundle("Etiquetas").
+			getString("RemoveBet"));
 	private JTextArea textBetAnswer = new JTextArea();
-	private JLabel lbAnswer = new JLabel();
+	private JLabel lbAnswer = new JLabel(ResourceBundle.getBundle("Etiquetas").
+			getString("Answer"));
 	private JTextArea textBetDate = new JTextArea();
-	private JLabel lbEventDate = new JLabel("Event Date:");
+	private JLabel lbEventDate = new JLabel(ResourceBundle.getBundle("Etiquetas").
+			getString("EventDate"));
 	private JTextArea textBetAmount = new JTextArea();
-	private JLabel lbAmountBet = new JLabel("Amount Bet:");
-	private JLabel lbBetQuestion = new JLabel("Question: ");	
+	private JLabel lbAmountBet = new JLabel(ResourceBundle.getBundle("Etiquetas").
+			getString("Amount"));
+	private JLabel lbBetQuestion = new JLabel(ResourceBundle.getBundle("Etiquetas").
+			getString("Question"));	
 	private JTextArea textBetQuestion = new JTextArea();
-	private JLabel lbAns = new JLabel("Answer");
+	private JLabel lbAns = new JLabel(ResourceBundle.getBundle("Etiquetas").
+			getString("Answer"));
 	private BlFacade businessLogic;
 	private HashMap<String, Bet> bets;
 	private String betQ;
 	private JTextArea textRemoved = new JTextArea();
+	private JLabel lbTeams = new JLabel(ResourceBundle.getBundle("Etiquetas").
+			getString("Teams"));
+	private JTextArea textTeams = new JTextArea();
 
 	public void setBusinessLogic(BlFacade bl) {
 		businessLogic = bl;
@@ -67,8 +77,8 @@ public class BetInfoGUI extends JFrame
 	private void jbInit() throws Exception
 	{
 		frame = new JFrame();
-		this.setSize(new Dimension(400, 300));
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString(""));
+		this.setSize(new Dimension(500, 300));
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("BetInfo"));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -93,7 +103,11 @@ public class BetInfoGUI extends JFrame
 			{
 				Bet currentBet = bets.get(betQ);
 				if(businessLogic.removeBet(currentBet))
+				{
 					textRemoved.setText("Removed Successfully.");
+					initializeTexts();
+					btnRemoveBet.setEnabled(false);
+				}
 				else
 					textRemoved.setText("Error.");
 			}
@@ -111,7 +125,11 @@ public class BetInfoGUI extends JFrame
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lbAmountBet)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(textBetAmount, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE))
+									.addComponent(textBetAmount, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(lbTeams)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(textTeams, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lbBetQuestion)
 									.addGap(18)
@@ -143,7 +161,9 @@ public class BetInfoGUI extends JFrame
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lbAmountBet)
-						.addComponent(textBetAmount, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textBetAmount, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lbTeams)
+						.addComponent(textTeams, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lbEventDate)
@@ -168,8 +188,9 @@ public class BetInfoGUI extends JFrame
 		Bet currentBet = bets.get(betQ);
 		textBetQuestion.setText(currentBet.getQuestion().getQuestion());
 		textBetAmount.setText(Double.toString(currentBet.getPlacedBet()));
-		textBetDate.setText(""); // need date
+		textBetDate.setText(currentBet.getQuestion().getEvent().getEventDate().toString());
 		textBetAnswer.setText(currentBet.getAnswer());
+		textTeams.setText(currentBet.getQuestion().getEvent().toString());
 	}
 	
 	/**

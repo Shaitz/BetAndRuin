@@ -137,6 +137,7 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.open(false);
 		this.user = dbManager.changeUsername(username, password, newUsername);
 		dbManager.close();
+		this.refreshUser();
 		return this.user;
 	}
 	
@@ -145,6 +146,7 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.open(false);
 		this.user = dbManager.changePasswordOfUser(username, password, newPassword);
 		dbManager.close();
+		this.refreshUser();
 		return this.user;
 	}
 	
@@ -159,6 +161,7 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.open(false);
 		boolean betState = dbManager.placeBet(this.user, question, bet, answer);
 		dbManager.close();
+		this.refreshUser();
 		return betState;
 	}
 	
@@ -166,6 +169,7 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.open(false);
 		boolean removeState = dbManager.removeBet(this.user, bet);
 		dbManager.close();
+		this.refreshUser();
 		return removeState;
 	}
 	
@@ -179,10 +183,12 @@ public class BlFacadeImplementation implements BlFacade {
 		this.user = this.getRegisteredUser(this.user.getUsername(), this.getUser().getPassword());
 	}
 	
-	public double addMoneyToUser(int id, double amount) {
+	public double addMoneyToUser(int id, double amount) 
+	{
 		dbManager.open(false);
 		double ret = dbManager.addMoneyToUser(id, amount);
 		dbManager.close();
+		this.refreshUser();
 		return ret;
 	}
 	

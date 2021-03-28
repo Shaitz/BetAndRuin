@@ -31,11 +31,12 @@ public class ProfileGUI extends JFrame{
 			getString("Close"));
 	private JButton buttonChange = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ChangeUP"));
 	private JButton buttonAccept = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Accept"));
-	private JButton btnViewBetInfo = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ProfileGUI.btnNewButton.text"));
+	private JButton btnViewBetInfo = new JButton(ResourceBundle.getBundle("Etiquetas").getString("BetInfo"));
 	private JComboBox<String> comboBets = new JComboBox<String>();
 	private JTextField textID;
 	private JTextField textUsername;
 	private JTextField textPassword;
+	private JTextArea removeText = new JTextArea();
 	private MainGUI previous;
 	private HashMap<String, Bet> betsAndNames = new HashMap<String, Bet>();
 	
@@ -66,20 +67,20 @@ public class ProfileGUI extends JFrame{
 				jButton_actionPerformed(e);
 			}
 		});
-		
-		this.initializeBrowseQuestionsBtn();
-		
+		if (!businessLogic.getUser().getBets().isEmpty())
+			this.initializeBrowseQuestionsBtn();
+		else
+			btnViewBetInfo.setEnabled(false);
 		JTextArea textArea = new JTextArea();
 		textArea.setEditable(false);
 		textArea.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		textArea.setBackground(SystemColor.menu);
 		textArea.setText(ResourceBundle.getBundle("Etiquetas").getString("Profile"));
 		
-		JLabel labelID = new JLabel("ID: "); 
-		
-		JLabel labelUsername = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Username")); 
-		
-		JLabel labelPassword = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Password")); 
+		JLabel labelID = new JLabel("ID: ");
+		JLabel lbMoney = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Money"));
+		JLabel labelUsername = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Username"));
+		JLabel labelPassword = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Password"));
 		
 		textID = new JTextField(String.valueOf(businessLogic.getUser().getId()));
 		textID.setEditable(false);
@@ -132,58 +133,63 @@ public class ProfileGUI extends JFrame{
 			}
 		});
 		
-		JTextArea removeText = new JTextArea();
 		removeText.setBackground(new Color(240, 240, 240));
 		removeText.setText(ResourceBundle.getBundle("Etiquetas").getString("ProfileGUI.removeText.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		
 		
-
+		JTextArea textMoney = new JTextArea(Double.toString(businessLogic.getUser().getWallet().getCurrency()));
+		textMoney.setEditable(false);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(92, Short.MAX_VALUE)
-					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addGap(92)
+					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(47)
+					.addComponent(labelID, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+					.addGap(4)
+					.addComponent(textID, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(47)
+					.addComponent(labelUsername)
+					.addGap(20)
+					.addComponent(textUsername, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(151)
+					.addComponent(buttonAccept)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(removeText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(60))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(115)
+					.addComponent(closeBtn, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(47)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(labelBets)
-							.addContainerGap())
+							.addComponent(lbMoney)
+							.addGap(29)
+							.addComponent(textMoney, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(labelID, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textID, GroupLayout.PREFERRED_SIZE, 199, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(labelUsername)
-										.addComponent(labelPassword))
-									.addGap(18)
-									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-										.addComponent(textPassword, GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-										.addComponent(textUsername, GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-										.addComponent(comboBets, 0, 205, Short.MAX_VALUE)
-										.addComponent(btnViewBetInfo))))
-							.addContainerGap(66, GroupLayout.PREFERRED_SIZE))))
+							.addComponent(labelPassword)
+							.addGap(22)
+							.addComponent(textPassword, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE))))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(130, Short.MAX_VALUE)
-					.addComponent(closeBtn, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
-					.addGap(124))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(86)
+					.addGap(82)
 					.addComponent(buttonChange)
-					.addContainerGap(215, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(141)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addContainerGap(219, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addGap(47)
+							.addComponent(labelBets)
+							.addGap(47)
+							.addComponent(comboBets, 0, 175, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(10)
-							.addComponent(removeText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addComponent(buttonAccept))
-					.addContainerGap(178, Short.MAX_VALUE))
+							.addContainerGap(193, Short.MAX_VALUE)
+							.addComponent(btnViewBetInfo)))
+					.addGap(94))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -191,32 +197,44 @@ public class ProfileGUI extends JFrame{
 					.addGap(21)
 					.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 					.addGap(41)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(labelID, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(labelUsername)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(2)
+							.addComponent(textID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(3)
+							.addComponent(labelUsername))
 						.addComponent(textUsername, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(labelPassword)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(3)
+							.addComponent(labelPassword))
 						.addComponent(textPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(26)
+					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(labelBets)
-						.addComponent(comboBets, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textMoney, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lbMoney))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(30)
+							.addComponent(labelBets))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(26)
+							.addComponent(comboBets, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnViewBetInfo)
-					.addGap(13)
+					.addGap(5)
 					.addComponent(buttonChange)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(buttonAccept)
-					.addGap(15)
-					.addComponent(removeText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(closeBtn, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(removeText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(buttonAccept))
+					.addGap(20)
+					.addComponent(closeBtn, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
 		);
 		getContentPane().setLayout(groupLayout);
 		// Adds all the bets of the user to the comboBox so it shows a list with bets
@@ -229,14 +247,13 @@ public class ProfileGUI extends JFrame{
 }
 	
 	private void initializeBrowseQuestionsBtn() {
-		btnViewBetInfo = new JButton();
-		btnViewBetInfo.setText(ResourceBundle.getBundle("Etiquetas").
-				getString("BrowseQuestions"));
 		btnViewBetInfo.addActionListener(new java.awt.event.ActionListener() {
 			@Override
-			public void actionPerformed(java.awt.event.ActionEvent e) {
+			public void actionPerformed(java.awt.event.ActionEvent e) 
+			{
 				BetInfoGUI viewBetInfo = new BetInfoGUI(businessLogic, betsAndNames, (String)comboBets.getSelectedItem());
 				viewBetInfo.setVisible(true);
+				jButton_actionPerformed(e);
 			}
 		});
 	}
