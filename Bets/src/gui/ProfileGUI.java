@@ -117,12 +117,35 @@ public class ProfileGUI extends JFrame{
 			{
 				buttonAccept.setVisible(false);
 				
+				String username = null;
+				String password = null;
+				boolean uChange = false;
+				boolean pChange = false;
+				
 				if (textUsername.getText() != null && textUsername.getText() != "" && textUsername.getText() != businessLogic.getUser().getUsername())
-					businessLogic.changeUsername(businessLogic.getUser().getUsername(), businessLogic.getUser().getPassword(), textUsername.getText());
+//					businessLogic.changeUsername(businessLogic.getUser().getUsername(), businessLogic.getUser().getPassword(), textUsername.getText());
+					username = textUsername.getText();
 				
 				if (textPassword.getText() != null && textPassword.getText() != "" && textPassword.getText() != businessLogic.getUser().getPassword())
-					businessLogic.changePassword(businessLogic.getUser().getUsername(), businessLogic.getUser().getPassword(), textPassword.getText());
+//					businessLogic.changePassword(businessLogic.getUser().getUsername(), businessLogic.getUser().getPassword(), textPassword.getText());
+					password = textPassword.getText();
 				
+				if(username != null && password != null)
+					if(businessLogic.getRegisteredUser(username, password) == null) {
+						uChange = true;
+						pChange = true;
+					}
+				else if(username != null)
+					if(businessLogic.getRegisteredUser(username, businessLogic.getUser().getPassword()) == null)
+						uChange = true;
+				else if(password != null)
+					if(businessLogic.getRegisteredUser(businessLogic.getUser().getUsername(), password) == null)
+						pChange = true;
+				
+				if(uChange)
+					businessLogic.changeUsername(businessLogic.getUser().getUsername(), businessLogic.getUser().getPassword(), textUsername.getText());
+				if(pChange)
+					businessLogic.changePassword(businessLogic.getUser().getUsername(), businessLogic.getUser().getPassword(), textPassword.getText());
 				
 				textUsername.setEditable(false);
 				textPassword.setEditable(false);
