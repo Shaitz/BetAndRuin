@@ -10,6 +10,7 @@ import domain.Bet;
 import domain.Event;
 import domain.Question;
 import domain.User;
+import enums.QuestionTypes;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -30,7 +31,7 @@ public interface BlFacade  {
  	 * @throws QuestionAlreadyExist if the same question already exists for the event
 	 */
 	@WebMethod
-	Question createQuestion(Event event, String question, float betMinimum) 
+	Question createQuestion(Event event, String question, float betMinimum, QuestionTypes type) 
 			throws EventFinished, QuestionAlreadyExist;
 		
 	/**

@@ -248,26 +248,26 @@ public class BrowseQuestionsGUI extends JFrame {
 					if (currentQ.equals(q.getQuestion()))
 						quest = q; // get the selected question
 				
-				/*if (quest.getType().equals(QuestionTypes.FIXED))
+				if (quest.getType().equals(QuestionTypes.FIXED))
 				{
-					BetQuestionGUI betBet = new BetQuestionGUI(businessLogic, ev, quest);
+					BetQuestionFixedGUI betBet = new BetQuestionFixedGUI(businessLogic, ev, quest);
 					betBet.setVisible(true);
 				}
 				else if (quest.getType().equals(QuestionTypes.DYNAMIC))
 				{
-					BetQuestionGUI betBet = new BetQuestionGUI(businessLogic, ev, quest);
-					betBet.setVisible(true);
-				}
-				else if (quest.getType().equals(QuestionTypes.FREE))
-				{
-					BetQuestionGUI betBet = new BetQuestionGUI(businessLogic, ev, quest);
+					BetQuestionDynamicGUI betBet = new BetQuestionDynamicGUI(businessLogic, ev, quest);
 					betBet.setVisible(true);
 				}
 				else
-				{*/
+				{
 					BetQuestionFreeGUI betBet = new BetQuestionFreeGUI(businessLogic, ev, quest);
 					betBet.setVisible(true);
-				//}
+				}
+//				else
+//				{
+//					BetQuestionFreeGUI betBet = new BetQuestionFreeGUI(businessLogic, ev, quest);
+//					betBet.setVisible(true);
+//				}
 					
 			}
 		});

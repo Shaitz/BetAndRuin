@@ -21,6 +21,7 @@ import domain.Bet;
 import domain.Event;
 import domain.Question;
 import domain.User;
+import enums.QuestionTypes;
 import exceptions.QuestionAlreadyExist;
 
 /**
@@ -135,6 +136,13 @@ public class DataAccess  {
 				q6 = ev17.addQuestion("Golak sartuko dira lehenengo zatian?", 2);
 				q6.setEvent(ev17);
 			}
+			
+			q1.setType(QuestionTypes.FIXED);
+			q2.setType(QuestionTypes.FIXED);
+			q3.setType(QuestionTypes.FIXED);
+			q4.setType(QuestionTypes.FREE);
+			q5.setType(QuestionTypes.FIXED);
+			q6.setType(QuestionTypes.DYNAMIC);
 
 			db.persist(q1);
 			db.persist(q2);
@@ -181,7 +189,7 @@ public class DataAccess  {
 	 * @return the created question, or null, or an exception
 	 * @throws QuestionAlreadyExist if the same question already exists for the event
 	 */
-	public Question createQuestion(Event event, String question, float betMinimum) 
+	public Question createQuestion(Event event, String question, float betMinimum, QuestionTypes type) 
 			throws QuestionAlreadyExist {
 		System.out.println(">> DataAccess: createQuestion=> event = " + event + " question = " +
 				question + " minimum bet = " + betMinimum);
@@ -193,8 +201,10 @@ public class DataAccess  {
 
 		db.getTransaction().begin();
 		Question q = ev.addQuestion(question, betMinimum);
+		q.setEvent(ev);
+		q.setType(type);
 		//db.persist(q);
-		db.persist(ev); // db.persist(q) not required when CascadeType.PERSIST is added 
+		db.persist(ev); // db.persist(q) not required when CascadeType.PERSIST is added
 		// in questions property of Event class
 		// @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 		db.getTransaction().commit();

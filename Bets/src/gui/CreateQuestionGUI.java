@@ -28,8 +28,11 @@ import com.toedter.calendar.JCalendar;
 import businessLogic.BlFacade;
 import configuration.UtilDate;
 import domain.Event;
+import enums.QuestionTypes;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
 public class CreateQuestionGUI extends JFrame {
 	
@@ -59,10 +62,14 @@ public class CreateQuestionGUI extends JFrame {
 
 	private JButton createBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestion"));
 	private JButton closeBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
+	JRadioButton fixedButton;
+	JRadioButton dynamicButton;
+	JRadioButton freeButton;
 	private JLabel msgLbl = new JLabel();
 	private JLabel errorLbl = new JLabel();
 
 	private Vector<Date> datesWithEventsInCurrentMonth = new Vector<Date>();
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	public void setBusinessLogic(BlFacade bl) {
 		businessLogic = bl;		
@@ -115,7 +122,7 @@ public class CreateQuestionGUI extends JFrame {
 		msgLbl.setForeground(Color.red);
 		// jLabelMsg.setSize(new Dimension(305, 20));
 
-		errorLbl.setBounds(new Rectangle(175, 240, 305, 20));
+		errorLbl.setBounds(new Rectangle(275, 182, 305, 20));
 		errorLbl.setForeground(Color.red);
 
 		this.getContentPane().add(msgLbl, null);
@@ -149,6 +156,26 @@ public class CreateQuestionGUI extends JFrame {
 		});
 		addMoneyBtn.setBounds(440, 279, 89, 23);
 		getContentPane().add(addMoneyBtn);
+		
+		JLabel qType = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.lblNewLabel.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		qType.setBounds(175, 246, 32, 14);
+		getContentPane().add(qType);
+		
+		freeButton = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.rdbtnNewRadioButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		freeButton.setSelected(true);
+		buttonGroup.add(freeButton);
+		freeButton.setBounds(213, 245, 47, 23);
+		getContentPane().add(freeButton);
+		
+		dynamicButton = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.rdbtnNewRadioButton_1.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		buttonGroup.add(dynamicButton);
+		dynamicButton.setBounds(264, 245, 68, 23);
+		getContentPane().add(dynamicButton);
+		
+		fixedButton = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.rdbtnNewRadioButton_2.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		buttonGroup.add(fixedButton);
+		fixedButton.setBounds(334, 245, 60, 23);
+		getContentPane().add(fixedButton);
 
 
 		// Code for JCalendar
@@ -274,7 +301,12 @@ public class CreateQuestionGUI extends JFrame {
 				if (inputPrice <= 0)
 					errorLbl.setText(ResourceBundle.getBundle("Etiquetas").getString("ErrorNumber"));
 				else {
-					businessLogic.createQuestion(event, inputQuestion, inputPrice);
+					QuestionTypes type = QuestionTypes.FREE;
+					if(dynamicButton.isSelected())
+						type = QuestionTypes.DYNAMIC;
+					else if (fixedButton.isSelected())
+						type = QuestionTypes.FIXED;
+					businessLogic.createQuestion(event, inputQuestion, inputPrice, type);
 					msgLbl.setText(ResourceBundle.getBundle("Etiquetas").getString("QuestionCreated"));
 				}
 			} else

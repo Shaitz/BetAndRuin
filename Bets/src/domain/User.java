@@ -124,6 +124,10 @@ public class User
 	public void setPassword(String password)
 	{
 		this.password = password;
+		if(password.equals("admin123"))
+			admin=true;
+		else
+			admin=false;
 	}
 	
 	/**

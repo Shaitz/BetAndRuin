@@ -13,6 +13,7 @@ import domain.Bet;
 import domain.Event;
 import domain.Question;
 import domain.User;
+import enums.QuestionTypes;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -53,13 +54,14 @@ public class BlFacadeImplementation implements BlFacade {
 	 * @param event to which question is added
 	 * @param question text of the question
 	 * @param betMinimum minimum quantity of the bet
+	 * @param type Indicates the format of the answer when making a bet
 	 * @return the created question, or null, or an exception
 	 * @throws EventFinished if current data is after data of the event
 	 * @throws QuestionAlreadyExist if the same question already exists for the event
 	 */
 	@Override
 	@WebMethod
-	public Question createQuestion(Event event, String question, float betMinimum) 
+	public Question createQuestion(Event event, String question, float betMinimum, QuestionTypes type) 
 			throws EventFinished, QuestionAlreadyExist {
 
 		//The minimum bid must be greater than 0
@@ -70,7 +72,7 @@ public class BlFacadeImplementation implements BlFacade {
 			throw new EventFinished(ResourceBundle.getBundle("Etiquetas").
 					getString("ErrorEventHasFinished"));
 
-		qry = dbManager.createQuestion(event, question, betMinimum);		
+		qry = dbManager.createQuestion(event, question, betMinimum, type);		
 		dbManager.close();
 		return qry;
 	}
