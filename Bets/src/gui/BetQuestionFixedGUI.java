@@ -99,7 +99,9 @@ public class BetQuestionFixedGUI extends JFrame
 		textPrint.setEditable(false);
 		textBetQuestion.setText(this.q.getQuestion());
 		textDate.setText(ev.getEventDate().toString());
-		
+		rdbtn1.setActionCommand("one");
+		rdbtnX.setActionCommand("X");
+		rdbtn2.setActionCommand("two");
 		
 		this.btnPlaceBet.addActionListener(new ActionListener() {
 			@Override
@@ -119,11 +121,11 @@ public class BetQuestionFixedGUI extends JFrame
 //					if(found && businessLogic.placeBet(actual, Double.parseDouble(textAmount.getText()), textAnswer.getText()))
 					String ans = null;
 					
-					if(buttonGroup.getSelection()==rdbtn1) {
+					if(buttonGroup.getSelection().getActionCommand().equals("one")) {
 						ans = "1";
-					}else if(buttonGroup.getSelection()==rdbtnX) {
+					}else if(buttonGroup.getSelection().getActionCommand().equals("X")) {
 						ans = "X";
-					}else if(buttonGroup.getSelection()==rdbtn2) {
+					}else if(buttonGroup.getSelection().getActionCommand().equals("two")) {
 						ans = "2";
 					}
 					
