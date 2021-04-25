@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 
@@ -108,6 +109,15 @@ public class Event implements Serializable {
 				return true;
 		}
 		return false;
+	}
+	
+	public boolean canBet() {
+		boolean ret = false;
+		Date today = Calendar.getInstance().getTime();
+		today.setTime(today.getTime() + 86400000);
+		if(today.compareTo(eventDate) < 0)
+			ret = true;
+		return ret;
 	}
 
 	@Override

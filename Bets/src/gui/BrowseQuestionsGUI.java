@@ -32,6 +32,8 @@ import enums.QuestionTypes;
 
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import java.awt.SystemColor;
+import java.awt.Color;
 
 public class BrowseQuestionsGUI extends JFrame {
 
@@ -74,6 +76,7 @@ public class BrowseQuestionsGUI extends JFrame {
 			ResourceBundle.getBundle("Etiquetas").getString("QuestionN"), 
 			ResourceBundle.getBundle("Etiquetas").getString("Question")
 	};
+	private JTextArea warningTxtArea;
 
 
 	public void setBusinessLogic(BlFacade bl) {
@@ -248,26 +251,26 @@ public class BrowseQuestionsGUI extends JFrame {
 					if (currentQ.equals(q.getQuestion()))
 						quest = q; // get the selected question
 				
-				if (quest.getType().equals(QuestionTypes.FIXED))
-				{
-					BetQuestionFixedGUI betBet = new BetQuestionFixedGUI(businessLogic, ev, quest);
-					betBet.setVisible(true);
+				if(quest.getEvent().canBet()) {
+					if (quest.getType().equals(QuestionTypes.FIXED))
+					{
+						BetQuestionFixedGUI betBet = new BetQuestionFixedGUI(businessLogic, ev, quest);
+						betBet.setVisible(true);
+					}
+					else if (quest.getType().equals(QuestionTypes.DYNAMIC))
+					{
+						BetQuestionDynamicGUI betBet = new BetQuestionDynamicGUI(businessLogic, ev, quest);
+						betBet.setVisible(true);
+					}
+					else
+					{
+						BetQuestionFreeGUI betBet = new BetQuestionFreeGUI(businessLogic, ev, quest);
+						betBet.setVisible(true);
+					}
 				}
-				else if (quest.getType().equals(QuestionTypes.DYNAMIC))
-				{
-					BetQuestionDynamicGUI betBet = new BetQuestionDynamicGUI(businessLogic, ev, quest);
-					betBet.setVisible(true);
+				else {
+					warningTxtArea.setText("As this event will occur soon, you are unable to place a bet.");
 				}
-				else
-				{
-					BetQuestionFreeGUI betBet = new BetQuestionFreeGUI(businessLogic, ev, quest);
-					betBet.setVisible(true);
-				}
-//				else
-//				{
-//					BetQuestionFreeGUI betBet = new BetQuestionFreeGUI(businessLogic, ev, quest);
-//					betBet.setVisible(true);
-//				}
 					
 			}
 		});
@@ -292,6 +295,12 @@ public class BrowseQuestionsGUI extends JFrame {
 		btnBet.setEnabled(false);
 		btnBet.setBounds(569, 318, 89, 35);
 		getContentPane().add(btnBet);
+		
+		warningTxtArea = new JTextArea();
+		warningTxtArea.setBackground(SystemColor.menu);
+		warningTxtArea.setText(ResourceBundle.getBundle("Etiquetas").getString("WarningTxtArea")); //$NON-NLS-1$ //$NON-NLS-2$
+		warningTxtArea.setBounds(40, 222, 598, 22);
+		getContentPane().add(warningTxtArea);
 	}
 
 	

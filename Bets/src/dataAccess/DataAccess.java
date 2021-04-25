@@ -59,11 +59,14 @@ public class DataAccess  {
 			Calendar today = Calendar.getInstance();
 
 			int month = today.get(Calendar.MONTH);
-			month += 1;
+			int aux = month + 1;
+			if(today.get(Calendar.DAY_OF_MONTH) > 17) {
+				month++;
+			}
 			int year = today.get(Calendar.YEAR);
 			if (month == 12) { month = 0; year += 1;}  
 
-			Event ev1 = new Event(1, "Atlético-Athletic", UtilDate.newDate(year, month, 17));
+			Event ev1 = new Event(1, "Atlético-Athletic", UtilDate.newDate(year, month, 25));
 			Event ev2 = new Event(2, "Eibar-Barcelona", UtilDate.newDate(year, month, 17));
 			Event ev3 = new Event(3, "Getafe-Celta", UtilDate.newDate(year, month, 17));
 			Event ev4 = new Event(4, "Alavés-Deportivo", UtilDate.newDate(year, month, 17));
@@ -74,12 +77,12 @@ public class DataAccess  {
 			Event ev9 = new Event(9, "Real Sociedad-Levante", UtilDate.newDate(year, month, 17));
 			Event ev10 = new Event(10, "Betis-Real Madrid", UtilDate.newDate(year, month, 17));
 
-			Event ev11 = new Event(11, "Atletico-Athletic", UtilDate.newDate(year, month, 1));
-			Event ev12 = new Event(12, "Eibar-Barcelona", UtilDate.newDate(year, month, 1));
-			Event ev13 = new Event(13, "Getafe-Celta", UtilDate.newDate(year, month, 1));
-			Event ev14 = new Event(14, "Alavés-Deportivo", UtilDate.newDate(year, month, 1));
-			Event ev15 = new Event(15, "Español-Villareal", UtilDate.newDate(year, month, 1));
-			Event ev16 = new Event(16, "Las Palmas-Sevilla", UtilDate.newDate(year, month, 1));
+			Event ev11 = new Event(11, "Atletico-Athletic", UtilDate.newDate(year, aux, 1));
+			Event ev12 = new Event(12, "Eibar-Barcelona", UtilDate.newDate(year, aux, 1));
+			Event ev13 = new Event(13, "Getafe-Celta", UtilDate.newDate(year, aux, 1));
+			Event ev14 = new Event(14, "Alavés-Deportivo", UtilDate.newDate(year, aux, 1));
+			Event ev15 = new Event(15, "Español-Villareal", UtilDate.newDate(year, aux, 1));
+			Event ev16 = new Event(16, "Las Palmas-Sevilla", UtilDate.newDate(year, aux, 1));
 
 
 			Event ev17 = new Event(17, "Málaga-Valencia", UtilDate.newDate(year, month + 1, 28));
