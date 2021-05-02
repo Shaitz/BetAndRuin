@@ -124,5 +124,12 @@ public interface BlFacade  {
 	 * @return True if the operation has been made succesfully. False otherwise
 	 */
 	@WebMethod public boolean removeBet(Bet bet);
+	
+	@WebMethod public boolean addAnswerToQuestion(Question q, String answer);
+	
+	@WebMethod public boolean removeAnswerFromQuestion(Question q, String answer);
+	
+	@WebMethod public Iterable<String> getAnswersOfQuestion(Question q);
+	
 	@WebMethod public void refreshUser();
 }

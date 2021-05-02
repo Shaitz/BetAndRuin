@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.*;
+import java.util.ArrayList;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -29,6 +30,7 @@ public class Question implements Serializable {
 	private QuestionTypes type;
 	@XmlIDREF
 	private Event event;
+	private ArrayList<String> answerList;
 
 	public Question(){
 		super();
@@ -160,6 +162,24 @@ public class Question implements Serializable {
 	public QuestionTypes getType()
 	{
 		return this.type;
+	}
+	
+	public boolean addAnswer(String answer) {
+		if(answerList.contains(answer))
+			return false;
+		answerList.add(answer);
+		return true;
+	}
+	
+	public boolean removeAnswer(String answer) {
+		String ret = answerList.remove(answerList.indexOf(answer));
+		if(ret == null)
+			return false;
+		return true;
+	}
+	
+	public Iterable<String> getAnswers(){
+		return answerList;
 	}
 	
 	@Override

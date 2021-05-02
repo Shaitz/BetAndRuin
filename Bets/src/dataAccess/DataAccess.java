@@ -29,7 +29,7 @@ import exceptions.QuestionAlreadyExist;
  */
 public class DataAccess  {
 
-	protected EntityManager  db;
+	protected EntityManager db;
 	protected EntityManagerFactory emf;
 
 	ConfigXML config = ConfigXML.getInstance();
@@ -214,6 +214,10 @@ public class DataAccess  {
 		return q;
 	}
 	
+	public Question getQuestion(Question q) {
+		return db.createQuery("SELECT q FROM Question q WHERE q.questionNumber = " + q.getQuestionNumber(), Question.class).getSingleResult();
+	}
+	
 	public User createUser(String username, String password) {
 		User nU = null;
 		if(getUserWithUsernamePassword(username, password) == null) {
@@ -394,6 +398,27 @@ public class DataAccess  {
 				" question = " + question);
 		Event ev = db.find(Event.class, event.getEventNumber());
 		return ev.doesQuestionExist(question);
+	}
+	
+	public boolean addAnswer(Question q, String a) {
+		boolean ret;
+		db.getTransaction().begin();
+		ret = q.addAnswer(a);
+		db.getTransaction().commit();
+		return ret;
+	}
+	
+	public boolean removeAnswer(Question q, String a) {
+		boolean ret;
+		db.getTransaction().begin();
+		ret = q.removeAnswer(a);
+		db.getTransaction().commit();
+		return ret;
+	}
+	
+	public Iterable<String> getAnswerList(Question q) {
+		Question question = getQuestion(q);
+		return question.getAnswers();
 	}
 
 	public void close(){
