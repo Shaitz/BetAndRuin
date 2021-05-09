@@ -165,8 +165,12 @@ public class Question implements Serializable {
 	}
 	
 	public boolean addAnswer(String answer) {
-		if(answerList.contains(answer))
-			return false;
+		if(answerList != null) {
+			if(answerList.contains(answer))
+				return false;
+		}
+		else
+			answerList = new ArrayList<String>();
 		answerList.add(answer);
 		return true;
 	}
