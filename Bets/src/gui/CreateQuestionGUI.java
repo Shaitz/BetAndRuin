@@ -167,6 +167,10 @@ public class CreateQuestionGUI extends JFrame {
 		buttonGroup.add(fixedButton);
 		fixedButton.setBounds(406, 245, 91, 23);
 		getContentPane().add(fixedButton);
+		
+		JButton checkEventButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		checkEventButton.setBounds(285, 78, 89, 23);
+		getContentPane().add(checkEventButton);
 
 
 		// Code for JCalendar

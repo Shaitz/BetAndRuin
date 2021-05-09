@@ -208,4 +208,28 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.initializeDB();
 		dbManager.close();
 	}
+
+	@Override
+	public boolean addAnswerToQuestion(Question q, String answer) {
+		dbManager.open(false);
+		boolean ret = dbManager.addAnswer(q, answer);
+		dbManager.close();
+		return ret;
+	}
+
+	@Override
+	public boolean removeAnswerFromQuestion(Question q, String answer) {
+		dbManager.open(false);
+		boolean ret = dbManager.removeAnswer(q, answer);
+		dbManager.close();
+		return ret;
+	}
+
+	@Override
+	public Iterable<String> getAnswersOfQuestion(Question q) {
+		dbManager.open(false);
+		Iterable<String> ret = dbManager.getAnswerList(q);
+		dbManager.close();
+		return ret;
+	}
 }

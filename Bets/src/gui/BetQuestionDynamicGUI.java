@@ -1,12 +1,10 @@
 package gui;
 
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.ResourceBundle;
-import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,7 +20,6 @@ import javax.swing.JTextArea;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 public class BetQuestionDynamicGUI extends JFrame
 {
@@ -44,7 +41,7 @@ public class BetQuestionDynamicGUI extends JFrame
 	private Event ev;
 	private Question q;
 	private JTextField textAmount;
-	private final JComboBox comboBox = new JComboBox();
+	private final JComboBox<String> comboBox = new JComboBox<String>();
 
 	public void setBusinessLogic(BlFacade bl) {
 		businessLogic = bl;
@@ -93,6 +90,10 @@ public class BetQuestionDynamicGUI extends JFrame
 		textPrint.setEditable(false);
 		textBetQuestion.setText(this.q.getQuestion());
 		textDate.setText(ev.getEventDate().toString());
+		
+		Iterator<String> it = q.getAnswers().iterator();
+		while(it.hasNext())
+			comboBox.addItem(it.next());;
 		
 		
 		this.btnPlaceBet.addActionListener(new ActionListener() {
