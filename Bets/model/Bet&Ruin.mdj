@@ -21873,7 +21873,7 @@
 						"$ref": "AAAAAAF4MdCncnjSYCI="
 					},
 					"name": "AddMoneyToWallet",
-					"documentation": "# Event flow\n\n## Main flow\n\n1. *Admin* gets in the **AddFundsGUI**\n2. *System* displays the **AddFundsGUI**\n3. *Admin* writes the ID of an existing *User* and indicates the amount of money to add\n4. *Admin* clicks on the **AddFunds** button\n5. *System* adds the indicated **money** to the indicated *User*\n\n## Alternative flow\n\n* X.A *Admin* can quit at any moment, END\n* 5.B Indicated *User* does not exist, display error message\n\n## Preconditions\n\n* *Admin* must be logged in"
+					"documentation": "# Event flow\n\n## Main flow\n\n1. *User* gets in the **AddFundsGUI**\n2. *System* displays the **AddFundsGUI**\n3. *User* writes the card  ID and indicates the amount of money to add\n4. *User* clicks on the **AddFunds** button\n5. *System* adds the indicated **money** to the indicated *User*\n\n## Alternative flow\n\n* X.A *User* can quit at any moment, END\n\n## Preconditions\n\n* *User* must be logged in"
 				},
 				{
 					"_type": "UMLActor",

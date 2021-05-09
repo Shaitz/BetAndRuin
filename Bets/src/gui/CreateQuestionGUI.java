@@ -178,6 +178,7 @@ public class CreateQuestionGUI extends JFrame {
 		getContentPane().add(fixedButton);
 		
 		JButton checkEventButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		
 		checkEventButton.setBounds(285, 78, 89, 23);
 		getContentPane().add(checkEventButton);
 
@@ -243,6 +244,19 @@ public class CreateQuestionGUI extends JFrame {
 						errorLbl.setText(e1.getMessage());
 					}
 				}
+			}
+		});
+		
+		checkEventButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(eventComboBox.getSelectedItem() != null) {
+					EventInfoGUI eig = new EventInfoGUI((Event) eventComboBox.getSelectedItem(), getThis());
+					eig.setVisible(true);
+					jButtonClose_actionPerformed(e);
+					msgLbl.setText("");
+				}
+				else
+					msgLbl.setText("Please, select an event.");
 			}
 		});
 	}
@@ -325,6 +339,10 @@ public class CreateQuestionGUI extends JFrame {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
+	}
+	
+	private CreateQuestionGUI getThis() {
+		return this;
 	}
 
 	private void jButtonClose_actionPerformed(ActionEvent e) {

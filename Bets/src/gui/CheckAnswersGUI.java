@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import businessLogic.BlFacade;
 import domain.Question;
 
 import javax.swing.GroupLayout;
@@ -20,21 +19,22 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JComboBox;
 
+@SuppressWarnings("serial")
 public class CheckAnswersGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField answerTextField;
-	private BlFacade businessLogic;
 	private Question question;
+	private EventInfoGUI previous;
 	private JTextField warningTextField;
 	private JComboBox<String> answerBox;
 
 	/**
 	 * Create the frame.
 	 */
-	public CheckAnswersGUI(BlFacade bl, Question q) {
+	public CheckAnswersGUI(Question q, EventInfoGUI eig) {
 		question = q;
-		businessLogic = bl;
+		previous = eig;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 503, 180);
@@ -53,6 +53,7 @@ public class CheckAnswersGUI extends JFrame {
 		JButton goBackBtn = new JButton("Go back");
 		
 		warningTextField = new JTextField();
+		warningTextField.setEditable(false);
 		warningTextField.setBackground(SystemColor.menu);
 		warningTextField.setColumns(10);
 		
@@ -61,9 +62,11 @@ public class CheckAnswersGUI extends JFrame {
 		JLabel lblNewLabel = new JLabel("Existing answers:");
 		
 		answerBox = new JComboBox<String>();
-		Iterator<String> it = q.getAnswers().iterator();
-		while (it.hasNext())
-			answerBox.addItem(it.next());
+		if(q.getAnswers() != null) {
+			Iterator<String> it = q.getAnswers().iterator();
+			while (it.hasNext())
+				answerBox.addItem(it.next());
+		}
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -71,7 +74,7 @@ public class CheckAnswersGUI extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(warningTextField, GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+						.addComponent(warningTextField, GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(newAnswerLabel)
 							.addGap(18)
@@ -84,8 +87,8 @@ public class CheckAnswersGUI extends JFrame {
 							.addComponent(addAnswerBtn)
 							.addGap(18)
 							.addComponent(removeBtn)
-							.addPreferredGap(ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
-							.addComponent(goBackBtn)))
+							.addPreferredGap(ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+							.addComponent(goBackBtn, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
@@ -98,13 +101,13 @@ public class CheckAnswersGUI extends JFrame {
 							.addComponent(lblNewLabel)
 							.addComponent(answerBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addComponent(newAnswerLabel))
-					.addPreferredGap(ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+					.addGap(26)
 					.addComponent(warningTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(addAnswerBtn)
-						.addComponent(goBackBtn)
-						.addComponent(removeBtn))
+						.addComponent(removeBtn)
+						.addComponent(goBackBtn))
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
@@ -147,5 +150,6 @@ public class CheckAnswersGUI extends JFrame {
 	
 	public void close() {
 		this.setVisible(false);
+		previous.setVisible(true);
 	}
 }
