@@ -250,7 +250,7 @@ public class CreateQuestionGUI extends JFrame {
 		checkEventButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(eventComboBox.getSelectedItem() != null) {
-					EventInfoGUI eig = new EventInfoGUI((Event) eventComboBox.getSelectedItem(), getThis());
+					EventInfoGUI eig = new EventInfoGUI(businessLogic, (Event) eventComboBox.getSelectedItem(), getThis());
 					eig.setVisible(true);
 					jButtonClose_actionPerformed(e);
 					msgLbl.setText("");

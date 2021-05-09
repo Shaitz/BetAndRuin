@@ -402,16 +402,18 @@ public class DataAccess  {
 	
 	public boolean addAnswer(Question q, String a) {
 		boolean ret;
+		Question question = getQuestion(q);
 		db.getTransaction().begin();
-		ret = q.addAnswer(a);
+		ret = question.addAnswer(a);
 		db.getTransaction().commit();
 		return ret;
 	}
 	
 	public boolean removeAnswer(Question q, String a) {
 		boolean ret;
+		Question question = getQuestion(q);
 		db.getTransaction().begin();
-		ret = q.removeAnswer(a);
+		ret = question.removeAnswer(a);
 		db.getTransaction().commit();
 		return ret;
 	}

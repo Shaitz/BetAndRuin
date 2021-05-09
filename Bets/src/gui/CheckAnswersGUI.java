@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import businessLogic.BlFacade;
 import domain.Question;
 
 import javax.swing.GroupLayout;
@@ -25,6 +26,7 @@ public class CheckAnswersGUI extends JFrame {
 	private JPanel contentPane;
 	private JTextField answerTextField;
 	private Question question;
+	private BlFacade businessLogic;
 	private EventInfoGUI previous;
 	private JTextField warningTextField;
 	private JComboBox<String> answerBox;
@@ -32,12 +34,13 @@ public class CheckAnswersGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CheckAnswersGUI(Question q, EventInfoGUI eig) {
+	public CheckAnswersGUI(BlFacade bl, Question q, EventInfoGUI eig) {
 		question = q;
 		previous = eig;
+		businessLogic = bl;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 503, 180);
+		setBounds(100, 100, 565, 180);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -116,7 +119,7 @@ public class CheckAnswersGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(!answerTextField.getText().equals("")) {
 					String answer = answerTextField.getText();
-					if(question.addAnswer(answer)) {
+					if(businessLogic.addAnswerToQuestion(question, answer)) {
 						answerBox.addItem(answer);
 						warningTextField.setText("Answer added successfully");
 					}

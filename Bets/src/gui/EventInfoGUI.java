@@ -1,8 +1,5 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -14,9 +11,7 @@ import enums.QuestionTypes;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JTextField;
 import java.awt.SystemColor;
-import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
@@ -31,14 +26,16 @@ public class EventInfoGUI extends JFrame {
 	private JPanel contentPane;
 	private Event event;
 	private CreateQuestionGUI previous;
+	private BlFacade businessLogic;
 
 	/**
 	 * Create the frame.
 	 */
-	public EventInfoGUI(Event e, CreateQuestionGUI cqg) {
+	public EventInfoGUI(BlFacade bl, Event e, CreateQuestionGUI cqg) {
 		
 		event = e;
 		previous = cqg;
+		businessLogic = bl;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 430, 246);
@@ -129,7 +126,7 @@ public class EventInfoGUI extends JFrame {
 		checkQuestionButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(((Question) questionComboBox.getSelectedItem()).getType() == QuestionTypes.DYNAMIC) {
-					CheckAnswersGUI cag = new CheckAnswersGUI((Question) questionComboBox.getSelectedItem(), getThis());
+					CheckAnswersGUI cag = new CheckAnswersGUI(businessLogic, (Question) questionComboBox.getSelectedItem(), getThis());
 					warningTextArea.setText("");
 					cag.setVisible(true);
 					close();
