@@ -41,7 +41,7 @@ public class CreateQuestionGUI extends JFrame {
 	private BlFacade businessLogic;
 
 	private JComboBox<Event> eventComboBox = new JComboBox<Event>();
-	DefaultComboBoxModel<Event> eventModel = new DefaultComboBoxModel<Event>();
+	private DefaultComboBoxModel<Event> eventModel = new DefaultComboBoxModel<Event>();
 
 	private JLabel listOfEventsLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").
 			getString("ListEvents"));
@@ -62,9 +62,9 @@ public class CreateQuestionGUI extends JFrame {
 
 	private JButton createBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestion"));
 	private JButton closeBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
-	JRadioButton fixedButton;
-	JRadioButton dynamicButton;
-	JRadioButton freeButton;
+	private JRadioButton fixedButton;
+	private JRadioButton dynamicButton;
+	private JRadioButton freeButton;
 	private JLabel msgLbl = new JLabel();
 	private JLabel errorLbl = new JLabel();
 
@@ -147,15 +147,6 @@ public class CreateQuestionGUI extends JFrame {
 		eventDateLbl.setBounds(40, 16, 140, 25);
 		getContentPane().add(eventDateLbl);
 		
-		JButton addMoneyBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AddMoney")); //$NON-NLS-1$ //$NON-NLS-2$
-		addMoneyBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AddFundsGUI addFundsGUI = new AddFundsGUI(businessLogic);
-				addFundsGUI.setVisible(true);
-			}
-		});
-		addMoneyBtn.setBounds(440, 279, 89, 23);
-		getContentPane().add(addMoneyBtn);
 		
 		JLabel qType = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.lblNewLabel.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		qType.setBounds(175, 246, 32, 14);
@@ -164,17 +155,17 @@ public class CreateQuestionGUI extends JFrame {
 		freeButton = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.rdbtnNewRadioButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		freeButton.setSelected(true);
 		buttonGroup.add(freeButton);
-		freeButton.setBounds(213, 245, 47, 23);
+		freeButton.setBounds(213, 245, 68, 23);
 		getContentPane().add(freeButton);
 		
 		dynamicButton = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.rdbtnNewRadioButton_1.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		buttonGroup.add(dynamicButton);
-		dynamicButton.setBounds(264, 245, 68, 23);
+		dynamicButton.setBounds(302, 245, 91, 23);
 		getContentPane().add(dynamicButton);
 		
 		fixedButton = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.rdbtnNewRadioButton_2.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		buttonGroup.add(fixedButton);
-		fixedButton.setBounds(334, 245, 60, 23);
+		fixedButton.setBounds(406, 245, 91, 23);
 		getContentPane().add(fixedButton);
 
 

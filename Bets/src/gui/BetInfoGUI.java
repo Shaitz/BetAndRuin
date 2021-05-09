@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 
 import businessLogic.BlFacade;
 import domain.Bet;
+import enums.QuestionTypes;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -189,7 +190,18 @@ public class BetInfoGUI extends JFrame
 		textBetQuestion.setText(currentBet.getQuestion().getQuestion());
 		textBetAmount.setText(Double.toString(currentBet.getPlacedBet()));
 		textBetDate.setText(currentBet.getQuestion().getEvent().getEventDate().toString());
-		textBetAnswer.setText(currentBet.getAnswer());
+		if (currentBet.getQuestion().getType().equals(QuestionTypes.FIXED))
+		{
+			String[] anserQ = currentBet.getQuestion().getEvent().toString().split("-");
+			if (currentBet.getAnswer().equals("1"))
+				textBetAnswer.setText(anserQ[0]);
+			else if (currentBet.getAnswer().equals("X"))
+				textBetAnswer.setText("DRAW");
+			else if (currentBet.getAnswer().equals("2"))
+				textBetAnswer.setText(anserQ[1]);
+		}
+		else
+			textBetAnswer.setText(currentBet.getAnswer());
 		textTeams.setText(currentBet.getQuestion().getEvent().toString());
 	}
 	

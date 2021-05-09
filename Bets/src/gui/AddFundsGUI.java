@@ -24,8 +24,9 @@ import javax.swing.JTextArea;
 
 public class AddFundsGUI extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField userField;
+	private JTextField bankAccount;
 	private JTextField amountField;
 	private BlFacade businessLogic;
 
@@ -59,15 +60,18 @@ public class AddFundsGUI extends JFrame {
 		
 		JButton goBackBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		
-		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Username"));
+		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("BankAccount"));
 		
 		JLabel lblNewLabel_1 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Funds"));
 		
-		userField = new JTextField();
-		userField.setColumns(10);
+		bankAccount = new JTextField();
+		bankAccount.setColumns(10);
 		
 		amountField = new JTextField();
 		amountField.setColumns(10);
+		
+		JTextArea errorCheck = new JTextArea();
+		errorCheck.setEditable(false);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -79,20 +83,22 @@ public class AddFundsGUI extends JFrame {
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(amountField)
-						.addComponent(userField, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
-					.addContainerGap(62, Short.MAX_VALUE))
+						.addComponent(bankAccount, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
+					.addContainerGap(64, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(addFundsBtn)
 					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addComponent(goBackBtn)
-					.addGap(145))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(errorCheck, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+					.addGap(14))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(userField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(bankAccount, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
@@ -101,19 +107,20 @@ public class AddFundsGUI extends JFrame {
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(addFundsBtn)
-						.addComponent(goBackBtn))
+						.addComponent(goBackBtn)
+						.addComponent(errorCheck, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 		
 		addFundsBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String user = userField.getText();
 				String amount = amountField.getText();
-				if(!user.equals("") && !amount.equals("")) {
+				int accountLength = bankAccount.getText().toString().length();
+				if(!amount.equals("") && accountLength == 16) {
 					double toAdd = -1;
 					try {
-						toAdd = businessLogic.addMoneyToUser(Integer.parseInt(user),Double.parseDouble(amount));
+						toAdd = businessLogic.addMoneyToUser(businessLogic.getUser().getId(),Double.parseDouble(amount));
 					}
 					catch (Exception ex) {
 						ex.printStackTrace();
@@ -125,6 +132,8 @@ public class AddFundsGUI extends JFrame {
 						closeTab();
 					}
 				}
+				else
+					errorCheck.setText("Invalid Card");
 			}
 		});
 		
