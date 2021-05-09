@@ -131,5 +131,7 @@ public interface BlFacade  {
 	
 	@WebMethod public Iterable<String> getAnswersOfQuestion(Question q);
 	
+	@WebMethod 	public void setResult(Question q, String s);
+	
 	@WebMethod public void refreshUser();
 }

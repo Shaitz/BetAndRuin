@@ -30,10 +30,9 @@ import domain.Bet;
 import domain.Question;
 import enums.QuestionTypes;
 
-import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import java.awt.SystemColor;
-import java.awt.Color;
+import javax.swing.JTextField;
 
 public class BrowseQuestionsGUI extends JFrame {
 
@@ -47,9 +46,15 @@ public class BrowseQuestionsGUI extends JFrame {
 			getString("Questions")); 
 	private final JLabel eventLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").
 			getString("Events")); 
+	private final JLabel ansLbl = new JLabel(ResourceBundle.getBundle("Etiquetas").
+			getString("Answer"));
 
 	private JButton closeBtn = new JButton(ResourceBundle.getBundle("Etiquetas").
 			getString("Close"));
+	private JTextField AnsTextField = new JTextField();
+	private JButton btnSetAns = new JButton(ResourceBundle.getBundle("Etiquetas").
+			getString("Set answer")); 
+
 
 	private JButton btnBet = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Bet"));
 	// Code for JCalendar
@@ -103,11 +108,28 @@ public class BrowseQuestionsGUI extends JFrame {
 		eventDateLbl.setBounds(new Rectangle(40, 15, 140, 25));
 		questionLbl.setBounds(138, 248, 406, 14);
 		eventLbl.setBounds(295, 19, 259, 16);
+		ansLbl.setBounds(295, 225, 45, 13);
+		AnsTextField.setBounds(340, 222, 204, 20);
+		btnSetAns.setBounds(554, 345, 105, 33);
+		
+		AnsTextField.setColumns(10);
 
 		this.getContentPane().add(eventDateLbl, null);
 		this.getContentPane().add(questionLbl);
 		this.getContentPane().add(eventLbl);
+		this.getContentPane().add(ansLbl);
+		this.getContentPane().add(AnsTextField);
+		this.getContentPane().add(btnSetAns);
 
+		
+		if(businessLogic.getUser()!=null&&businessLogic.getUser().isAdmin()) {
+			btnBet.setVisible(false);
+		}else {
+			ansLbl.setVisible(false);
+			AnsTextField.setVisible(false);
+			btnSetAns.setVisible(false);
+		}
+		
 		closeBtn.setBounds(new Rectangle(274, 419, 130, 30));
 
 		closeBtn.addActionListener(new ActionListener() {
@@ -228,10 +250,13 @@ public class BrowseQuestionsGUI extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{	
-				if (businessLogic.getUser() != null)
+				if (businessLogic.getUser() != null) {
 					btnBet.setEnabled(true);
-				else
+					btnSetAns.setEnabled(true);
+				}else {
 					btnBet.setEnabled(false);
+					btnSetAns.setEnabled(false);
+				}
 			}
 		});
 		
@@ -293,7 +318,7 @@ public class BrowseQuestionsGUI extends JFrame {
 		this.getContentPane().add(questionScrollPane, null);
 		
 		btnBet.setEnabled(false);
-		btnBet.setBounds(569, 318, 89, 35);
+		btnBet.setBounds(554, 300, 105, 33);
 		getContentPane().add(btnBet);
 		
 		warningTxtArea = new JTextArea();
@@ -301,6 +326,26 @@ public class BrowseQuestionsGUI extends JFrame {
 		warningTxtArea.setText(ResourceBundle.getBundle("Etiquetas").getString("WarningTxtArea")); //$NON-NLS-1$ //$NON-NLS-2$
 		warningTxtArea.setBounds(40, 222, 598, 22);
 		getContentPane().add(warningTxtArea);
+		
+		btnSetAns.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i = eventTable.getSelectedRow();
+				domain.Event ev = (domain.Event)eventTableModel.getValueAt(i,2); // obtain ev object
+				Vector<Question> queries = ev.getQuestions(); // get available questions in event
+				
+				int j = questionTable.getSelectedRow();
+				String currentQ = (String)questionTable.getValueAt(j, 1); // get selected string of question
+				domain.Question quest = new Question();
+				
+				for (domain.Question q: queries)
+					if (currentQ.equals(q.getQuestion()))
+						quest = q; // get the selected question
+				
+				businessLogic.setResult(quest, AnsTextField.getText());
+			}
+		});
+		btnSetAns.setEnabled(false);		
+		
 	}
 
 	

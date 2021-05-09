@@ -425,4 +425,11 @@ public class DataAccess  {
 		db.close();
 		System.out.println("DataBase is closed");
 	}
+	
+	public void setResult(Question q, String s) {
+		db.getTransaction().begin();
+		Question question = getQuestion(q);
+		question.setResult(s);
+		db.getTransaction().commit();
+	}
 }

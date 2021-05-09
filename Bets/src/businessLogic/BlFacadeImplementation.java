@@ -223,4 +223,10 @@ public class BlFacadeImplementation implements BlFacade {
 	public Iterable<String> getAnswersOfQuestion(Question q) {
 		return dbManager.getAnswerList(q);
 	}
+	@Override
+	public void setResult(Question q, String s) {
+		dbManager.open(false);
+		dbManager.setResult(q, s);
+		dbManager.close();
+	}
 }
