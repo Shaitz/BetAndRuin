@@ -215,7 +215,10 @@ public class DataAccess  {
 	}
 	
 	public Question getQuestion(Question q) {
-		return db.createQuery("SELECT q FROM Question q WHERE q.questionNumber = " + q.getQuestionNumber(), Question.class).getSingleResult();
+		Question test = db.createQuery("SELECT q FROM Question q WHERE q.questionNumber = " + q.getQuestionNumber(), Question.class).getSingleResult();
+		@SuppressWarnings("unused")
+		String wth = test.getAnswers().iterator().next();
+		return test;
 	}
 	
 	public User createUser(String username, String password) {

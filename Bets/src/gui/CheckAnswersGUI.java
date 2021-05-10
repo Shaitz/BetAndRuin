@@ -65,8 +65,9 @@ public class CheckAnswersGUI extends JFrame {
 		JLabel lblNewLabel = new JLabel("Existing answers:");
 		
 		answerBox = new JComboBox<String>();
-		if(q.getAnswers() != null) {
-			Iterator<String> it = q.getAnswers().iterator();
+		Iterable<String> answerList = bl.getAnswersOfQuestion(q);
+		if(answerList != null) {
+			Iterator<String> it = answerList.iterator();
 			while (it.hasNext())
 				answerBox.addItem(it.next());
 		}

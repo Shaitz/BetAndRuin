@@ -91,9 +91,9 @@ public class BetQuestionDynamicGUI extends JFrame
 		textBetQuestion.setText(this.q.getQuestion());
 		textDate.setText(ev.getEventDate().toString());
 		
-		Iterator<String> it = q.getAnswers().iterator();
+		Iterator<String> it = businessLogic.getAnswersOfQuestion(q).iterator();
 		while(it.hasNext())
-			comboBox.addItem(it.next());;
+			comboBox.addItem(it.next());
 		
 		
 		this.btnPlaceBet.addActionListener(new ActionListener() {
