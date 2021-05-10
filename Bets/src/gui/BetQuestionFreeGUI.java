@@ -136,7 +136,8 @@ public class BetQuestionFreeGUI extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				checkAmount();
+				if (textAmountLeft.getText() != null)
+					checkAmount();
 			}
 		});
 		

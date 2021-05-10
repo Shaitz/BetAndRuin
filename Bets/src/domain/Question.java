@@ -31,9 +31,11 @@ public class Question implements Serializable {
 	@XmlIDREF
 	private Event event;
 	private ArrayList<String> answerList;
+	private double pool;
 
 	public Question(){
 		super();
+		this.pool = 0;
 	}
 
 	public Question(Integer queryNumber, String query, float betMinimum, Event event) {
@@ -42,12 +44,14 @@ public class Question implements Serializable {
 		this.question = query;
 		this.betMinimum=betMinimum;
 		this.event = event;
+		this.pool = 0;
 	}
 
 	public Question(String query, float betMinimum,  Event event) {
 		super();
 		this.question = query;
 		this.betMinimum=betMinimum;
+		this.pool = 0;
 	}
 
 	public Question(Integer queryNumber, String query, float betMinimum, Event event, QuestionTypes type) {
@@ -57,6 +61,7 @@ public class Question implements Serializable {
 		this.betMinimum=betMinimum;
 		this.event = event;
 		this.type = type;
+		this.pool = 0;
 	}
 	
 	/**
@@ -162,6 +167,16 @@ public class Question implements Serializable {
 	public QuestionTypes getType()
 	{
 		return this.type;
+	}
+	
+	public double getPool()
+	{
+		return this.pool;
+	}
+	
+	public void addPool(double pool)
+	{
+		this.pool += pool;
 	}
 	
 	public boolean addAnswer(String answer) {

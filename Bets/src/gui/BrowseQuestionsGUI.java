@@ -342,6 +342,7 @@ public class BrowseQuestionsGUI extends JFrame {
 						quest = q; // get the selected question
 				
 				businessLogic.setResult(quest, AnsTextField.getText());
+				businessLogic.giveRewards(quest);
 			}
 		});
 		btnSetAns.setEnabled(false);		

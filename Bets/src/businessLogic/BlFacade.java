@@ -1,6 +1,7 @@
 package businessLogic;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
 import javax.jws.WebMethod;
@@ -134,4 +135,6 @@ public interface BlFacade  {
 	@WebMethod 	public void setResult(Question q, String s);
 	
 	@WebMethod public void refreshUser();
+	
+	@WebMethod public void giveRewards(Question q);
 }

@@ -1,6 +1,8 @@
 package businessLogic;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
@@ -108,7 +110,7 @@ public class BlFacadeImplementation implements BlFacade {
 		return dates;
 	}
 
-	
+	@WebMethod
 	public boolean validateLogin(String username, String password)
 	{
 		dbManager.open(false);
@@ -116,7 +118,7 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.close();
 		return this.user != null;
 	}
-	
+	@WebMethod
 	public boolean registerUser(String username, String password)
 	{
 		dbManager.open(false);
@@ -124,7 +126,7 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.close();
 		return this.user != null;
 	}
-	
+	@WebMethod
 	public User getRegisteredUser(String username, String password) 
 	{
 		dbManager.open(false);
@@ -133,7 +135,7 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.close();
 		return ret;
 	}
-	
+	@WebMethod
 	public User changeUsername(String username, String password, String newUsername)
 	{
 		dbManager.open(false);
@@ -142,7 +144,7 @@ public class BlFacadeImplementation implements BlFacade {
 		this.refreshUser();
 		return this.user;
 	}
-	
+	@WebMethod
 	public User changePassword(String username, String password, String newPassword)
 	{
 		dbManager.open(false);
@@ -158,6 +160,7 @@ public class BlFacadeImplementation implements BlFacade {
 	 * @param bet Amount to put
 	 * @return True if the bet was placed successfully, false otherwise
 	 */
+	@WebMethod
 	public boolean placeBet(Question question, double bet, String answer) 
 	{
 		dbManager.open(false);
@@ -166,7 +169,7 @@ public class BlFacadeImplementation implements BlFacade {
 		this.refreshUser();
 		return betState;
 	}
-	
+	@WebMethod
 	public boolean removeBet(Bet bet) {
 		dbManager.open(false);
 		boolean removeState = dbManager.removeBet(this.user, bet);
@@ -174,17 +177,17 @@ public class BlFacadeImplementation implements BlFacade {
 		this.refreshUser();
 		return removeState;
 	}
-	
+	@WebMethod
 	public User getUser()
 	{
 		return this.user;
 	}
-	
+	@WebMethod
 	public void refreshUser()
 	{
 		this.user = this.getRegisteredUser(this.user.getUsername(), this.getUser().getPassword());
 	}
-	
+	@WebMethod
 	public double addMoneyToUser(int id, double amount) 
 	{
 		dbManager.open(false);
@@ -208,7 +211,7 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.initializeDB();
 		dbManager.close();
 	}
-
+	@WebMethod
 	@Override
 	public boolean addAnswerToQuestion(Question q, String answer) {
 		dbManager.open(false);
@@ -216,7 +219,7 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.close();
 		return ret;
 	}
-
+	@WebMethod
 	@Override
 	public boolean removeAnswerFromQuestion(Question q, String answer) {
 		dbManager.open(false);
@@ -224,7 +227,7 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.close();
 		return ret;
 	}
-
+	@WebMethod
 	@Override
 	public Iterable<String> getAnswersOfQuestion(Question q) {
 		dbManager.open(false);
@@ -232,10 +235,51 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.close();
 		return ret;
 	}
+	@WebMethod
 	@Override
 	public void setResult(Question q, String s) {
 		dbManager.open(false);
 		dbManager.setResult(q, s);
 		dbManager.close();
+	}
+
+	@WebMethod public void giveRewards(Question q)
+	{
+		dbManager.open(false);
+		List<User> users = dbManager.getAllUsers();
+		dbManager.close();
+		
+		List<User> winners = new ArrayList<User>();
+		double winnersMoney = 0;
+		for(User u : users)
+		{
+			List<Bet> bets = u.getBets();
+			for(Bet b : bets)
+			{
+				if(b.getQuestion().toString().equals(q.toString()) && b.getAnswer().equals(q.getResult()))
+				{
+					winners.add(u);
+					winnersMoney += b.getPlacedBet();
+				}
+			}
+		}
+		
+		double benefits = (q.getPool() - winnersMoney) / 2;
+		double benefitUser = 0;
+		for(User u : winners)
+		{
+			List<Bet> bets = u.getBets();
+			for(Bet b : bets)
+			{
+				if(b.getQuestion().toString().equals(q.toString()))
+				{
+					benefitUser = ((b.getPlacedBet() / winnersMoney) * benefits) + b.getPlacedBet();
+				}
+			}
+			dbManager.open(false);
+			dbManager.addMoneyToUser(u.getId(), benefitUser);
+			dbManager.close();
+			
+		}
 	}
 }

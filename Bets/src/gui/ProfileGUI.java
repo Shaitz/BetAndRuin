@@ -187,7 +187,7 @@ public class ProfileGUI extends JFrame{
 		
 		
 		JTextArea textMoney = new JTextArea(Double.toString(businessLogic.getUser().getWallet().getCurrency()));
-		textMoney.setBounds(136, 208, 29, 22);
+		textMoney.setBounds(136, 208, 55, 22);
 		textMoney.setEditable(false);
 		getContentPane().setLayout(null);
 		getContentPane().add(textArea);

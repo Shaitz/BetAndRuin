@@ -297,8 +297,10 @@ public class DataAccess  {
 	
 	public boolean placeBet(User user, Question question, double amount, String answer) {
 		User userToChange = this.getUserWithUsernamePassword(user.getUsername(), user.getPassword());
+		Question q = this.getQuestion(question);
 		db.getTransaction().begin();
 		boolean ret = userToChange.placeBet(question, amount, answer);
+		q.addPool(amount);
 		db.getTransaction().commit();
 		return ret;
 	}
@@ -312,10 +314,14 @@ public class DataAccess  {
 			if (bet.getQuestion().getQuestionNumber().equals(b.getQuestion().getQuestionNumber()))
 				userBet = b;
 		
+		Question q = this.getQuestion(userBet.getQuestion());
 		db.getTransaction().begin();
 		boolean ret = userToChange.removeBet(userBet);
 		if(ret)
+		{
+			q.addPool(userBet.getPlacedBet() * -1);
 			userToChange.increaseCurrency(userBet.getPlacedBet() * 0.75);
+		}
 		db.getTransaction().commit();
 		return ret;
 	}
