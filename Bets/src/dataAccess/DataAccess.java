@@ -221,14 +221,15 @@ public class DataAccess  {
 		return test;
 	}
 	
-	public User createUser(String username, String password) {
+	public User createUser(String username, String password, String eMail) {
 		User nU = null;
-		if(getUserWithUsernamePassword(username, password) == null) {
-			nU = new User(username, password);
-			db.getTransaction().begin();
-			db.persist(nU);
-			db.getTransaction().commit();
-		}
+		if(getUserWithUsernamePassword(username, password) == null)
+			if(getUserWithEMail(eMail) == null) {
+				nU = new User(username, password, eMail);
+				db.getTransaction().begin();
+				db.persist(nU);
+				db.getTransaction().commit();
+			}
 		return nU;
 	}
 	
@@ -259,6 +260,18 @@ public class DataAccess  {
 			ret = checkList.get(0);
 		}
 		catch(Exception e) {
+			ret = null;
+		}
+		return ret;
+	}
+	
+	public User getUserWithEMail(String eMail) {
+		User ret;
+		List<User> checkList = db.createQuery("SELECT u FROM User u WHERE u.eMail = \"" + eMail + "\"", User.class).getResultList();
+		try {
+			ret = checkList.get(0);
+		}
+		catch (Exception e) {
 			ret = null;
 		}
 		return ret;

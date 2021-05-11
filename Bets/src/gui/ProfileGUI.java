@@ -40,6 +40,8 @@ public class ProfileGUI extends JFrame{
 	private JTextArea removeText = new JTextArea();
 	private MainGUI previous;
 	private HashMap<String, Bet> betsAndNames = new HashMap<String, Bet>();
+	private final JLabel eMailLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("eMail")); //$NON-NLS-1$ //$NON-NLS-2$
+	private final JTextField eMailTextField = new JTextField();
 	
 	public void setBusinessLogic(BlFacade bl) {
 		businessLogic = bl;
@@ -84,6 +86,11 @@ public class ProfileGUI extends JFrame{
 			this.initializeBrowseQuestionsBtn();
 		else
 			btnViewBetInfo.setEnabled(false);
+		eMailTextField.setEditable(false);
+		eMailTextField.setText(businessLogic.getUser().getMail()); //$NON-NLS-1$ //$NON-NLS-2$
+		eMailTextField.setBounds(138, 160, 153, 20);
+		eMailTextField.setColumns(10);
+		
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(92, 21, 282, 35);
 		textArea.setEditable(false);
@@ -92,26 +99,26 @@ public class ProfileGUI extends JFrame{
 		textArea.setText(ResourceBundle.getBundle("Etiquetas").getString("Profile"));
 		
 		JLabel labelID = new JLabel("ID: ");
-		labelID.setBounds(47, 97, 81, 24);
+		labelID.setBounds(47, 67, 81, 24);
 		JLabel lbMoney = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Money"));
 		lbMoney.setBounds(47, 213, 74, 14);
 		JLabel labelUsername = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Username"));
-		labelUsername.setBounds(47, 135, 81, 14);
+		labelUsername.setBounds(47, 102, 81, 14);
 		JLabel labelPassword = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Password"));
-		labelPassword.setBounds(47, 173, 81, 14);
+		labelPassword.setBounds(47, 132, 81, 14);
 		
 		textID = new JTextField(String.valueOf(businessLogic.getUser().getId()));
-		textID.setBounds(138, 99, 107, 20);
+		textID.setBounds(138, 67, 107, 20);
 		textID.setEditable(false);
 		textID.setColumns(10);
 		
 		textUsername = new JTextField(businessLogic.getUser().getUsername());
-		textUsername.setBounds(137, 132, 153, 20);
+		textUsername.setBounds(138, 98, 153, 20);
 		textUsername.setEditable(false);
 		textUsername.setColumns(10);
 		
 		textPassword = new JTextField(businessLogic.getUser().getPassword());
-		textPassword.setBounds(138, 177, 153, 20);
+		textPassword.setBounds(138, 129, 153, 20);
 		textPassword.setEditable(false);
 		textPassword.setColumns(10);
 		buttonAccept.setBounds(151, 347, 65, 23);
@@ -211,6 +218,12 @@ public class ProfileGUI extends JFrame{
 		
 		btnAddMoney.setBounds(201, 209, 107, 23);
 		getContentPane().add(btnAddMoney);
+		eMailLabel.setBounds(47, 163, 46, 14);
+		
+		getContentPane().add(eMailLabel);
+		
+		getContentPane().add(eMailTextField);
+		
 		// Adds all the bets of the user to the comboBox so it shows a list with bets
 		String question;
 		for(Bet b : businessLogic.getUser().getBets()) {

@@ -197,7 +197,7 @@ public class MainGUI extends JFrame {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent e) {
 				if(loggedUser == null) {
-					LoginRegisterGUI loginRegisterWindow = new LoginRegisterGUI(getThis(), businessLogic);
+					LoginGUI loginRegisterWindow = new LoginGUI(getThis(), businessLogic);
 					loginRegisterWindow.setVisible(true);
 				}
 				else

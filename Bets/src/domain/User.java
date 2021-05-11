@@ -24,13 +24,14 @@ public class User
 	private boolean admin;
 	@Embedded
 	private Wallet personalWallet;
+	private String eMail;
 	
 	public User()
 	{
 		super();
 	}
 	
-	public User(Integer id, String username, String password)
+	public User(Integer id, String username, String password, String mail)
 	{
 		super();
 		this.id = id;
@@ -42,9 +43,10 @@ public class User
 		else
 			admin = false;
 		personalWallet = new Wallet();
+		eMail = mail;
 	}
 	
-	public User(Integer id, String username, String password, int initialCurrency)
+	public User(Integer id, String username, String password, String mail, int initialCurrency)
 	{
 		super();
 		this.id = id;
@@ -56,9 +58,10 @@ public class User
 		else
 			admin = false;
 		personalWallet = new Wallet(initialCurrency);
+		eMail = mail;
 	}
 	
-	public User(String username, String password)
+	public User(String username, String password, String mail)
 	{
 		super();
 		this.username = username;
@@ -69,9 +72,10 @@ public class User
 		else
 			admin = false;
 		personalWallet = new Wallet();
+		eMail = mail;
 	}
 	
-	public User(String username, String password, int initialCurrency)
+	public User(String username, String password, String mail, int initialCurrency)
 	{
 		super();
 		this.username = username;
@@ -82,6 +86,7 @@ public class User
 		else
 			admin = false;
 		personalWallet = new Wallet(initialCurrency);
+		eMail = mail;
 	}
 	
 	/**
@@ -196,6 +201,14 @@ public class User
 	public double decreaseCurrency(double amount) {
 		personalWallet.removeMoney(amount);
 		return personalWallet.getCurrency();
+	}
+	
+	public String getMail() {
+		return eMail;
+	}
+	
+	public void setMail(String mail) {
+		eMail = mail;
 	}
 	
 	public String toString()

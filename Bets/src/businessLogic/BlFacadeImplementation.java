@@ -119,10 +119,10 @@ public class BlFacadeImplementation implements BlFacade {
 		return this.user != null;
 	}
 	@WebMethod
-	public boolean registerUser(String username, String password)
+	public boolean registerUser(String username, String password, String eMail)
 	{
 		dbManager.open(false);
-		this.user = dbManager.createUser(username, password);
+		this.user = dbManager.createUser(username, password, eMail);
 		dbManager.close();
 		return this.user != null;
 	}

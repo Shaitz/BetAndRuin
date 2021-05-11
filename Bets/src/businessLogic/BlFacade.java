@@ -67,7 +67,7 @@ public interface BlFacade  {
 	 * @param password of the account to be created
 	 * @return true if the register was successful
 	 */
-	@WebMethod public boolean registerUser(String username, String password);
+	@WebMethod public boolean registerUser(String username, String password, String eMail);
 	
 	/**
 	 * This method returns the user that contains the same username and password as the stated one

@@ -22,7 +22,7 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.Color;
 
-public class LoginRegisterGUI extends JFrame{
+public class LoginGUI extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textUsernameReg;
@@ -32,13 +32,13 @@ public class LoginRegisterGUI extends JFrame{
 	private JButton closeBtn = new JButton(ResourceBundle.getBundle("Etiquetas").
 			getString("Close"));
 	private BlFacade businessLogic;
-	private MainGUI previous;
+	protected MainGUI previous;
 
 	public void setBusinessLogic(BlFacade bl) {
 		businessLogic = bl;
 	}
 	
-	public LoginRegisterGUI(MainGUI main, BlFacade bl)
+	public LoginGUI(MainGUI main, BlFacade bl)
 	{
 		businessLogic = bl;
 		previous = main;
@@ -61,7 +61,7 @@ public class LoginRegisterGUI extends JFrame{
 		closeBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				jButton_actionPerformed(e);
+				goBack();
 			}
 		});
 		
@@ -96,7 +96,7 @@ public class LoginRegisterGUI extends JFrame{
 				else {
 					if (businessLogic.validateLogin(username, password)) {
 						previous.setUser(businessLogic.getRegisteredUser(username, password));
-						jButton_actionPerformed(e);
+						goBack();
 					}
 					else
 						validText.setText("Error. Try again.");
@@ -108,19 +108,9 @@ public class LoginRegisterGUI extends JFrame{
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				String username = textUsernameReg.getText();
-				String password = String.valueOf(textPasswordReg.getPassword());
-				
-				if(username.isEmpty() || password.isEmpty())
-					validText.setText("At least one compulsory area was not filled correctly");
-				else {
-					if (businessLogic.registerUser(username, password)) {
-						previous.setUser(businessLogic.getRegisteredUser(username, password));
-						jButton_actionPerformed(e);
-					}
-					else
-						validText.setText("Error. Try again.");
-				}
+				RegisterGUI rg = new RegisterGUI(getThis(), businessLogic);
+				rg.setVisible(true);
+				close();
 			}
 		});
 		
@@ -179,10 +169,16 @@ public class LoginRegisterGUI extends JFrame{
 		this.getContentPane().setLayout(groupLayout);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void jButton_actionPerformed(ActionEvent e) {
+	private void goBack() {
 		this.setVisible(false);
+		previous.setVisible(true);
+	}
+	
+	private void close() {
+		this.setVisible(false);
+	}
+	
+	private LoginGUI getThis(){
+		return this;
 	}
 }
