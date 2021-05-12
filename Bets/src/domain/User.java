@@ -21,6 +21,9 @@ public class User
 	@ManyToOne
 	@ElementCollection
 	private ArrayList<Bet> betList;
+	@ManyToOne
+	@ElementCollection
+	private ArrayList<Bet> pastBets;
 	private boolean admin;
 	@Embedded
 	private Wallet personalWallet;
@@ -38,6 +41,7 @@ public class User
 		this.username = username;
 		this.password = password;
 		this.betList = new ArrayList<Bet>();
+		this.pastBets = new ArrayList<Bet>();
 		if(password.equals("admin123"))
 			admin = true;
 		else
@@ -53,6 +57,7 @@ public class User
 		this.username = username;
 		this.password = password;
 		this.betList = new ArrayList<Bet>();
+		this.pastBets = new ArrayList<Bet>();
 		if(password.equals("admin123"))
 			admin = true;
 		else
@@ -67,6 +72,7 @@ public class User
 		this.username = username;
 		this.password = password;
 		this.betList = new ArrayList<Bet>();
+		this.pastBets = new ArrayList<Bet>();
 		if(password.equals("admin123"))
 			admin = true;
 		else
@@ -81,6 +87,7 @@ public class User
 		this.username = username;
 		this.password = password;
 		this.betList = new ArrayList<Bet>();
+		this.pastBets = new ArrayList<Bet>();
 		if(password.equals("admin123"))
 			admin = true;
 		else
@@ -175,6 +182,10 @@ public class User
 		return toCheck;
 	}
 	
+	public void addToPastBets(Bet bet)
+	{
+		this.pastBets.add(bet);
+	}
 	
 	/**
 	 * Returns a list containing the list of bets made by this user
@@ -209,6 +220,11 @@ public class User
 	
 	public void setMail(String mail) {
 		eMail = mail;
+	}
+	
+	public List<Bet> getPastBets()
+	{
+		return this.pastBets;
 	}
 	
 	public String toString()

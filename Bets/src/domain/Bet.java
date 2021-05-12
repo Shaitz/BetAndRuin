@@ -53,4 +53,9 @@ public class Bet
 	{
 		this.answer = answer;
 	}
+	
+	public String toString()
+	{
+		return this.questionId + "      " + this.question.toString() + "      " + this.answer + "      " + this.placedBet;
+	}
 }

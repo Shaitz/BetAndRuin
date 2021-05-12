@@ -60,7 +60,7 @@ public class AddFundsGUI extends JFrame {
 		
 		JButton goBackBtn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		
-		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("BankAccount"));
+		JLabel lblNewLabel = new JLabel("Bank Account");
 		
 		JLabel lblNewLabel_1 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Funds"));
 		

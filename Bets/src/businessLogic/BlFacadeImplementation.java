@@ -250,30 +250,47 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.close();
 		
 		List<User> winners = new ArrayList<User>();
+		List<User> losers = new ArrayList<User>();
 		double winnersMoney = 0;
 		for(User u : users)
 		{
 			List<Bet> bets = u.getBets();
 			for(Bet b : bets)
 			{
-				if(b.getQuestion().toString().equals(q.toString()) && b.getAnswer().equals(q.getResult()))
+				if(b.getQuestion().toString().equals(q.toString()) && b.getAnswer().equals(q.getResult()) && q.getResult() != null)
 				{
 					winners.add(u);
 					winnersMoney += b.getPlacedBet();
+					break;
+				}
+				else if (b.getQuestion().toString().equals(q.toString()) && !b.getAnswer().equals(q.getResult()) && q.getResult() != null)
+				{
+					System.out.println(b.getQuestion().toString());
+					System.out.println(q.toString());
+					System.out.println(b.getAnswer());
+					System.out.println(q.getResult());
+					losers.add(u);
+					dbManager.open(false);
+					dbManager.addPastBet(u, b, 0);
+					dbManager.close();
+					break;
 				}
 			}
 		}
 		
 		double benefits = (q.getPool() - winnersMoney) / 2;
-		double benefitUser = 0;
 		for(User u : winners)
 		{
+			double benefitUser = 0;
 			List<Bet> bets = u.getBets();
 			for(Bet b : bets)
 			{
 				if(b.getQuestion().toString().equals(q.toString()))
 				{
 					benefitUser = ((b.getPlacedBet() / winnersMoney) * benefits) + b.getPlacedBet();
+					dbManager.open(false);
+					dbManager.addPastBet(u, b, benefitUser);
+					dbManager.close();
 				}
 			}
 			dbManager.open(false);

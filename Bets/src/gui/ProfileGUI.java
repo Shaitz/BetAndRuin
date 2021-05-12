@@ -33,6 +33,7 @@ public class ProfileGUI extends JFrame{
 	private JButton buttonAccept = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Accept"));
 	private JButton btnViewBetInfo = new JButton(ResourceBundle.getBundle("Etiquetas").getString("BetInfo"));
 	private JButton btnAddMoney = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AddMoney"));
+	private JButton btnPastBets = new JButton("Past Bets");
 	private JComboBox<String> comboBets = new JComboBox<String>();
 	private JTextField textID;
 	private JTextField textUsername;
@@ -79,6 +80,19 @@ public class ProfileGUI extends JFrame{
 				AddFundsGUI addMoneyGUI = new AddFundsGUI(businessLogic);
 				addMoneyGUI.setVisible(true);
 				jButton_actionPerformed(e);
+			}
+		});
+		
+		btnPastBets.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent e) 
+			{
+				if (businessLogic.getUser().getPastBets().size() > 0)
+				{
+					PastBetsGUI PastBetsGUI = new PastBetsGUI(businessLogic);
+					PastBetsGUI.setVisible(true);
+					jButton_actionPerformed(e);
+				}
 			}
 		});
 		
@@ -223,6 +237,9 @@ public class ProfileGUI extends JFrame{
 		getContentPane().add(eMailLabel);
 		
 		getContentPane().add(eMailTextField);
+		
+		btnPastBets.setBounds(82, 289, 109, 23);
+		getContentPane().add(btnPastBets);
 		
 		// Adds all the bets of the user to the comboBox so it shows a list with bets
 		String question;

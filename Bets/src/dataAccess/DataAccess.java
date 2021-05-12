@@ -216,8 +216,8 @@ public class DataAccess  {
 	
 	public Question getQuestion(Question q) {
 		Question test = db.createQuery("SELECT q FROM Question q WHERE q.questionNumber = " + q.getQuestionNumber(), Question.class).getSingleResult();
-		@SuppressWarnings("unused")
-		String wth = test.getAnswers().iterator().next();
+		//@SuppressWarnings("unused")
+		//String wth = test.getAnswers().iterator().next();
 		return test;
 	}
 	
@@ -454,6 +454,24 @@ public class DataAccess  {
 		db.getTransaction().begin();
 		Question question = getQuestion(q);
 		question.setResult(s);
+		db.getTransaction().commit();
+	}
+	
+	public void addPastBet(User u, Bet b, double benefitUser) {
+		User us = this.getUserByID(u.getId());
+		Bet userBet = null;
+		List<Bet> betlist = us.getBets();
+		for (Bet b2 : betlist)
+			if (b.getQuestion().getQuestionNumber().equals(b2.getQuestion().getQuestionNumber()))
+				userBet = b2;
+		
+		userBet.setBenefits(benefitUser);
+		db.getTransaction().begin();
+		us.addToPastBets(userBet);
+		db.getTransaction().commit();
+		
+		db.getTransaction().begin();
+		us.removeBet(userBet);
 		db.getTransaction().commit();
 	}
 }
