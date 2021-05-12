@@ -86,7 +86,7 @@ public class RegisterGUI extends JFrame{
 					if(password.equals(cPassword)) {
 						if (businessLogic.registerUser(username, password, eMail)) {
 							previous.previous.setUser(businessLogic.getRegisteredUser(username, password));
-							goBack();
+							close();
 						}
 						else
 							validText.setText("Error. Try again.");
@@ -176,5 +176,9 @@ public class RegisterGUI extends JFrame{
 	private void goBack() {
 		this.setVisible(false);
 		previous.setVisible(true);
+	}
+	
+	private void close() {
+		this.setVisible(false);
 	}
 }

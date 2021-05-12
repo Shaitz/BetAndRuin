@@ -215,10 +215,13 @@ public class DataAccess  {
 	}
 	
 	public Question getQuestion(Question q) {
-		Question test = db.createQuery("SELECT q FROM Question q WHERE q.questionNumber = " + q.getQuestionNumber(), Question.class).getSingleResult();
-		//@SuppressWarnings("unused")
-		//String wth = test.getAnswers().iterator().next();
-		return test;
+		Question ret = db.createQuery("SELECT q FROM Question q WHERE q.questionNumber = " + q.getQuestionNumber(), Question.class).getSingleResult();
+		if(ret.getAnswers() != null)
+			if(ret.getAnswers().iterator().hasNext()) {
+				@SuppressWarnings("unused")
+				String just4Use = ret.getAnswers().iterator().next();
+			}
+		return ret;
 	}
 	
 	public User createUser(String username, String password, String eMail) {

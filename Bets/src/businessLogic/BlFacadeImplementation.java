@@ -250,7 +250,6 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.close();
 		
 		List<User> winners = new ArrayList<User>();
-		List<User> losers = new ArrayList<User>();
 		double winnersMoney = 0;
 		for(User u : users)
 		{
@@ -265,11 +264,6 @@ public class BlFacadeImplementation implements BlFacade {
 				}
 				else if (b.getQuestion().toString().equals(q.toString()) && !b.getAnswer().equals(q.getResult()) && q.getResult() != null)
 				{
-					System.out.println(b.getQuestion().toString());
-					System.out.println(q.toString());
-					System.out.println(b.getAnswer());
-					System.out.println(q.getResult());
-					losers.add(u);
 					dbManager.open(false);
 					dbManager.addPastBet(u, b, 0);
 					dbManager.close();

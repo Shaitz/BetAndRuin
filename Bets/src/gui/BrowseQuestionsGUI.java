@@ -284,8 +284,12 @@ public class BrowseQuestionsGUI extends JFrame {
 					}
 					else if (quest.getType().equals(QuestionTypes.DYNAMIC))
 					{
-						BetQuestionDynamicGUI betBet = new BetQuestionDynamicGUI(businessLogic, ev, quest);
-						betBet.setVisible(true);
+						if(businessLogic.getAnswersOfQuestion(quest) != null) {
+							BetQuestionDynamicGUI betBet = new BetQuestionDynamicGUI(businessLogic, ev, quest);
+							betBet.setVisible(true);
+						}
+						else
+							warningTxtArea.setText("This question doesn't have answers yet.");
 					}
 					else
 					{

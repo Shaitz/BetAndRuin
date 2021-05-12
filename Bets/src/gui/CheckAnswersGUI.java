@@ -136,8 +136,8 @@ public class CheckAnswersGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String answer = (String) answerBox.getSelectedItem();
-					q.removeAnswer(answer);
-					answerBox.removeItem(answer);;
+					businessLogic.removeAnswerFromQuestion(q, answer);
+					answerBox.removeItem(answer);
 				}
 				catch(NullPointerException j){
 					warningTextField.setText("You haven't selected any answer to delete");
