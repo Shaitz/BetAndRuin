@@ -137,4 +137,6 @@ public interface BlFacade  {
 	@WebMethod public void refreshUser();
 	
 	@WebMethod public void giveRewards(Question q);
+	
+	@WebMethod public Question retrieveQuestion(Question q);
 }

@@ -242,6 +242,15 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.setResult(q, s);
 		dbManager.close();
 	}
+	
+	@WebMethod
+	public Question retrieveQuestion(Question quest)
+	{
+		dbManager.open(false);
+		Question q = dbManager.getQuestion(quest);
+		dbManager.close();
+		return q;
+	}
 
 	@WebMethod public void giveRewards(Question q)
 	{

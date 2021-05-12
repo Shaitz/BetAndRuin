@@ -332,7 +332,8 @@ public class BrowseQuestionsGUI extends JFrame {
 		getContentPane().add(warningTxtArea);
 		
 		btnSetAns.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) 
+			{
 				int i = eventTable.getSelectedRow();
 				domain.Event ev = (domain.Event)eventTableModel.getValueAt(i,2); // obtain ev object
 				Vector<Question> queries = ev.getQuestions(); // get available questions in event
@@ -346,7 +347,8 @@ public class BrowseQuestionsGUI extends JFrame {
 						quest = q; // get the selected question
 				
 				businessLogic.setResult(quest, AnsTextField.getText());
-				businessLogic.giveRewards(quest);
+				Question quest2 = businessLogic.retrieveQuestion(quest);
+				businessLogic.giveRewards(quest2);
 			}
 		});
 		btnSetAns.setEnabled(false);		
