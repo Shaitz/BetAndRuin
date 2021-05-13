@@ -16,6 +16,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import enums.QuestionTypes;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class Event implements Serializable {
@@ -46,6 +48,65 @@ public class Event implements Serializable {
 		this.eventNumber = eventNumber;
 		this.description = description;
 		this.eventDate = eventDate;
+		Question q = addQuestion("Who will win the match?", 5);
+		q.setType(QuestionTypes.FIXED);
+		q.setEvent(this);
+		q = addQuestion("Will there be goals in the first half?", 1);
+		q.setType(QuestionTypes.FIXED);
+		q.setEvent(this);
+		q = addQuestion("Will there be goals in the second half?", 1);
+		q.setType(QuestionTypes.FIXED);
+		q.setEvent(this);
+		q = addQuestion("How many goals will score the local team?", 1);
+		q.setType(QuestionTypes.FREE);
+		q.setEvent(this);
+		q = addQuestion("How many goals will score the visitant team?", 1);
+		q.setType(QuestionTypes.FREE);
+		q.setEvent(this);
+		q = addQuestion("How many fauls will there be in the match?", 2);
+		q.setType(QuestionTypes.FREE);
+		q.setEvent(this);
+		q = addQuestion("Which formation will use the local team?", 2);
+		q.setType(QuestionTypes.DYNAMIC);
+		q.setEvent(this);
+		q.addAnswer("2-3-5");
+		q.addAnswer("2-3-2-3");
+		q.addAnswer("3-2-2-3");
+		q.addAnswer("3-3-4");
+		q.addAnswer("4-2-4");
+		q.addAnswer("4-4-2");
+		q.addAnswer("4-3-3");
+		q.addAnswer("4-4-1-1");
+		q.addAnswer("4-3-2-1");
+		q.addAnswer("5-3-2");
+		q.addAnswer("3-4-3");
+		q.addAnswer("3-5-2");
+		q.addAnswer("3-6-1");
+		q.addAnswer("4-5-1");
+		q.addAnswer("4-2-3-1");
+		q.addAnswer("5-4-1");
+		q.addAnswer("4-2-2-2");
+		q = addQuestion("Which formation will use the visitant team?", 2);
+		q.setType(QuestionTypes.DYNAMIC);
+		q.setEvent(this);
+		q.addAnswer("2-3-5");
+		q.addAnswer("2-3-2-3");
+		q.addAnswer("3-2-2-3");
+		q.addAnswer("3-3-4");
+		q.addAnswer("4-2-4");
+		q.addAnswer("4-4-2");
+		q.addAnswer("4-3-3");
+		q.addAnswer("4-4-1-1");
+		q.addAnswer("4-3-2-1");
+		q.addAnswer("5-3-2");
+		q.addAnswer("3-4-3");
+		q.addAnswer("3-5-2");
+		q.addAnswer("3-6-1");
+		q.addAnswer("4-5-1");
+		q.addAnswer("4-2-3-1");
+		q.addAnswer("5-4-1");
+		q.addAnswer("4-2-2-2");
+		
 	}
 
 	public Event( String description,Date eventDate) {

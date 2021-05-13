@@ -5,7 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Vector;
@@ -89,70 +88,6 @@ public class DataAccess  {
 			Event ev18 = new Event(18, "Girona-Leganés", UtilDate.newDate(year, month + 1, 28));
 			Event ev19 = new Event(19, "Real Sociedad-Levante", UtilDate.newDate(year, month + 1, 28));
 			Event ev20 = new Event(20, "Betis-Real Madrid", UtilDate.newDate(year, month + 1, 28));
-
-			Question q1;
-			Question q2;
-			Question q3;
-			Question q4;
-			Question q5;
-			Question q6;
-
-			if (Locale.getDefault().equals(new Locale("es"))) {
-				q1 = ev1.addQuestion("¿Quién ganará el partido?", 1);
-				q1.setEvent(ev1);
-				q2 = ev1.addQuestion("¿Quién meterá el primer gol?", 2);
-				q2.setEvent(ev1);
-				q3 = ev11.addQuestion("¿Quién ganará el partido?", 1);
-				q3.setEvent(ev11);
-				q4 = ev11.addQuestion("¿Cuántos goles se marcarán?", 2);
-				q4.setEvent(ev11);
-				q5 = ev17.addQuestion("¿Quién ganará el partido?", 1);
-				q5.setEvent(ev17);
-				q6 = ev17.addQuestion("¿Habrá goles en la primera parte?", 2);
-				q6.setEvent(ev17);
-			}
-			else if (Locale.getDefault().equals(new Locale("en"))) {
-				q1 = ev1.addQuestion("Who will win the match?", 1);
-				q1.setEvent(ev1);
-				q2 = ev1.addQuestion("Who will score first?", 2);
-				q2.setEvent(ev1);
-				q3 = ev11.addQuestion("Who will win the match?", 1);
-				q3.setEvent(ev11);
-				q4 = ev11.addQuestion("How many goals will be scored in the match?", 2);
-				q4.setEvent(ev11);
-				q5 = ev17.addQuestion("Who will win the match?", 1);
-				q5.setEvent(ev17);
-				q6 = ev17.addQuestion("Will there be goals in the first half?", 2);
-				q6.setEvent(ev17);
-			}			
-			else {
-				q1 = ev1.addQuestion("Zeinek irabaziko du partidua?", 1);
-				q1.setEvent(ev1);
-				q2 = ev1.addQuestion("Zeinek sartuko du lehenengo gola?", 2);
-				q2.setEvent(ev1);
-				q3 = ev11.addQuestion("Zeinek irabaziko du partidua?", 1);
-				q3.setEvent(ev11);
-				q4 = ev11.addQuestion("Zenbat gol sartuko dira?", 2);
-				q4.setEvent(ev11);
-				q5 = ev17.addQuestion("Zeinek irabaziko du partidua?", 1);
-				q5.setEvent(ev17);
-				q6 = ev17.addQuestion("Golak sartuko dira lehenengo zatian?", 2);
-				q6.setEvent(ev17);
-			}
-			
-			q1.setType(QuestionTypes.FIXED);
-			q2.setType(QuestionTypes.FIXED);
-			q3.setType(QuestionTypes.FIXED);
-			q4.setType(QuestionTypes.FREE);
-			q5.setType(QuestionTypes.FIXED);
-			q6.setType(QuestionTypes.DYNAMIC);
-
-			db.persist(q1);
-			db.persist(q2);
-			db.persist(q3);
-			db.persist(q4);
-			db.persist(q5);
-			db.persist(q6);
 
 			db.persist(ev1);
 			db.persist(ev2);
