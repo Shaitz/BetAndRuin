@@ -229,9 +229,9 @@ public class BlFacadeImplementation implements BlFacade {
 	}
 	@WebMethod
 	@Override
-	public Iterable<String> getAnswersOfQuestion(Question q) {
+	public ArrayList<String> getAnswersOfQuestion(Question q) {
 		dbManager.open(false);
-		Iterable<String> ret = dbManager.getAnswerList(q);
+		ArrayList<String> ret = dbManager.getAnswerList(q);
 		dbManager.close();
 		return ret;
 	}

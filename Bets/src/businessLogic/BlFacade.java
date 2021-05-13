@@ -1,7 +1,7 @@
 package businessLogic;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Vector;
 
 import javax.jws.WebMethod;
@@ -130,7 +130,7 @@ public interface BlFacade  {
 	
 	@WebMethod public boolean removeAnswerFromQuestion(Question q, String answer);
 	
-	@WebMethod public Iterable<String> getAnswersOfQuestion(Question q);
+	@WebMethod public ArrayList<String> getAnswersOfQuestion(Question q);
 	
 	@WebMethod 	public void setResult(Question q, String s);
 	

@@ -12,7 +12,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import enums.QuestionTypes;
 
 
-@SuppressWarnings("serial")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class Question implements Serializable {
@@ -197,7 +196,7 @@ public class Question implements Serializable {
 		return true;
 	}
 	
-	public Iterable<String> getAnswers(){
+	public ArrayList<String> getAnswers(){
 		return answerList;
 	}
 	

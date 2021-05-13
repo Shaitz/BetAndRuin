@@ -1,12 +1,9 @@
 package gui;
 
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Iterator;
 import java.util.ResourceBundle;
-import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;

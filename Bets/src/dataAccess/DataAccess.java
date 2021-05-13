@@ -443,7 +443,7 @@ public class DataAccess  {
 		return ret;
 	}
 	
-	public Iterable<String> getAnswerList(Question q) {
+	public ArrayList<String> getAnswerList(Question q) {
 		Question question = getQuestion(q);
 		return question.getAnswers();
 	}

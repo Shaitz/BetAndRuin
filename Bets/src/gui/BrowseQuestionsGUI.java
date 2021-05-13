@@ -26,7 +26,6 @@ import com.toedter.calendar.JCalendar;
 
 import businessLogic.BlFacade;
 import configuration.UtilDate;
-import domain.Bet;
 import domain.Question;
 import enums.QuestionTypes;
 

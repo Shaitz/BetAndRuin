@@ -16,10 +16,7 @@ import javax.swing.JTextField;
 import businessLogic.BlFacade;
 import domain.Bet;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import java.awt.SystemColor;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import java.awt.Color;
 
@@ -87,19 +84,22 @@ public class ProfileGUI extends JFrame{
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent e) 
 			{
-				if (businessLogic.getUser().getPastBets().size() > 0)
-				{
-					PastBetsGUI PastBetsGUI = new PastBetsGUI(businessLogic);
-					PastBetsGUI.setVisible(true);
-					jButton_actionPerformed(e);
-				}
+				if(businessLogic.getUser().getPastBets() != null)
+					if (businessLogic.getUser().getPastBets().size() > 0)
+					{
+						PastBetsGUI PastBetsGUI = new PastBetsGUI(businessLogic);
+						PastBetsGUI.setVisible(true);
+						jButton_actionPerformed(e);
+					}
 			}
 		});
 		
-		if (!businessLogic.getUser().getBets().isEmpty())
-			this.initializeBrowseQuestionsBtn();
-		else
-			btnViewBetInfo.setEnabled(false);
+		if(businessLogic.getUser().getBets() != null) {
+			if (!businessLogic.getUser().getBets().isEmpty())
+				this.initializeBrowseQuestionsBtn();
+			else
+				btnViewBetInfo.setEnabled(false);
+		}
 		eMailTextField.setEditable(false);
 		eMailTextField.setText(businessLogic.getUser().getMail()); //$NON-NLS-1$ //$NON-NLS-2$
 		eMailTextField.setBounds(138, 160, 153, 20);
@@ -243,11 +243,12 @@ public class ProfileGUI extends JFrame{
 		
 		// Adds all the bets of the user to the comboBox so it shows a list with bets
 		String question;
-		for(Bet b : businessLogic.getUser().getBets()) {
-			question = b.getQuestion().getQuestion() + " || " + b.getPlacedBet();
-			betsAndNames.put(question, b);
-			comboBets.addItem(question);
-		}
+		if(businessLogic.getUser().getBets() != null)
+			for(Bet b : businessLogic.getUser().getBets()) {
+				question = b.getQuestion().getQuestion() + " || " + b.getPlacedBet();
+				betsAndNames.put(question, b);
+				comboBets.addItem(question);
+			}
 }
 	
 	private void initializeBrowseQuestionsBtn() {
