@@ -84,12 +84,16 @@ public class RegisterGUI extends JFrame{
 					validText.setText("At least one compulsory area was not filled correctly");
 				else {
 					if(password.equals(cPassword)) {
-						if (businessLogic.registerUser(username, password, eMail)) {
-							previous.previous.setUser(businessLogic.getRegisteredUser(username, password));
-							close();
+						if(checkEmail(eMail)) {
+							if (businessLogic.registerUser(username, password, eMail)) {
+								previous.previous.setUser(businessLogic.getRegisteredUser(username, password));
+								close();
+							}
+							else
+								validText.setText("Error. Try again.");
 						}
 						else
-							validText.setText("Error. Try again.");
+							validText.setText("Invalid eMail.");
 					}
 					else
 						validText.setText("Passwords don't match.");
@@ -171,6 +175,17 @@ public class RegisterGUI extends JFrame{
 					.addContainerGap(41, Short.MAX_VALUE))
 		);
 		this.getContentPane().setLayout(groupLayout);
+	}
+	
+	private boolean checkEmail(String eMail){
+		boolean ret = false;
+		if(eMail.contains("@")) {
+			String[] split = eMail.split("@");
+			if(split.length == 2 && split[0].length() > 1 && split[1].contains(".")) {
+				ret = true;
+			}
+		}
+		return ret;
 	}
 	
 	private void goBack() {
