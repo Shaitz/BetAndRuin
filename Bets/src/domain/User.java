@@ -39,8 +39,8 @@ public class User
 		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.betList = new ArrayList<Bet>();
-		this.pastBets = new ArrayList<Bet>();
+		this.betList = new ArrayList<>();
+		this.pastBets = new ArrayList<>();
 		if(password.equals("admin123"))
 			admin = true;
 		else
@@ -55,8 +55,8 @@ public class User
 		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.betList = new ArrayList<Bet>();
-		this.pastBets = new ArrayList<Bet>();
+		this.betList = new ArrayList<>();
+		this.pastBets = new ArrayList<>();
 		if(password.equals("admin123"))
 			admin = true;
 		else
@@ -70,8 +70,8 @@ public class User
 		super();
 		this.username = username;
 		this.password = password;
-		this.betList = new ArrayList<Bet>();
-		this.pastBets = new ArrayList<Bet>();
+		this.betList = new ArrayList<>();
+		this.pastBets = new ArrayList<>();
 		if(password.equals("admin123"))
 			admin = true;
 		else
@@ -85,8 +85,8 @@ public class User
 		super();
 		this.username = username;
 		this.password = password;
-		this.betList = new ArrayList<Bet>();
-		this.pastBets = new ArrayList<Bet>();
+		this.betList = new ArrayList<>();
+		this.pastBets = new ArrayList<>();
 		if(password.equals("admin123"))
 			admin = true;
 		else
@@ -153,12 +153,14 @@ public class User
 		
 		if(bet <= question.getBetMinimum() || personalWallet.getCurrency() < bet)
 			return false;
-		else {
+		else
+		{
 			if (betList == null)
-				betList = new ArrayList<Bet>();
-			List<Bet> betList = this.getBets();
+				betList = new ArrayList<>();
+			List<Bet> userBets = this.getBets();
 			
-			for (Bet b : betList) // check if user has already bet this question
+			// check if user has already bet this question
+			for (Bet b : userBets)
 			{
 				if (b.getQuestion().getQuestionNumber().equals(question.getQuestionNumber()))
 					return false;

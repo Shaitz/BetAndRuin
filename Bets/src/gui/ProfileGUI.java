@@ -167,11 +167,11 @@ public class ProfileGUI extends JFrame{
 				boolean uChange = false;
 				boolean pChange = false;
 				
-				if (textUsername.getText() != null && textUsername.getText() != "" && textUsername.getText() != businessLogic.getUser().getUsername())
+				if (textUsername.getText() != null && !textUsername.getText().equals("") && !textUsername.getText().equals(businessLogic.getUser().getUsername()))
 //					businessLogic.changeUsername(businessLogic.getUser().getUsername(), businessLogic.getUser().getPassword(), textUsername.getText());
 					username = textUsername.getText();
 				
-				if (textPassword.getText() != null && textPassword.getText() != "" && textPassword.getText() != businessLogic.getUser().getPassword())
+				if (textPassword.getText() != null && !textPassword.getText().equals("") && !textPassword.getText().equals(businessLogic.getUser().getPassword()))
 //					businessLogic.changePassword(businessLogic.getUser().getUsername(), businessLogic.getUser().getPassword(), textPassword.getText());
 					password = textPassword.getText();
 				
