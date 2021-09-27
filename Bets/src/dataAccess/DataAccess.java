@@ -395,21 +395,28 @@ public class DataAccess  {
 		db.getTransaction().commit();
 	}
 	
-	public void addPastBet(User u, Bet b, double benefitUser) {
-		User us = this.getUserByID(u.getId());
-		Bet userBet = null;
-		List<Bet> betlist = us.getBets();
-		for (Bet b2 : betlist)
-			if (b.getQuestion().getQuestionNumber().equals(b2.getQuestion().getQuestionNumber()))
-				userBet = b2;
-		
-		userBet.setBenefits(benefitUser);
-		db.getTransaction().begin();
-		us.addToPastBets(userBet);
-		db.getTransaction().commit();
-		
-		db.getTransaction().begin();
-		us.removeBet(userBet);
-		db.getTransaction().commit();
+	public void addPastBet(User u, Bet b, double benefitUser) 
+	{
+		if(u != null && b != null)
+		{
+			User us = this.getUserByID(u.getId());
+			if(us != null)
+			{
+				Bet userBet = null;
+				List<Bet> betlist = us.getBets();
+				for (Bet b2 : betlist)
+					if (b.getQuestion().getQuestionNumber().equals(b2.getQuestion().getQuestionNumber()))
+						userBet = b2;
+				
+				userBet.setBenefits(benefitUser);
+				db.getTransaction().begin();
+				us.addToPastBets(userBet);
+				db.getTransaction().commit();
+				
+				db.getTransaction().begin();
+				us.removeBet(userBet);
+				db.getTransaction().commit();
+			}
+		}
 	}
 }
