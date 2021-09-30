@@ -1,0 +1,36 @@
+
+Fdomain.IntegerAdapter#unmarshal(Ljava/lang/String;)Ljava/lang/Integer;J
+@C:/Users/Unai/git/BetAndRuin/Bets/src/domain/IntegerAdapter.java ("startingBlock*Ú
+startingBlockJ
+@C:/Users/Unai/git/BetAndRuin/Bets/src/domain/IntegerAdapter.java (#í
+è
+J
+@C:/Users/Unai/git/BetAndRuin/Bets/src/domain/IntegerAdapter.java (
+
+%1"
+__annotate*
+java.lang.Override*
+
+sjava.lang.String{
+y
+J
+@C:/Users/Unai/git/BetAndRuin/Bets/src/domain/IntegerAdapter.java! ("
+sjava.lang.String"__annotation*
+
+%1*
+1*Ë
+1J
+@C:/Users/Unai/git/BetAndRuin/Bets/src/domain/IntegerAdapter.java		 	(ª
+∏
+J
+@C:/Users/Unai/git/BetAndRuin/Bets/src/domain/IntegerAdapter.java		 	(	
+%0int"/java.lang.Integer#parseInt(Ljava/lang/String;)I*"
+java.lang.Integer*
+
+sjava.lang.String"Y
+J
+@C:/Users/Unai/git/BetAndRuin/Bets/src/domain/IntegerAdapter.java	 	(
+	
+%0int:
+sjava.lang.StringB
+domain.IntegerAdapter

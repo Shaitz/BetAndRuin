@@ -1,0 +1,30 @@
+
+EdataAccess.DataAccess#addAnswer(Ldomain/Question;Ljava/lang/String;)ZL
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaÎ Î("1*®
+1L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaÏ Ï(Çˇ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaÌ Ì($
+%0domain.Question"EdataAccess.DataAccess#getQuestion(Ldomain/Question;)Ldomain/Question;*
+dataAccess.DataAccess*
+
+qdomain.Question2getQuestion(Ldomain/Question;)ç
+ä
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaÌ Ì(%
+questiondomain.Question"__id*
+
+%0domain.QuestionÁ‰
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaÔ Ô(
+%1boolean".domain.Question#addAnswer(Ljava/lang/String;)Z*
+
+questiondomain.Question*
+
+ajava.lang.String2addAnswer(Ljava/lang/String;)"V
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaÒ Ò(
+"":
+qdomain.Question:
+ajava.lang.StringB
+dataAccess.DataAccess

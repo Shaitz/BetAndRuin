@@ -1,0 +1,28 @@
+
+KdataAccess.DataAccess#getAnswerList(Ldomain/Question;)Ljava/util/ArrayList;L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaı ı('"1*¢
+1L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaş ş(!‚ÿ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaş ş($
+%0domain.Question"EdataAccess.DataAccess#getQuestion(Ldomain/Question;)Ldomain/Question;*
+dataAccess.DataAccess*
+
+qdomain.Question2getQuestion(Ldomain/Question;)
+Š
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaş ş(%
+questiondomain.Question"__id*
+
+%0domain.QuestionÌÉ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaÿ	 ÿ(
+%1java.util.ArrayList"1domain.Question#getAnswers()Ljava/util/ArrayList;*
+
+questiondomain.Question2getAnswers()"k
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaÿ ÿ(
+
+%1java.util.ArrayList:
+qdomain.QuestionB
+dataAccess.DataAccess

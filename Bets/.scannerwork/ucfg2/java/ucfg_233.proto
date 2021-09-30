@@ -1,0 +1,55 @@
+
+1domain.Question#removeAnswer(Ljava/lang/String;)ZF
+:C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Question.java¿ ¿("3*ù
+2F
+:C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Question.java√
+ √("P
+F
+:C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Question.java√ √(
+""*Ñ
+3F
+:C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Question.java¡ ¡(ë
+é
+F
+:C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Question.java¡ ¡(
+%0java.util.ArrayList"__id*#*!
+domain.Question"
+
+answerListë
+é
+F
+:C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Question.java¡! ¡(+
+%1java.util.ArrayList"__id*#*!
+domain.Question"
+
+answerList‡›
+F
+:C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Question.java¡! ¡(;	
+%2int"0java.util.ArrayList#indexOf(Ljava/lang/Object;)I*
+
+%1java.util.ArrayList*
+
+answerjava.lang.String2indexOf(Ljava/lang/Object;)ú
+ô
+F
+:C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Question.java¡ ¡(<
+%3java.lang.String"__arrayRemove*
+
+%0java.util.ArrayList*
+	
+%2intÑ
+Å
+F
+:C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Question.java¡ ¡(=
+retjava.lang.String"__id*
+
+%3java.lang.String*
+2
+1*ù
+1F
+:C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Question.javaƒ	 ƒ("P
+F
+:C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Question.javaƒ ƒ(
+"":
+answerjava.lang.StringB
+domain.Question

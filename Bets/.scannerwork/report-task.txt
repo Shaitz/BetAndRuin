@@ -1,0 +1,7 @@
+organization=shait
+projectKey=BetAndRuin2
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.23159
+dashboardUrl=https://sonarcloud.io/dashboard?id=BetAndRuin2
+ceTaskId=AXvZ1l6x6PVVEaJzOhPS
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXvZ1l6x6PVVEaJzOhPS

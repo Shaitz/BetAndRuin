@@ -1,0 +1,83 @@
+
+WbusinessLogic.BlFacadeImplementation#getEventsMonth(Ljava/util/Date;)Ljava/util/Vector;Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaj j(#"startingBlock*Ç
+startingBlockY
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaj# j(.¢
+Ÿ
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javah h(
+
+%6"
+__annotate*
+java.lang.Override*
+
+datejava.util.Date™
+–
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javai i(
+%7"
+__annotate*
+	WebMethod*
+
+datejava.util.Date”
+‘
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaj) j(-
+datejava.util.Date"__annotation*
+
+%6*
+
+%7*
+1*»
+1Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javak k(º
+·
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javak k(
+%0dataAccess.DataAccess"__id*7*5&
+$businessLogic.BlFacadeImplementation"
+	dbManagerº·
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javak k(
+
+%1void"dataAccess.DataAccess#open(Z)V*
+
+%0dataAccess.DataAccess*
+""2open(Z)º
+·
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javal l(!
+%2dataAccess.DataAccess"__id*7*5&
+$businessLogic.BlFacadeImplementation"
+	dbManager›˜
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javal l(6
+%3java.util.Vector"HdataAccess.DataAccess#getEventsMonth(Ljava/util/Date;)Ljava/util/Vector;*
+
+%2dataAccess.DataAccess*
+
+datejava.util.Date2 getEventsMonth(Ljava/util/Date;)™
+–
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javal l(7
+datesjava.util.Vector"__id*
+
+%3java.util.Vectorº
+·
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javam m(
+%4dataAccess.DataAccess"__id*7*5&
+$businessLogic.BlFacadeImplementation"
+	dbManager²¯
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javam m(
+
+%5void"dataAccess.DataAccess#close()V*
+
+%4dataAccess.DataAccess2close()"x
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javan n(
+
+datesjava.util.Vector:
+datejava.util.DateB(&
+$businessLogic.BlFacadeImplementation

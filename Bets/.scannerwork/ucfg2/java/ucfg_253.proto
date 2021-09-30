@@ -1,0 +1,33 @@
+
+ domain.User#decreaseCurrency(D)DB
+6C:/Users/Unai/git/BetAndRuin/Bets/src/domain/User.javaÕ Õ("1*ì
+1B
+6C:/Users/Unai/git/BetAndRuin/Bets/src/domain/User.javaÖ Ö(‡
+„
+B
+6C:/Users/Unai/git/BetAndRuin/Bets/src/domain/User.javaÖ Ö(
+%0domain.Wallet"__id*#*!
+domain.User"
+personalWallet¤¡
+B
+6C:/Users/Unai/git/BetAndRuin/Bets/src/domain/User.javaÖ Ö($
+%1boolean"domain.Wallet#removeMoney(D)Z*
+
+%0domain.Wallet*
+""2removeMoney(D)‡
+„
+B
+6C:/Users/Unai/git/BetAndRuin/Bets/src/domain/User.java×	 ×(
+%2domain.Wallet"__id*#*!
+domain.User"
+personalWallet™–
+B
+6C:/Users/Unai/git/BetAndRuin/Bets/src/domain/User.java×	 ×(%
+%3double"domain.Wallet#getCurrency()D*
+
+%2domain.Wallet2getCurrency()"L
+B
+6C:/Users/Unai/git/BetAndRuin/Bets/src/domain/User.java× ×(&
+"":
+""B
+domain.User

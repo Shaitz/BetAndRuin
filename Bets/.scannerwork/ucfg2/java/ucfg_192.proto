@@ -1,0 +1,67 @@
+
+RdataAccess.DataAccess#placeBet(Ldomain/User;Ldomain/Question;DLjava/lang/String;)ZL
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaü ü("1*„
+1L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaı ı(¼¹
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaı7 ı(I
+%0java.lang.String"+domain.User#getUsername()Ljava/lang/String;*
+
+userdomain.User2getUsername()¼¹
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaıK ı(]
+%1java.lang.String"+domain.User#getPassword()Ljava/lang/String;*
+
+userdomain.User2getPassword()ÜÙ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaı ı(^
+%2domain.User"ddataAccess.DataAccess#getUserWithUsernamePassword(Ljava/lang/String;Ljava/lang/String;)Ldomain/User;*
+dataAccess.DataAccess*
+
+%0java.lang.String*
+
+%1java.lang.String2AgetUserWithUsernamePassword(Ljava/lang/String;Ljava/lang/String;)‰
+†
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaı ı(_
+userToChangedomain.User"__id*
+
+%2domain.User‰†
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaş ş()
+%3domain.Question"EdataAccess.DataAccess#getQuestion(Ldomain/Question;)Ldomain/Question;*
+dataAccess.DataAccess*
+
+questiondomain.Question2getQuestion(Ldomain/Question;)†
+ƒ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaş ş(*
+qdomain.Question"__id*
+
+%3domain.Question±®
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java€ €(?
+%4boolean";domain.User#placeBet(Ldomain/Question;DLjava/lang/String;)Z*
+
+userToChangedomain.User*
+
+questiondomain.Question*
+""*
+
+answerjava.lang.String2.placeBet(Ldomain/Question;DLjava/lang/String;)¦£
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java (
+
+%5void"domain.Question#addPool(D)V*
+
+qdomain.Question*
+""2
+addPool(D)"V
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaƒ ƒ(
+"":
+userdomain.User:
+questiondomain.Question:
+"":
+answerjava.lang.StringB
+dataAccess.DataAccess

@@ -1,0 +1,76 @@
+
+EdataAccess.DataAccess#getQuestion(Ldomain/Question;)Ldomain/Question;L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaò ò("4*®
+2L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaù ù(«ƒ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaù ù(&
+%6java.util.ArrayList"1domain.Question#getAnswers()Ljava/util/ArrayList;*
+
+retdomain.Question2getAnswers()»≈
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaù ù(1
+%7java.util.Iterator"2java.util.ArrayList#iterator()Ljava/util/Iterator;*
+
+%6java.util.ArrayList2
+iterator()∫∑
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaù ù(8
+%8java.lang.String"+java.util.Iterator#next()Ljava/lang/Object;*
+
+%7java.util.Iterator2next()*
+1*ó
+3L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaõ õ(	«ƒ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaõ õ(
+%3java.util.ArrayList"1domain.Question#getAnswers()Ljava/util/ArrayList;*
+
+retdomain.Question2getAnswers()»≈
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaõ õ(!
+%4java.util.Iterator"2java.util.ArrayList#iterator()Ljava/util/Iterator;*
+
+%3java.util.ArrayList2
+iterator()¶£
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaõ õ(+
+%5boolean"java.util.Iterator#hasNext()Z*
+
+%4java.util.Iterator2	hasNext()*
+2
+1*∑
+4L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaô ô(œÃ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaôW ô(l
+%0java.lang.Integer"6domain.Question#getQuestionNumber()Ljava/lang/Integer;*
+
+qdomain.Question2getQuestionNumber()∆
+√
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaô  ô(l
+%1java.lang.String"__concat*64
+2SELECT q FROM Question q WHERE q.questionNumber = *
+
+%0java.lang.Integerw
+u
+M
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaô ô(ê
+retdomain.Question"__id*
+""«ƒ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaö ö(
+%2java.util.ArrayList"1domain.Question#getAnswers()Ljava/util/ArrayList;*
+
+retdomain.Question2getAnswers()*
+3
+1*ª
+1L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaü	 ü("h
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaü ü(
+
+retdomain.Question:
+qdomain.QuestionB
+dataAccess.DataAccess

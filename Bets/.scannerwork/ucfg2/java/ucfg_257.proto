@@ -1,0 +1,60 @@
+
+(domain.User#toString()Ljava/lang/String;B
+6C:/Users/Unai/git/BetAndRuin/Bets/src/domain/User.javaÁ Á("1*í	
+1B
+6C:/Users/Unai/git/BetAndRuin/Bets/src/domain/User.javaÈ	 È(~
+|
+B
+6C:/Users/Unai/git/BetAndRuin/Bets/src/domain/User.javaÈ	 È(
+%0java.lang.Integer"__id**
+domain.User"
+idå
+â
+B
+6C:/Users/Unai/git/BetAndRuin/Bets/src/domain/User.javaÈ	 È(
+%1java.lang.String"__concat*
+
+%0java.lang.Integer*
+\tÑ
+Å
+B
+6C:/Users/Unai/git/BetAndRuin/Bets/src/domain/User.javaÈ È(
+%2java.lang.String"__id**
+domain.User"
+
+usernameù
+ö
+B
+6C:/Users/Unai/git/BetAndRuin/Bets/src/domain/User.javaÈ	 È(
+%3java.lang.String"__concat*
+
+%1java.lang.String*
+
+%2java.lang.Stringã
+à
+B
+6C:/Users/Unai/git/BetAndRuin/Bets/src/domain/User.javaÈ	 È($
+%4java.lang.String"__concat*
+
+%3java.lang.String*
+\tÑ
+Å
+B
+6C:/Users/Unai/git/BetAndRuin/Bets/src/domain/User.javaÈ' È(/
+%5java.lang.String"__id**
+domain.User"
+
+passwordù
+ö
+B
+6C:/Users/Unai/git/BetAndRuin/Bets/src/domain/User.javaÈ	 È(/
+%6java.lang.String"__concat*
+
+%4java.lang.String*
+
+%5java.lang.String"^
+B
+6C:/Users/Unai/git/BetAndRuin/Bets/src/domain/User.javaÈ È(0
+
+%6java.lang.StringB
+domain.User

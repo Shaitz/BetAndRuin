@@ -1,0 +1,83 @@
+
+abusinessLogic.BlFacadeImplementation#getAnswersOfQuestion(Ldomain/Question;)Ljava/util/ArrayList;[
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaè è(."startingBlock*É
+startingBlock[
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaè. è(:™
+–
+[
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaæ æ(
+%6"
+__annotate*
+	WebMethod*
+
+qdomain.Question¢
+Ÿ
+[
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaç ç(
+
+%7"
+__annotate*
+java.lang.Override*
+
+qdomain.Question”
+‘
+[
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaè8 è(9
+qdomain.Question"__annotation*
+
+%6*
+
+%7*
+1*Ö
+1[
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaé é(¼
+¹
+[
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaé é(
+%0dataAccess.DataAccess"__id*7*5&
+$businessLogic.BlFacadeImplementation"
+	dbManager¼¹
+[
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaé é(
+
+%1void"dataAccess.DataAccess#open(Z)V*
+
+%0dataAccess.DataAccess*
+""2open(Z)¼
+¹
+[
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaê ê(#
+%2dataAccess.DataAccess"__id*7*5&
+$businessLogic.BlFacadeImplementation"
+	dbManager¡ž
+[
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaê ê(4
+%3java.util.ArrayList"KdataAccess.DataAccess#getAnswerList(Ldomain/Question;)Ljava/util/ArrayList;*
+
+%2dataAccess.DataAccess*
+
+qdomain.Question2 getAnswerList(Ldomain/Question;)Ÿ
+œ
+[
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaê ê(5
+retjava.util.ArrayList"__id*
+
+%3java.util.ArrayList¼
+¹
+[
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaë ë(
+%4dataAccess.DataAccess"__id*7*5&
+$businessLogic.BlFacadeImplementation"
+	dbManager´±
+[
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaë ë(
+
+%5void"dataAccess.DataAccess#close()V*
+
+%4dataAccess.DataAccess2close()"{
+[
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaì ì(
+
+retjava.util.ArrayList:
+qdomain.QuestionB(&
+$businessLogic.BlFacadeImplementation

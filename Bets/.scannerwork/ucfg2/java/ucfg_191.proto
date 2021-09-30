@@ -1,0 +1,37 @@
+
+)dataAccess.DataAccess#addMoneyToUser(ID)DL
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaò ò("3*©
+2L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaõ õ("V
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaõ õ(
+""*Í
+3L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaó ó(îë
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaó ó("
+%0domain.User"CdataAccess.DataAccess#getUserByID(Ljava/lang/Integer;)Ldomain/User;*
+dataAccess.DataAccess*
+""2 getUserByID(Ljava/lang/Integer;)€
+~
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaó ó(#
+userdomain.User"__id*
+
+%0domain.User*
+2
+1*á
+1L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaö ö(µ²
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java÷ ÷(,
+%1double" domain.User#increaseCurrency(D)D*
+
+userdomain.User*
+""2increaseCurrency(D)"V
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaù ù(
+"":
+"":
+""B
+dataAccess.DataAccess

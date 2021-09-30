@@ -1,0 +1,45 @@
+
+odataAccess.DataAccess#changePasswordOfUser(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ldomain/User;L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaå å(!"8*¼
+2L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaë
+ ë("i
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaë ë(
+
+toChangedomain.User*Á
+5L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaé é(èå
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaé é("
+
+%1void",domain.User#setPassword(Ljava/lang/String;)V*
+
+toChangedomain.User*
+
+	nPasswordjava.lang.String2setPassword(Ljava/lang/String;)*
+2*Þ
+7L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaç ç(C…
+‚
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaç ç(C
+toChangedomain.User"__id*
+
+%0domain.User*
+5*Á
+8L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaç ç(.èå
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaç ç(B
+%0domain.User"ddataAccess.DataAccess#getUserWithUsernamePassword(Ljava/lang/String;Ljava/lang/String;)Ldomain/User;*
+dataAccess.DataAccess*
+
+usernamejava.lang.String*
+
+passwordjava.lang.String2AgetUserWithUsernamePassword(Ljava/lang/String;Ljava/lang/String;)*
+7:
+usernamejava.lang.String:
+passwordjava.lang.String:
+	nPasswordjava.lang.StringB
+dataAccess.DataAccess

@@ -1,0 +1,89 @@
+
+(domain.Event#equals(Ljava/lang/Object;)ZC
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java¡ ¡("startingBlock*ó
+2C
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java«
+ «("M
+C
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java« «(
+""*µ
+3C
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java∆ ∆(´®
+C
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java∆ ∆(
+%0java.lang.Class",java.lang.Object#getClass()Ljava/lang/Class;*
+domain.Event2
+getClass()¥±
+C
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java∆ ∆("
+%1java.lang.Class",java.lang.Object#getClass()Ljava/lang/Class;*
+
+objjava.lang.Object2
+getClass()*
+2
+1*Á
+startingBlockC
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java¡ ¡("ç
+ä
+C
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java¿ ¿(
+
+%5"
+__annotate*
+java.lang.Override*
+
+objjava.lang.Objectv
+t
+C
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java¡ ¡(!
+objjava.lang.Object"__annotation*
+
+%5*	
+3
+4
+6*ó
+4C
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java≈
+ ≈("M
+C
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java≈ ≈(
+""*ó
+6C
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java√
+ √("M
+C
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java√ √(
+""*î
+1C
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java» »(
+}
+C
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java» »(
+otherdomain.Event"__id*
+
+objjava.lang.Objectä
+á
+C
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java…	 …(
+%2java.lang.Integer"__id*!*
+domain.Event"
+eventNumberë
+é
+C
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java… …(-
+%3java.lang.Integer"__id*(*&
+
+otherdomain.Event"
+eventNumberÿ’
+C
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java…	 …(.
+%4boolean"-java.lang.Integer#equals(Ljava/lang/Object;)Z*
+
+%2java.lang.Integer*
+
+%3java.lang.Integer2equals(Ljava/lang/Object;)"M
+C
+7C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Event.java… …(/
+"":
+objjava.lang.ObjectB
+domain.Event

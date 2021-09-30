@@ -1,0 +1,24 @@
+
+MdataAccess.DataAccess#getUserWithUsername(Ljava/lang/String;)Ljava/util/List;L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java¾ ¾(&"1*ˆ
+1L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java¿	 ¿(Ä
+Á
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java¿ ¿(P
+%0java.lang.String"__concat*/-
++SELECT u FROM User u WHERE u.username == \"*
+
+usernamejava.lang.String•
+’
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java¿ ¿(W
+%1java.lang.String"__concat*
+
+%0java.lang.String*
+\""V
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java¿ ¿(u
+"":
+usernamejava.lang.StringB
+dataAccess.DataAccess

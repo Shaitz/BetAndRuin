@@ -1,0 +1,95 @@
+
+YbusinessLogic.BlFacadeImplementation#validateLogin(Ljava/lang/String;Ljava/lang/String;)ZY
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javar r("startingBlock*Ý
+startingBlockY
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javar r(?Ÿ
+œ
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaq q(
+%7"
+__annotate*
+	WebMethod*
+
+usernamejava.lang.String’
+
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javar% r(-
+usernamejava.lang.String"__annotation*
+
+%7Ÿ
+œ
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaq q(
+%8"
+__annotate*
+	WebMethod*
+
+passwordjava.lang.String’
+
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javar6 r(>
+passwordjava.lang.String"__annotation*
+
+%8*
+1*Ä
+1Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javat t(º
+·
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javat t(
+%0dataAccess.DataAccess"__id*7*5&
+$businessLogic.BlFacadeImplementation"
+	dbManagerº·
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javat t(
+
+%1void"dataAccess.DataAccess#open(Z)V*
+
+%0dataAccess.DataAccess*
+""2open(Z)º
+·
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javau u(
+%2dataAccess.DataAccess"__id*7*5&
+$businessLogic.BlFacadeImplementation"
+	dbManagerùö
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javau u(G
+%3domain.User"ddataAccess.DataAccess#getUserWithUsernamePassword(Ljava/lang/String;Ljava/lang/String;)Ldomain/User;*
+
+%2dataAccess.DataAccess*
+
+usernamejava.lang.String*
+
+passwordjava.lang.String2AgetUserWithUsernamePassword(Ljava/lang/String;Ljava/lang/String;)«
+¨
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javau u(G0&
+$businessLogic.BlFacadeImplementation"
+user"__id*
+
+%3domain.Userº
+·
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javav v(
+%4dataAccess.DataAccess"__id*7*5&
+$businessLogic.BlFacadeImplementation"
+	dbManager²¯
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javav v(
+
+%5void"dataAccess.DataAccess#close()V*
+
+%4dataAccess.DataAccess2close()«
+¨
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaw	 w(
+%6domain.User"__id*2*0&
+$businessLogic.BlFacadeImplementation"
+user"c
+Y
+OC:/Users/Unai/git/BetAndRuin/Bets/src/businessLogic/BlFacadeImplementation.javaw w(
+"":
+usernamejava.lang.String:
+passwordjava.lang.StringB(&
+$businessLogic.BlFacadeImplementation

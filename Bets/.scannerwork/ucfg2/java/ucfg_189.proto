@@ -1,0 +1,35 @@
+
+idataAccess.DataAccess#changeUsername(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ldomain/User;L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java⁄ ⁄("1*è
+1L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java‹ ‹(ËÂ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java‹ ‹(B
+%0domain.User"ddataAccess.DataAccess#getUserWithUsernamePassword(Ljava/lang/String;Ljava/lang/String;)Ldomain/User;*
+dataAccess.DataAccess*
+
+usernamejava.lang.String*
+
+passwordjava.lang.String2AgetUserWithUsernamePassword(Ljava/lang/String;Ljava/lang/String;)Ä
+~
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java‹ ‹(C
+userdomain.User"__id*
+
+%0domain.UserÊ„
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaﬂ ﬂ(
+
+%1void",domain.User#setUsername(Ljava/lang/String;)V*
+
+userdomain.User*!
+
+newUsernamejava.lang.String2setUsername(Ljava/lang/String;)"e
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java‚ ‚(
+
+userdomain.User:
+usernamejava.lang.String:
+passwordjava.lang.String:
+newUsernamejava.lang.StringB
+dataAccess.DataAccess

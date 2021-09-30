@@ -1,0 +1,18 @@
+#Sonar organization (required)
+sonar.organization=shait
+#sonar project Key (required)
+sonar.projectKey= BetAndRuin2
+#Sonar projectName. The name that appears on a Sonar dashboard (required)
+sonar.projectName= BetAndRuin2
+sonar.projectVersion= 1.0
+#Path with java code (required)
+# Dirección relativa
+sonar.sources= ./src
+#Paths where the binaries of the project are located (required)
+sonar.java.binaries= ./bin
+# The project languaje (java for defect)
+#sonar.language=java
+sonar.host.url=https://sonarcloud.io
+# Token obtained in sonarcloud that contains credentials
+sonar.login= 606c15c2477fd976784e52a95afac63a179c1f30
+#sonar.dynamicAnalysis=reuseReports

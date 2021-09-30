@@ -1,0 +1,63 @@
+
+FdataAccess.DataAccess#existQuestion(Ldomain/Event;Ljava/lang/String;)ZL
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaä ä("1*Ì
+1L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaå å(y
+w
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaå å(
+%0java.io.PrintStream"__id*
+""º
+·
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaå å(G
+%1java.lang.String"__concat*,*
+(>> DataAccess: existQuestion => event = *
+
+eventdomain.EventŸ
+œ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaå æ(
+%2java.lang.String"__concat*
+
+%1java.lang.String*
+ question = ­
+ª
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaå æ(
+%3java.lang.String"__concat*
+
+%2java.lang.String*
+
+questionjava.lang.Stringãà
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaå æ(
+
+%4void"0java.io.PrintStream#println(Ljava/lang/String;)V*
+
+%0java.io.PrintStream*
+
+%3java.lang.String2println(Ljava/lang/String;)ÇÄ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaç" ç(8
+%5java.lang.Integer"0domain.Event#getEventNumber()Ljava/lang/Integer;*
+
+eventdomain.Event2getEventNumber()r
+p
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaç ç(:
+evdomain.Event"__id*
+""òï
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaè	 è('
+%6boolean"3domain.Event#doesQuestionExist(Ljava/lang/String;)Z*
+
+evdomain.Event*
+
+questionjava.lang.String2%doesQuestionExist(Ljava/lang/String;)"V
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaè è((
+"":
+eventdomain.Event:
+questionjava.lang.StringB
+dataAccess.DataAccess

@@ -1,0 +1,78 @@
+
+'domain.Bet#toString()Ljava/lang/String;?
+5C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Bet.java9 9("1*°
+1?
+5C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Bet.java;	 ;(y
+w
+?
+5C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Bet.java;	 ;(#
+%0java.lang.String"__concat*
+""*
+
+      ~
+|
+?
+5C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Bet.java;& ;(3
+%1domain.Question"__id**
+
+domain.Bet"
+
+question¯¬
+?
+5C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Bet.java;& ;(>
+%2java.lang.String",domain.Question#toString()Ljava/lang/String;*
+
+%1domain.Question2
+toString()š
+—
+?
+5C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Bet.java;	 ;(>
+%3java.lang.String"__concat*
+
+%0java.lang.String*
+
+%2java.lang.StringŒ
+‰
+?
+5C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Bet.java;	 ;(I
+%4java.lang.String"__concat*
+
+%3java.lang.String*
+
+      }
+{
+?
+5C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Bet.java;L ;(W
+%5java.lang.String"__id**
+
+domain.Bet"
+answerš
+—
+?
+5C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Bet.java;	 ;(W
+%6java.lang.String"__concat*
+
+%4java.lang.String*
+
+%5java.lang.StringŒ
+‰
+?
+5C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Bet.java;	 ;(b
+%7java.lang.String"__concat*
+
+%6java.lang.String*
+
+      ˆ
+…
+?
+5C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Bet.java;	 ;(s
+%8java.lang.String"__concat*
+
+%7java.lang.String*
+"""[
+?
+5C:/Users/Unai/git/BetAndRuin/Bets/src/domain/Bet.java; ;(t
+
+%8java.lang.StringB
+
+domain.Bet

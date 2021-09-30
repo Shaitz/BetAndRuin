@@ -1,0 +1,64 @@
+
+edataAccess.DataAccess#createUser(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ldomain/User;L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java¢ ¢("4*á
+2L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java¦ ¦(pn
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java¦ ¦(
+%2domain.User"domain.User–
+“
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java¦	 ¦(,
+%3"Kdomain.User#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V*
+
+%2domain.User*
+
+usernamejava.lang.String*
+
+passwordjava.lang.String*
+
+eMailjava.lang.String~
+|
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java¦ ¦(,
+nUdomain.User"__id*
+
+%2domain.User*
+1*ç
+3L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java¥ ¥(‹ˆ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java¥ ¥(
+%1domain.User"GdataAccess.DataAccess#getUserWithEMail(Ljava/lang/String;)Ldomain/User;*
+dataAccess.DataAccess*
+
+eMailjava.lang.String2$getUserWithEMail(Ljava/lang/String;)*
+2
+1*·
+4L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java£ £(q
+o
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java£ £(
+nUdomain.User"__id*
+""èå
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java¤ ¤(4
+%0domain.User"ddataAccess.DataAccess#getUserWithUsernamePassword(Ljava/lang/String;Ljava/lang/String;)Ldomain/User;*
+dataAccess.DataAccess*
+
+usernamejava.lang.String*
+
+passwordjava.lang.String2AgetUserWithUsernamePassword(Ljava/lang/String;Ljava/lang/String;)*
+3
+1*¶
+1L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java«	 «("c
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.java« «(
+
+nUdomain.User:
+usernamejava.lang.String:
+passwordjava.lang.String:
+eMailjava.lang.StringB
+dataAccess.DataAccess

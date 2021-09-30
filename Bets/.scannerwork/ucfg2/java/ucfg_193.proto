@@ -1,0 +1,179 @@
+
+;dataAccess.DataAccess#removeBet(Ldomain/User;Ldomain/Bet;)ZL
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaÜ Ü("8*ë
+2L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaî î(•¢
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaî î(#
+%12double"domain.Bet#getPlacedBet()D*
+
+userBet
+domain.Bet2getPlacedBet()ß§
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaî î()
+%13void"domain.Question#addPool(D)V*
+
+qdomain.Question*
+""2
+addPool(D)•¢
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaï! ï(7
+%14double"domain.Bet#getPlacedBet()D*
+
+userBet
+domain.Bet2getPlacedBet()æª
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaï ï(?
+%15double" domain.User#increaseCurrency(D)D*
+
+userToChangedomain.User*
+""2increaseCurrency(D)*
+1*É
+3L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaè è(ª∏
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaè  è(5
+%9domain.Question")domain.Bet#getQuestion()Ldomain/Question;*
+
+userBet
+domain.Bet2getQuestion()ÑÅ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaè è(6
+%10domain.Question"EdataAccess.DataAccess#getQuestion(Ldomain/Question;)Ldomain/Question;*
+dataAccess.DataAccess*
+
+%9domain.Question2getQuestion(Ldomain/Question;)á
+Ñ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaè è(7
+qdomain.Question"__id*
+
+%10domain.Questionÿ’
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaë ë(/
+%11boolean"$domain.User#removeBet(Ldomain/Bet;)Z*
+
+userToChangedomain.User*
+
+userBet
+domain.Bet2removeBet(Ldomain/Bet;)*
+2
+1*‡
+4L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaã ã(o
+m
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaã ã(
+b
+domain.Bet"__id*
+""ì
+ê
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaã ã(
+b
+domain.Bet"
+__arrayGet*
+
+betlistjava.util.List*
+""*
+3
+6*Ÿ
+5L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaç ç(Ä
+~
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaç ç(
+userBet
+domain.Bet"__id*
+
+b
+domain.Bet*
+4*’
+6L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaå å(
+∑¥
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaå å(
+%4domain.Question")domain.Bet#getQuestion()Ldomain/Question;*
+
+bet
+domain.Bet2getQuestion()–Õ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaå å(,
+%5java.lang.Integer"6domain.Question#getQuestionNumber()Ljava/lang/Integer;*
+
+%4domain.Question2getQuestionNumber()µ≤
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaå4 å(C
+%6domain.Question")domain.Bet#getQuestion()Ldomain/Question;*
+
+b
+domain.Bet2getQuestion()–Õ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaå4 å(W
+%7java.lang.Integer"6domain.Question#getQuestionNumber()Ljava/lang/Integer;*
+
+%6domain.Question2getQuestionNumber()·ﬁ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaå å(X
+%8boolean"-java.lang.Integer#equals(Ljava/lang/Object;)Z*
+
+%5java.lang.Integer*
+
+%7java.lang.Integer2equals(Ljava/lang/Object;)*
+4
+5*˛
+
+8L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaá á(ºπ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaá7 á(I
+%0java.lang.String"+domain.User#getUsername()Ljava/lang/String;*
+
+userdomain.User2getUsername()ºπ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaáK á(]
+%1java.lang.String"+domain.User#getPassword()Ljava/lang/String;*
+
+userdomain.User2getPassword()‹Ÿ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaá á(^
+%2domain.User"ddataAccess.DataAccess#getUserWithUsernamePassword(Ljava/lang/String;Ljava/lang/String;)Ldomain/User;*
+dataAccess.DataAccess*
+
+%0java.lang.String*
+
+%1java.lang.String2AgetUserWithUsernamePassword(Ljava/lang/String;Ljava/lang/String;)â
+Ü
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaá á(_
+userToChangedomain.User"__id*
+
+%2domain.User∏µ
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaà à(,
+%3java.util.List"%domain.User#getBets()Ljava/util/List;*
+
+userToChangedomain.User2	getBets()ä
+á
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaà à(-
+betlistjava.util.List"__id*
+
+%3java.util.Listu
+s
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaâ â(
+userBet
+domain.Bet"__id*
+""*
+4*©
+1L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaó ó("V
+L
+@C:/Users/Unai/git/BetAndRuin/Bets/src/dataAccess/DataAccess.javaò ò(
+"":
+userdomain.User:
+bet
+domain.BetB
+dataAccess.DataAccess
