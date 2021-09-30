@@ -407,15 +407,17 @@ public class DataAccess  {
 				for (Bet b2 : betlist)
 					if (b.getQuestion().getQuestionNumber().equals(b2.getQuestion().getQuestionNumber()))
 						userBet = b2;
-				
-				userBet.setBenefits(benefitUser);
-				db.getTransaction().begin();
-				us.addToPastBets(userBet);
-				db.getTransaction().commit();
-				
-				db.getTransaction().begin();
-				us.removeBet(userBet);
-				db.getTransaction().commit();
+				if (userBet != null)
+				{
+					userBet.setBenefits(benefitUser);
+					db.getTransaction().begin();
+					us.addToPastBets(userBet);
+					db.getTransaction().commit();
+					
+					db.getTransaction().begin();
+					us.removeBet(userBet);
+					db.getTransaction().commit();
+				}
 			}
 		}
 	}
