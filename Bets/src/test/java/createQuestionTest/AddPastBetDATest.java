@@ -24,17 +24,16 @@ import enums.QuestionTypes;
 import exceptions.QuestionAlreadyExist;
 import utility.TestUtilityDataAccess;
 
-class CreateQuestionDATest {
+class AddPastBetTest {
 
 	static DataAccess sut = new DataAccess(ConfigXML.getInstance().getDataBaseOpenMode().equals("open"));;
-	//static TestUtilityDataAccess testDA = new TestUtilityDataAccess();
 	static DataAccess testDA = new DataAccess();
 
 	private Event ev;
 
 	@Test
 	// sut.addPastBet: Usuario es null
-	void test1() throws ParseException, QuestionAlreadyExist {
+	void test1() throws ParseException {
 
 		// configure the state of the system (create object in the dabatase)
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -42,18 +41,22 @@ class CreateQuestionDATest {
 		String eventText = "Event Text";
 		String queryText = "Query Text";
 		Float betMinimum = 2f;
-		User u = null;
 		QuestionTypes type = QuestionTypes.FREE;
-		
-		testDA.open(false);
-		ev = testDA.addEventWithQuestion(eventText, oneDate, "otra", 10.0f);
-		testDA.close();
-		
-		Question q = sut.createQuestion(ev, queryText, betMinimum, type);
-		Bet bet = new Bet(q, 5, 2, "Test");
-		
-		// invoke System Under Test (sut) and Assert
-		assertThrows(RuntimeException.class, () -> sut.addPastBet(u, bet, 5));
+		try 
+		{
+			Question q = sut.createQuestion(ev, queryText, betMinimum, type);
+			User u = null;
+			Bet bet = new Bet(q, 5, 2, "Test");
+			testDA.open(false);
+			ev = testDA.addEventWithQuestion(eventText, oneDate, queryText, betMinimum);
+			testDA.close();
+
+			// invoke System Under Test (sut) and Assert
+			assertThrows(QuestionAlreadyExist.class, () -> sut.addPastBet(u, bet, 5));
+
+		} catch (QuestionAlreadyExist e) {
+			fail("It should be correct: check the date format");
+		}
 
 		// Remove the created objects in the database (cascade removing)
 		testDA.open(false);

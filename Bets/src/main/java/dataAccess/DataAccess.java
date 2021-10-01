@@ -424,4 +424,32 @@ public class DataAccess  {
 		us.removeBet(userBet);
 		db.getTransaction().commit();
 	}
+	
+	public Event addEventWithQuestion(String desc, Date d, String question, float qty) {
+		System.out.println(">> DataAccessTest: addEvent");
+		Event ev=null;
+			db.getTransaction().begin();
+			try {
+			    ev=new Event(desc,d);
+			    ev.addQuestion(question,  qty);
+				db.persist(ev);
+				db.getTransaction().commit();
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
+			return ev;
+    }
+	
+	public boolean removeEvent(Event ev) {
+		System.out.println(">> DataAccessTest: removeEvent");
+		Event e = db.find(Event.class, ev.getEventNumber());
+		if (e!=null) {
+			db.getTransaction().begin();
+			db.remove(e);
+			db.getTransaction().commit();
+			return true;
+		} else 
+		return false;
+    }
 }

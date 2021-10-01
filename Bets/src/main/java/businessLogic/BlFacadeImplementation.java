@@ -254,24 +254,34 @@ public class BlFacadeImplementation implements BlFacade {
 
 	@WebMethod public void giveRewards(Question q)
 	{
+		if (q == null) throw new RuntimeException("La pregunta es null.");
+		if (q.getResult() == null) throw new RuntimeException("La pregunta no tiene resultado.");
+		
 		dbManager.open(false);
 		List<User> users = dbManager.getAllUsers();
 		dbManager.close();
+		if (users == null) throw new RuntimeException("La BD está vacía.");
 		
 		List<User> winners = new ArrayList<User>();
 		double winnersMoney = 0;
 		for(User u : users)
 		{
 			List<Bet> bets = u.getBets();
+			
+			if (bets == null)
+			{
+				break;
+			}
+		
 			for(Bet b : bets)
 			{
-				if(b.getQuestion().toString().equals(q.toString()) && b.getAnswer().equals(q.getResult()) && q.getResult() != null)
+				if(b.getQuestion().toString().equals(q.toString()) && b.getAnswer().equals(q.getResult()))
 				{
 					winners.add(u);
 					winnersMoney += b.getPlacedBet();
 					break;
 				}
-				else if (b.getQuestion().toString().equals(q.toString()) && !b.getAnswer().equals(q.getResult()) && q.getResult() != null)
+				else if (b.getQuestion().toString().equals(q.toString()) && !b.getAnswer().equals(q.getResult()))
 				{
 					dbManager.open(false);
 					dbManager.addPastBet(u, b, 0);
@@ -280,25 +290,29 @@ public class BlFacadeImplementation implements BlFacade {
 				}
 			}
 		}
-		
+
 		double benefits = (q.getPool() - winnersMoney) / 2;
-		for(User u : winners)
+		if (winners != null)
 		{
-			double benefitUser = 0;
-			List<Bet> bets = u.getBets();
-			for(Bet b : bets)
+			for(User u : winners)
 			{
-				if(b.getQuestion().toString().equals(q.toString()))
+				double benefitUser = 0;
+				List<Bet> bets = u.getBets();
+				
+				for(Bet b : bets)
 				{
-					benefitUser = ((b.getPlacedBet() / winnersMoney) * benefits) + b.getPlacedBet();
-					dbManager.open(false);
-					dbManager.addPastBet(u, b, benefitUser);
-					dbManager.close();
+					if(b.getQuestion().toString().equals(q.toString()))
+					{
+						benefitUser = ((b.getPlacedBet() / winnersMoney) * benefits) + b.getPlacedBet();
+						dbManager.open(false);
+						dbManager.addPastBet(u, b, benefitUser);
+						dbManager.close();
+					}
 				}
+				dbManager.open(false);
+				dbManager.addMoneyToUser(u.getId(), benefitUser);
+				dbManager.close();
 			}
-			dbManager.open(false);
-			dbManager.addMoneyToUser(u.getId(), benefitUser);
-			dbManager.close();
 			
 		}
 	}
