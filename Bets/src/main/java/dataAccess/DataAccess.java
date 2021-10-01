@@ -397,28 +397,32 @@ public class DataAccess  {
 	
 	public void addPastBet(User u, Bet b, double benefitUser) 
 	{
-		if(u != null && b != null)
+		if(u == null && b == null && benefitUser >= 0) throw new RuntimeException("Usuario o Bet es null.");
+		
+		User us = this.getUserByID(u.getId());
+		if(us == null) throw new RuntimeException("Usuario no en BD.");
+		
+		Bet userBet = null;
+		List<Bet> betlist = us.getBets();
+		if (betlist.isEmpty()) throw new RuntimeException("El usuario no tiene apuestas.");
+		
+		for (Bet b2 : betlist)
 		{
-			User us = this.getUserByID(u.getId());
-			if(us != null)
+			if (b.getQuestion().getQuestionNumber().equals(b2.getQuestion().getQuestionNumber()))
 			{
-				Bet userBet = null;
-				List<Bet> betlist = us.getBets();
-				for (Bet b2 : betlist)
-					if (b.getQuestion().getQuestionNumber().equals(b2.getQuestion().getQuestionNumber()))
-						userBet = b2;
-				if (userBet != null)
-				{
-					userBet.setBenefits(benefitUser);
-					db.getTransaction().begin();
-					us.addToPastBets(userBet);
-					db.getTransaction().commit();
-					
-					db.getTransaction().begin();
-					us.removeBet(userBet);
-					db.getTransaction().commit();
-				}
+				userBet = b2;
 			}
 		}
+		
+		if (userBet == null) throw new RuntimeException("El usuario no ha apostado en esa apuesta.");
+		
+		userBet.setBenefits(benefitUser);
+		db.getTransaction().begin();
+		us.addToPastBets(userBet);
+		db.getTransaction().commit();
+					
+		db.getTransaction().begin();
+		us.removeBet(userBet);
+		db.getTransaction().commit();
 	}
 }
