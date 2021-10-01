@@ -397,14 +397,14 @@ public class DataAccess  {
 	
 	public void addPastBet(User u, Bet b, double benefitUser) 
 	{
-		if(u == null && b == null && benefitUser >= 0) throw new RuntimeException("Usuario o Bet es null.");
-		
+		if(u == null && b == null && benefitUser >= 0) throw new RuntimeException("Usuario es null o Bet es null o benefit es null.");
 		User us = this.getUserByID(u.getId());
-		if(us == null) throw new RuntimeException("Usuario no en BD.");
 		
+		if(us == null) throw new RuntimeException("Usuario no en BD.");
 		Bet userBet = null;
+		
 		List<Bet> betlist = us.getBets();
-		if (betlist.isEmpty()) throw new RuntimeException("El usuario no tiene apuestas.");
+		if (betlist == null) throw new RuntimeException("El usuario no tiene apuestas.");
 		
 		for (Bet b2 : betlist)
 		{
@@ -420,7 +420,6 @@ public class DataAccess  {
 		db.getTransaction().begin();
 		us.addToPastBets(userBet);
 		db.getTransaction().commit();
-					
 		db.getTransaction().begin();
 		us.removeBet(userBet);
 		db.getTransaction().commit();

@@ -22,7 +22,7 @@ public class User
 	private ArrayList<Bet> betList;
 	@ManyToOne
 	@ElementCollection
-	private ArrayList<Bet> pastBets;
+	private List<Bet> pastBets;
 	private boolean admin;
 	@Embedded
 	private Wallet personalWallet;
