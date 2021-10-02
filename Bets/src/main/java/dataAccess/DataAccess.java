@@ -397,7 +397,7 @@ public class DataAccess  {
 	
 	public void addPastBet(User u, Bet b, double benefitUser) 
 	{
-		if(u == null && b == null && benefitUser >= 0) throw new RuntimeException("Usuario es null o Bet es null o benefit es null.");
+		if(u == null || b == null ||  benefitUser >= 0) throw new RuntimeException("Usuario es null o Bet es null o benefit es null.");
 		User us = this.getUserByID(u.getId());
 		
 		if(us == null) throw new RuntimeException("Usuario no en BD.");
