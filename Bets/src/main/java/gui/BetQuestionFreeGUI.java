@@ -48,7 +48,7 @@ public class BetQuestionFreeGUI extends JFrame
 	private Question q;
 	private JTextField textAnswer;
 	private JTextField textAmount;
-
+	
 	public void setBusinessLogic(BlFacade bl) {
 		businessLogic = bl;
 	}
@@ -107,16 +107,6 @@ public class BetQuestionFreeGUI extends JFrame
 			{
 				if (!textAmount.getText().equals("") && !textAnswer.getText().equals(""))
 				{
-//					Iterator<Question> it = ev.getQuestions().iterator();
-//					boolean found = false;
-//					Question actual = null;
-//					System.out.println(ev);
-//					while (it.hasNext() && !found) {
-//						actual = (Question) it.next();
-//						if(actual.getQuestionNumber().equals(q.getQuestionNumber()))
-//							found = true;
-//					}
-//					if(found && businessLogic.placeBet(actual, Double.parseDouble(textAmount.getText()), textAnswer.getText()))
 					if(businessLogic.placeBet(q, Double.parseDouble(textAmount.getText()), textAnswer.getText()))
 					{
 						textPrint.setText("Bet Successful!");

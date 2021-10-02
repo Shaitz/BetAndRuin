@@ -19,7 +19,7 @@ public class Bet
 		this.benefits = benefits;
 		this.answer = answer;
 	}
-
+	
 	public Question getQuestion() {
 		return question;
 	}

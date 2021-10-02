@@ -251,7 +251,15 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.close();
 		return q;
 	}
-
+	
+	/**
+	* Distribuye el dinero de la pregunta especificada a
+	* todo los usuarios que han apostado y ganado en ella
+	* y actualiza las apuestas de todos los usuarios.
+	* 
+	*
+	* @param  q pregunta finalizada del cuál el dinero se va a distribuir
+	*/
 	@WebMethod public void giveRewards(Question q)
 	{
 		if (q == null) throw new RuntimeException("La pregunta es null.");
@@ -260,19 +268,17 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.open(false);
 		List<User> users = dbManager.getAllUsers();
 		dbManager.close();
-		if (users == null) throw new RuntimeException("La BD está vacía.");
 		
+		if (users.isEmpty()) throw new RuntimeException("La BD está vacía.");		
 		List<User> winners = new ArrayList<User>();
 		double winnersMoney = 0;
 		for(User u : users)
 		{
-			List<Bet> bets = u.getBets();
-			
-			if (bets == null)
+			List<Bet> bets = u.getBets();			
+			if (bets.isEmpty())
 			{
 				break;
-			}
-		
+			}	
 			for(Bet b : bets)
 			{
 				if(b.getQuestion().toString().equals(q.toString()) && b.getAnswer().equals(q.getResult()))
@@ -290,9 +296,8 @@ public class BlFacadeImplementation implements BlFacade {
 				}
 			}
 		}
-
 		double benefits = (q.getPool() - winnersMoney) / 2;
-		if (winners != null)
+		if (!winners.isEmpty())
 		{
 			for(User u : winners)
 			{
@@ -313,7 +318,6 @@ public class BlFacadeImplementation implements BlFacade {
 				dbManager.addMoneyToUser(u.getId(), benefitUser);
 				dbManager.close();
 			}
-			
 		}
 	}
 }

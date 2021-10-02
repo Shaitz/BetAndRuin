@@ -36,7 +36,7 @@ public class Question implements Serializable {
 		super();
 		this.pool = 0;
 	}
-
+	
 	public Question(Integer queryNumber, String query, float betMinimum, Event event) {
 		super();
 		this.questionNumber = queryNumber;

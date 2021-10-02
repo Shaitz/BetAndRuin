@@ -28,7 +28,6 @@ public class TestUtilityDataAccess {
 		open();		
 	}
 
-	
 	public void open(){
 		
 		System.out.println("Opening TestDataAccess instance ");

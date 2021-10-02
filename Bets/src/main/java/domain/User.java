@@ -48,7 +48,7 @@ public class User
 		personalWallet = new Wallet();
 		eMail = mail;
 	}
-	
+
 	public User(Integer id, String username, String password, String mail, int initialCurrency)
 	{
 		super();

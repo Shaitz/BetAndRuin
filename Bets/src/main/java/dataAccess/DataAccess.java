@@ -117,7 +117,7 @@ public class DataAccess  {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * This method creates a question for an event, with a question text and the minimum bet
 	 * 
@@ -395,16 +395,23 @@ public class DataAccess  {
 		db.getTransaction().commit();
 	}
 	
+	/**
+	* Añade una bet a la lista de bets pasados del usuario y
+	* remueve de sus apuestas activas ese mismo bet.
+	*
+	* @param  u usuario al que se le van a actualizar las apuestas
+	* @param  b apuesta a actualizar
+	*/
 	public void addPastBet(User u, Bet b, double benefitUser) 
 	{
-		if(u == null || b == null ||  benefitUser >= 0) throw new RuntimeException("Usuario es null o Bet es null o benefit es null.");
-		User us = this.getUserByID(u.getId());
+		if(u == null || b == null ||  benefitUser < 0) throw new RuntimeException("Usuario es null o Bet es null o benefit es null.");
+		User us = this.getUserWithUsernamePassword(u.getUsername(), u.getPassword());
 		
 		if(us == null) throw new RuntimeException("Usuario no en BD.");
 		Bet userBet = null;
 		
 		List<Bet> betlist = us.getBets();
-		if (betlist == null) throw new RuntimeException("El usuario no tiene apuestas.");
+		if (betlist.isEmpty()) throw new RuntimeException("El usuario no tiene apuestas.");
 		
 		for (Bet b2 : betlist)
 		{
@@ -447,6 +454,18 @@ public class DataAccess  {
 		if (e!=null) {
 			db.getTransaction().begin();
 			db.remove(e);
+			db.getTransaction().commit();
+			return true;
+		} else 
+		return false;
+    }
+	
+	public boolean removeUser(User u) {
+		System.out.println(">> DataAccessTest: removeUser");
+		User us = this.getUserWithUsernamePassword(u.getUsername(), u.getPassword());
+		if (us!=null) {
+			db.getTransaction().begin();
+			db.remove(us);
 			db.getTransaction().commit();
 			return true;
 		} else 
