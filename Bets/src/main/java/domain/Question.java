@@ -192,9 +192,7 @@ public class Question implements Serializable {
 	public boolean removeAnswer(String answer) {
 		String ret = answerList.remove(answerList.indexOf(answer));
 		if(ret == null)
-		{
 			return false;
-		}
 		return true;
 	}
 	
