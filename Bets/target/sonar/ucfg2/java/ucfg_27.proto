@@ -1,0 +1,104 @@
+
+2dataAccess.DataAccess#removeEvent(Ldomain/Event;)ZV
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÃ Ã("3*¡
+2V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÇ Ç(«
+¨
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÇ Ç(%
+%5javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+db˜•
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÇ Ç()
+%6#javax.persistence.EntityTransaction"Ujavax.persistence.EntityManager#getTransaction()Ljavax/persistence/EntityTransaction;*'
+%
+%5javax.persistence.EntityManager2getTransaction()ËÈ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÇ Ç(
+
+%7void",javax.persistence.EntityTransaction#begin()V*+
+)
+%6#javax.persistence.EntityTransaction2begin()«
+¨
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÈ È(%
+%8javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+dbþû
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÈ È(
+
+%9void";javax.persistence.EntityManager#remove(Ljava/lang/Object;)V*'
+%
+%8javax.persistence.EntityManager*
+
+edomain.Event2remove(Ljava/lang/Object;)¬
+©
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÉ É(&
+%10javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+dbš—
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÉ É(*
+%11#javax.persistence.EntityTransaction"Ujavax.persistence.EntityManager#getTransaction()Ljavax/persistence/EntityTransaction;*(
+&
+%10javax.persistence.EntityManager2getTransaction()ÏÌ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÉ É(
+%12void"-javax.persistence.EntityTransaction#commit()V*,
+*
+%11#javax.persistence.EntityTransaction2commit()"`
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÊ Ê(
+""*¶
+
+3V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÄ Ä(„
+
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÄ Ä(
+%0java.io.PrintStream"__id*
+""÷ô
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÄ Ä(6
+
+%1void"0java.io.PrintStream#println(Ljava/lang/String;)V*
+
+%0java.io.PrintStream*" 
+>> DataAccessTest: removeEvent2println(Ljava/lang/String;)«
+¨
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÅ Å(%
+%2javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+dbÎË
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÅ! Å(4
+%3java.lang.Integer"0domain.Event#getEventNumber()Ljava/lang/Integer;*
+
+evdomain.Event2getEventNumber()ÃÀ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÅ Å(5
+%4domain.Event"[javax.persistence.EntityManager#find(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/Object;*'
+%
+%2javax.persistence.EntityManager*
+""*
+
+%3java.lang.Integer2)find(Ljava/lang/Class;Ljava/lang/Object;)Š
+‡
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÅ Å(6
+edomain.Event"__id*
+
+%4domain.Event*
+2
+1*½
+1V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÌ	 Ì("`
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÌ Ì(
+"":
+evdomain.EventB
+dataAccess.DataAccess

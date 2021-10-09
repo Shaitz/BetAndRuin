@@ -1,0 +1,54 @@
+
+8businessLogic.BlFacadeImplementation#addMoneyToUser(ID)De
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.javaø ø("1*ê
+1e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java¡ ¡(∆
+√
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java¡ ¡(
+%0dataAccess.DataAccess"__id*7*5&
+$businessLogic.BlFacadeImplementation"
+	dbManager∆√
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java¡ ¡(
+
+%1void"dataAccess.DataAccess#open(Z)V*
+
+%0dataAccess.DataAccess*
+""2open(Z)∆
+√
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java¬ ¬(
+%2dataAccess.DataAccess"__id*7*5&
+$businessLogic.BlFacadeImplementation"
+	dbManagerÊ„
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java¬ ¬(3
+%3double")dataAccess.DataAccess#addMoneyToUser(ID)D*
+
+%2dataAccess.DataAccess*
+""*
+""2addMoneyToUser(ID)∆
+√
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java√ √(
+%4dataAccess.DataAccess"__id*7*5&
+$businessLogic.BlFacadeImplementation"
+	dbManageræª
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java√ √(
+
+%5void"dataAccess.DataAccess#close()V*
+
+%4dataAccess.DataAccess2close()‰·
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.javaƒ ƒ(
+
+%6void"3businessLogic.BlFacadeImplementation#refreshUser()V*(&
+$businessLogic.BlFacadeImplementation2refreshUser()"o
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java≈ ≈(
+"":
+"":
+""B(&
+$businessLogic.BlFacadeImplementation

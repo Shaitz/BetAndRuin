@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CreateQuestionGUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BetAndRuinCI</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">CreateQuestionGUI.java</span></div><h1>CreateQuestionGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import java.util.Vector;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+
+import com.toedter.calendar.JCalendar;
+
+import businessLogic.BlFacade;
+import configuration.UtilDate;
+import domain.Event;
+import enums.QuestionTypes;
+import exceptions.EventFinished;
+import exceptions.QuestionAlreadyExist;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
+
+public class CreateQuestionGUI extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
+
+	private BlFacade businessLogic;
+
+<span class="nc" id="L43">	private JComboBox&lt;Event&gt; eventComboBox = new JComboBox&lt;Event&gt;();</span>
+<span class="nc" id="L44">	DefaultComboBoxModel&lt;Event&gt; eventModel = new DefaultComboBoxModel&lt;Event&gt;();</span>
+
+<span class="nc" id="L46">	private JLabel listOfEventsLbl = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).</span>
+<span class="nc" id="L47">			getString(&quot;ListEvents&quot;));</span>
+<span class="nc" id="L48">	private JLabel queryLbl = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).</span>
+<span class="nc" id="L49">			getString(&quot;Question&quot;));</span>
+<span class="nc" id="L50">	private JLabel minBetLbl = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).</span>
+<span class="nc" id="L51">			getString(&quot;MinimumBetPrice&quot;));</span>
+<span class="nc" id="L52">	private JLabel eventDateLbl = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).</span>
+<span class="nc" id="L53">			getString(&quot;EventDate&quot;));</span>
+
+<span class="nc" id="L55">	private JTextField queryText = new JTextField();</span>
+<span class="nc" id="L56">	private JTextField priceText = new JTextField();</span>
+<span class="nc" id="L57">	private JCalendar calendar = new JCalendar();</span>
+<span class="nc" id="L58">	private Calendar previousCalendar = null;</span>
+<span class="nc" id="L59">	private Calendar currentCalendar = null;</span>
+
+<span class="nc" id="L61">	private JScrollPane eventScrollPane = new JScrollPane();</span>
+
+<span class="nc" id="L63">	private JButton createBtn = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CreateQuestion&quot;));</span>
+<span class="nc" id="L64">	private JButton closeBtn = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Close&quot;));</span>
+	JRadioButton fixedButton;
+	JRadioButton dynamicButton;
+	JRadioButton freeButton;
+<span class="nc" id="L68">	private JLabel msgLbl = new JLabel();</span>
+<span class="nc" id="L69">	private JLabel errorLbl = new JLabel();</span>
+
+<span class="nc" id="L71">	private Vector&lt;Date&gt; datesWithEventsInCurrentMonth = new Vector&lt;Date&gt;();</span>
+<span class="nc" id="L72">	private final ButtonGroup buttonGroup = new ButtonGroup();</span>
+
+	public void setBusinessLogic(BlFacade bl) {
+<span class="nc" id="L75">		businessLogic = bl;		</span>
+<span class="nc" id="L76">	}</span>
+
+<span class="nc" id="L78">	public CreateQuestionGUI(BlFacade bl, Vector&lt;domain.Event&gt; v) {</span>
+<span class="nc" id="L79">		businessLogic = bl;</span>
+		try {
+<span class="nc" id="L81">			jbInit(v);</span>
+<span class="nc" id="L82">		} catch (Exception e) {</span>
+<span class="nc" id="L83">			e.printStackTrace();</span>
+<span class="nc" id="L84">		}</span>
+<span class="nc" id="L85">	}</span>
+
+	private void jbInit(Vector&lt;domain.Event&gt; v) throws Exception {
+
+<span class="nc" id="L89">		this.getContentPane().setLayout(null);</span>
+<span class="nc" id="L90">		this.setSize(new Dimension(604, 370));</span>
+<span class="nc" id="L91">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CreateQuestion&quot;));</span>
+
+<span class="nc" id="L93">		eventComboBox.setModel(eventModel);</span>
+<span class="nc" id="L94">		eventComboBox.setBounds(new Rectangle(275, 47, 250, 20));</span>
+<span class="nc" id="L95">		listOfEventsLbl.setBounds(new Rectangle(290, 18, 277, 20));</span>
+<span class="nc" id="L96">		queryLbl.setBounds(new Rectangle(25, 211, 75, 20));</span>
+<span class="nc" id="L97">		queryText.setBounds(new Rectangle(100, 211, 429, 20));</span>
+<span class="nc" id="L98">		minBetLbl.setBounds(new Rectangle(25, 243, 75, 20));</span>
+<span class="nc" id="L99">		priceText.setBounds(new Rectangle(100, 243, 60, 20));</span>
+
+<span class="nc" id="L101">		calendar.setBounds(new Rectangle(40, 50, 225, 150));</span>
+<span class="nc" id="L102">		eventScrollPane.setBounds(new Rectangle(25, 44, 346, 116));</span>
+
+<span class="nc" id="L104">		createBtn.setBounds(new Rectangle(100, 275, 130, 30));</span>
+<span class="nc" id="L105">		createBtn.setEnabled(false);</span>
+
+<span class="nc" id="L107">		createBtn.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L110">				jButtonCreate_actionPerformed(e);</span>
+<span class="nc" id="L111">			}</span>
+		});
+<span class="nc" id="L113">		closeBtn.setBounds(new Rectangle(275, 275, 130, 30));</span>
+<span class="nc" id="L114">		closeBtn.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L117">				jButtonClose_actionPerformed(e);</span>
+<span class="nc" id="L118">			}</span>
+		});
+
+<span class="nc" id="L121">		msgLbl.setBounds(new Rectangle(275, 182, 305, 20));</span>
+<span class="nc" id="L122">		msgLbl.setForeground(Color.red);</span>
+		// jLabelMsg.setSize(new Dimension(305, 20));
+
+<span class="nc" id="L125">		errorLbl.setBounds(new Rectangle(275, 182, 305, 20));</span>
+<span class="nc" id="L126">		errorLbl.setForeground(Color.red);</span>
+
+<span class="nc" id="L128">		this.getContentPane().add(msgLbl, null);</span>
+<span class="nc" id="L129">		this.getContentPane().add(errorLbl, null);</span>
+
+<span class="nc" id="L131">		this.getContentPane().add(closeBtn, null);</span>
+<span class="nc" id="L132">		this.getContentPane().add(createBtn, null);</span>
+<span class="nc" id="L133">		this.getContentPane().add(queryText, null);</span>
+<span class="nc" id="L134">		this.getContentPane().add(queryLbl, null);</span>
+<span class="nc" id="L135">		this.getContentPane().add(priceText, null);</span>
+
+<span class="nc" id="L137">		this.getContentPane().add(minBetLbl, null);</span>
+<span class="nc" id="L138">		this.getContentPane().add(listOfEventsLbl, null);</span>
+<span class="nc" id="L139">		this.getContentPane().add(eventComboBox, null);</span>
+
+<span class="nc" id="L141">		this.getContentPane().add(calendar, null);</span>
+
+<span class="nc" id="L143">		datesWithEventsInCurrentMonth = businessLogic.getEventsMonth(calendar.getDate());</span>
+<span class="nc" id="L144">		paintDaysWithEvents(calendar,datesWithEventsInCurrentMonth);</span>
+
+<span class="nc" id="L146">		eventDateLbl.setBounds(new Rectangle(40, 15, 140, 25));</span>
+<span class="nc" id="L147">		eventDateLbl.setBounds(40, 16, 140, 25);</span>
+<span class="nc" id="L148">		getContentPane().add(eventDateLbl);</span>
+		
+<span class="nc" id="L150">		JButton addMoneyBtn = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;AddMoney&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L151">		addMoneyBtn.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L153">				AddFundsGUI addFundsGUI = new AddFundsGUI(businessLogic);</span>
+<span class="nc" id="L154">				addFundsGUI.setVisible(true);</span>
+<span class="nc" id="L155">			}</span>
+		});
+<span class="nc" id="L157">		addMoneyBtn.setBounds(440, 279, 89, 23);</span>
+<span class="nc" id="L158">		getContentPane().add(addMoneyBtn);</span>
+		
+<span class="nc" id="L160">		JLabel qType = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CreateQuestionGUI.lblNewLabel.text&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L161">		qType.setBounds(175, 246, 32, 14);</span>
+<span class="nc" id="L162">		getContentPane().add(qType);</span>
+		
+<span class="nc" id="L164">		freeButton = new JRadioButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CreateQuestionGUI.rdbtnNewRadioButton.text&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L165">		freeButton.setSelected(true);</span>
+<span class="nc" id="L166">		buttonGroup.add(freeButton);</span>
+<span class="nc" id="L167">		freeButton.setBounds(213, 245, 47, 23);</span>
+<span class="nc" id="L168">		getContentPane().add(freeButton);</span>
+		
+<span class="nc" id="L170">		dynamicButton = new JRadioButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CreateQuestionGUI.rdbtnNewRadioButton_1.text&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L171">		buttonGroup.add(dynamicButton);</span>
+<span class="nc" id="L172">		dynamicButton.setBounds(264, 245, 68, 23);</span>
+<span class="nc" id="L173">		getContentPane().add(dynamicButton);</span>
+		
+<span class="nc" id="L175">		fixedButton = new JRadioButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CreateQuestionGUI.rdbtnNewRadioButton_2.text&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L176">		buttonGroup.add(fixedButton);</span>
+<span class="nc" id="L177">		fixedButton.setBounds(334, 245, 60, 23);</span>
+<span class="nc" id="L178">		getContentPane().add(fixedButton);</span>
+		
+<span class="nc" id="L180">		JButton checkEventButton = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CreateQuestionGUI.btnNewButton.text&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+		
+<span class="nc" id="L182">		checkEventButton.setBounds(285, 78, 89, 23);</span>
+<span class="nc" id="L183">		getContentPane().add(checkEventButton);</span>
+
+
+		// Code for JCalendar
+<span class="nc" id="L187">		this.calendar.addPropertyChangeListener(new PropertyChangeListener() {</span>
+			@Override
+			public void propertyChange(PropertyChangeEvent propertychangeevent) {
+<span class="nc bnc" id="L190" title="All 2 branches missed.">				if (propertychangeevent.getPropertyName().equals(&quot;locale&quot;)) {</span>
+<span class="nc" id="L191">					calendar.setLocale((Locale) propertychangeevent.getNewValue());</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">				} else if (propertychangeevent.getPropertyName().equals(&quot;calendar&quot;)) {</span>
+<span class="nc" id="L193">					currentCalendar = (Calendar) propertychangeevent.getOldValue();</span>
+<span class="nc" id="L194">					previousCalendar = (Calendar) propertychangeevent.getNewValue();</span>
+<span class="nc" id="L195">					System.out.println(&quot;calendarAnt: &quot;+currentCalendar.getTime());</span>
+<span class="nc" id="L196">					System.out.println(&quot;calendarAct: &quot;+previousCalendar.getTime());</span>
+<span class="nc" id="L197">					DateFormat dateformat1 = DateFormat.getDateInstance(1, calendar.getLocale());</span>
+
+<span class="nc" id="L199">					int monthAnt = currentCalendar.get(Calendar.MONTH);</span>
+<span class="nc" id="L200">					int monthAct = previousCalendar.get(Calendar.MONTH);</span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">					if (monthAct!=monthAnt) {</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">						if (monthAct==monthAnt+2) { </span>
+							// Si en JCalendar estÃ¡ 30 de enero y se avanza al mes siguiente, 
+							// devolverá 2 de marzo (se toma como equivalente a 30 de febrero)
+							// Con este código se dejará como 1 de febrero en el JCalendar
+<span class="nc" id="L206">							previousCalendar.set(Calendar.MONTH, monthAnt + 1);</span>
+<span class="nc" id="L207">							previousCalendar.set(Calendar.DAY_OF_MONTH, 1);</span>
+						}
+
+<span class="nc" id="L210">						calendar.setCalendar(previousCalendar);</span>
+
+<span class="nc" id="L212">						datesWithEventsInCurrentMonth = businessLogic.getEventsMonth(calendar.getDate());</span>
+					}
+
+<span class="nc" id="L215">					paintDaysWithEvents(calendar,datesWithEventsInCurrentMonth);</span>
+
+<span class="nc" id="L217">					Date firstDay = UtilDate.trim(previousCalendar.getTime());</span>
+
+					try {
+<span class="nc" id="L220">						Vector&lt;domain.Event&gt; events = businessLogic.getEvents(firstDay);</span>
+
+<span class="nc bnc" id="L222" title="All 2 branches missed.">						if (events.isEmpty())</span>
+<span class="nc" id="L223">							listOfEventsLbl.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).</span>
+<span class="nc" id="L224">									getString(&quot;NoEvents&quot;) + &quot;: &quot; + dateformat1.</span>
+<span class="nc" id="L225">									format(previousCalendar.getTime()));</span>
+						else
+<span class="nc" id="L227">							listOfEventsLbl.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).</span>
+<span class="nc" id="L228">									getString(&quot;Events&quot;) + &quot; : &quot; + dateformat1.</span>
+<span class="nc" id="L229">									format(previousCalendar.getTime()));</span>
+<span class="nc" id="L230">						eventComboBox.removeAllItems();</span>
+<span class="nc" id="L231">						System.out.println(&quot;Events &quot; + events);</span>
+
+<span class="nc bnc" id="L233" title="All 2 branches missed.">						for (domain.Event ev : events)</span>
+<span class="nc" id="L234">							eventModel.addElement(ev);</span>
+<span class="nc" id="L235">						eventComboBox.repaint();</span>
+
+<span class="nc bnc" id="L237" title="All 2 branches missed.">						if (events.size() == 0)</span>
+<span class="nc" id="L238">							createBtn.setEnabled(false);</span>
+						else
+<span class="nc" id="L240">							createBtn.setEnabled(true);</span>
+
+<span class="nc" id="L242">					} catch (Exception e1) {</span>
+
+<span class="nc" id="L244">						errorLbl.setText(e1.getMessage());</span>
+<span class="nc" id="L245">					}</span>
+				}
+<span class="nc" id="L247">			}</span>
+		});
+		
+<span class="nc" id="L250">		checkEventButton.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L252" title="All 2 branches missed.">				if(eventComboBox.getSelectedItem() != null) {</span>
+<span class="nc" id="L253">					EventInfoGUI eig = new EventInfoGUI(businessLogic, (Event) eventComboBox.getSelectedItem(), getThis());</span>
+<span class="nc" id="L254">					eig.setVisible(true);</span>
+<span class="nc" id="L255">					jButtonClose_actionPerformed(e);</span>
+<span class="nc" id="L256">					msgLbl.setText(&quot;&quot;);</span>
+<span class="nc" id="L257">				}</span>
+				else
+<span class="nc" id="L259">					msgLbl.setText(&quot;Please, select an event.&quot;);</span>
+<span class="nc" id="L260">			}</span>
+		});
+<span class="nc" id="L262">	}</span>
+
+	public static void paintDaysWithEvents(JCalendar jCalendar, 
+			Vector&lt;Date&gt; datesWithEventsCurrentMonth) {
+		// For each day with events in current month, the background color for that day is changed.
+
+<span class="nc" id="L268">		Calendar calendar = jCalendar.getCalendar();</span>
+
+<span class="nc" id="L270">		int month = calendar.get(Calendar.MONTH);</span>
+<span class="nc" id="L271">		int today = calendar.get(Calendar.DAY_OF_MONTH);</span>
+<span class="nc" id="L272">		int year = calendar.get(Calendar.YEAR);</span>
+
+<span class="nc" id="L274">		calendar.set(Calendar.DAY_OF_MONTH, 1);</span>
+<span class="nc" id="L275">		int offset = calendar.get(Calendar.DAY_OF_WEEK);</span>
+
+<span class="nc bnc" id="L277" title="All 2 branches missed.">		if (Locale.getDefault().equals(new Locale(&quot;es&quot;)))</span>
+<span class="nc" id="L278">			offset += 4;</span>
+		else
+<span class="nc" id="L280">			offset += 5;</span>
+
+<span class="nc bnc" id="L282" title="All 2 branches missed.">		for (Date d:datesWithEventsCurrentMonth){</span>
+<span class="nc" id="L283">			calendar.setTime(d);</span>
+<span class="nc" id="L284">			System.out.println(d);</span>
+
+			// Obtain the component of the day in the panel of the DayChooser of the
+			// JCalendar.
+			// The component is located after the decorator buttons of &quot;Sun&quot;, &quot;Mon&quot;,... or
+			// &quot;Lun&quot;, &quot;Mar&quot;...,
+			// the empty days before day 1 of month, and all the days previous to each day.
+			// That number of components is calculated with &quot;offset&quot; and is different in
+			// English and Spanish
+
+<span class="nc" id="L294">			Component o = jCalendar.getDayChooser().getDayPanel()</span>
+<span class="nc" id="L295">					.getComponent(calendar.get(Calendar.DAY_OF_MONTH) + offset);</span>
+<span class="nc" id="L296">			o.setBackground(Color.CYAN);</span>
+<span class="nc" id="L297">		}</span>
+
+<span class="nc" id="L299">		calendar.set(Calendar.DAY_OF_MONTH, today);</span>
+<span class="nc" id="L300">		calendar.set(Calendar.MONTH, month);</span>
+<span class="nc" id="L301">		calendar.set(Calendar.YEAR, year);</span>
+<span class="nc" id="L302">	}</span>
+
+	private void jButtonCreate_actionPerformed(ActionEvent e) {
+<span class="nc" id="L305">		domain.Event event = ((domain.Event) eventComboBox.getSelectedItem());</span>
+
+		try {
+<span class="nc" id="L308">			errorLbl.setText(&quot;&quot;);</span>
+<span class="nc" id="L309">			msgLbl.setText(&quot;&quot;);</span>
+
+			// Displays an exception if the query field is empty
+<span class="nc" id="L312">			String inputQuestion = queryText.getText();</span>
+
+<span class="nc bnc" id="L314" title="All 2 branches missed.">			if (inputQuestion.length() &gt; 0) {</span>
+
+				// It could be to trigger an exception if the introduced string is not a number
+<span class="nc" id="L317">				float inputPrice = Float.parseFloat(priceText.getText());</span>
+
+<span class="nc bnc" id="L319" title="All 2 branches missed.">				if (inputPrice &lt;= 0)</span>
+<span class="nc" id="L320">					errorLbl.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;ErrorNumber&quot;));</span>
+				else {
+<span class="nc" id="L322">					QuestionTypes type = QuestionTypes.FREE;</span>
+<span class="nc bnc" id="L323" title="All 2 branches missed.">					if(dynamicButton.isSelected())</span>
+<span class="nc" id="L324">						type = QuestionTypes.DYNAMIC;</span>
+<span class="nc bnc" id="L325" title="All 2 branches missed.">					else if (fixedButton.isSelected())</span>
+<span class="nc" id="L326">						type = QuestionTypes.FIXED;</span>
+<span class="nc" id="L327">					businessLogic.createQuestion(event, inputQuestion, inputPrice, type);</span>
+<span class="nc" id="L328">					msgLbl.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;QuestionCreated&quot;));</span>
+				}
+<span class="nc" id="L330">			} else</span>
+<span class="nc" id="L331">				msgLbl.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;ErrorQuestion&quot;));</span>
+<span class="nc" id="L332">		} catch (EventFinished e1) {</span>
+<span class="nc" id="L333">			msgLbl.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;ErrorEventHasFinished&quot;) + </span>
+<span class="nc" id="L334">					&quot; : &quot; + event.getDescription());</span>
+<span class="nc" id="L335">		} catch (QuestionAlreadyExist e1) {</span>
+<span class="nc" id="L336">			msgLbl.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;ErrorQuestionAlreadyExist&quot;));</span>
+<span class="nc" id="L337">		} catch (java.lang.NumberFormatException e1) {</span>
+<span class="nc" id="L338">			errorLbl.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;ErrorNumber&quot;));</span>
+<span class="nc" id="L339">		} catch (Exception e1) {</span>
+<span class="nc" id="L340">			e1.printStackTrace();</span>
+<span class="nc" id="L341">		}</span>
+<span class="nc" id="L342">	}</span>
+	
+	private CreateQuestionGUI getThis() {
+<span class="nc" id="L345">		return this;</span>
+	}
+
+	private void jButtonClose_actionPerformed(ActionEvent e) {
+<span class="nc" id="L349">		this.setVisible(false);</span>
+<span class="nc" id="L350">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

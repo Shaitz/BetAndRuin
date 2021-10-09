@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Event.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BetAndRuinCI</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">Event.java</span></div><h1>Event.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Vector;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import enums.QuestionTypes;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@Entity
+public class Event implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	@XmlID
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
+	@Id @GeneratedValue
+	private Integer eventNumber;
+	private String description; 
+	private Date eventDate;
+<span class="nc" id="L32">	@OneToMany (fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)</span>
+	private Vector&lt;Question&gt; questions = new Vector&lt;Question&gt;();
+
+	public Vector&lt;Question&gt; getQuestions() {
+<span class="nc" id="L36">		return questions;</span>
+	}
+
+	public void setQuestions(Vector&lt;Question&gt; questions) {
+<span class="nc" id="L40">		this.questions = questions;</span>
+<span class="nc" id="L41">	}</span>
+
+	public Event() {
+<span class="nc" id="L44">		super();</span>
+<span class="nc" id="L45">	}</span>
+
+<span class="nc" id="L47">	public Event(Integer eventNumber, String description,Date eventDate) {</span>
+<span class="nc" id="L48">		this.eventNumber = eventNumber;</span>
+<span class="nc" id="L49">		this.description = description;</span>
+<span class="nc" id="L50">		this.eventDate = eventDate;</span>
+<span class="nc" id="L51">		Question q = addQuestion(&quot;Who will win the match?&quot;, 5);</span>
+<span class="nc" id="L52">		q.setType(QuestionTypes.FIXED);</span>
+<span class="nc" id="L53">		q.setEvent(this);</span>
+<span class="nc" id="L54">		q = addQuestion(&quot;Will there be goals in the first half?&quot;, 1);</span>
+<span class="nc" id="L55">		q.setType(QuestionTypes.FIXED);</span>
+<span class="nc" id="L56">		q.setEvent(this);</span>
+<span class="nc" id="L57">		q = addQuestion(&quot;Will there be goals in the second half?&quot;, 1);</span>
+<span class="nc" id="L58">		q.setType(QuestionTypes.FIXED);</span>
+<span class="nc" id="L59">		q.setEvent(this);</span>
+<span class="nc" id="L60">		q = addQuestion(&quot;How many goals will score the local team?&quot;, 1);</span>
+<span class="nc" id="L61">		q.setType(QuestionTypes.FREE);</span>
+<span class="nc" id="L62">		q.setEvent(this);</span>
+<span class="nc" id="L63">		q = addQuestion(&quot;How many goals will score the visitant team?&quot;, 1);</span>
+<span class="nc" id="L64">		q.setType(QuestionTypes.FREE);</span>
+<span class="nc" id="L65">		q.setEvent(this);</span>
+<span class="nc" id="L66">		q = addQuestion(&quot;How many fauls will there be in the match?&quot;, 2);</span>
+<span class="nc" id="L67">		q.setType(QuestionTypes.FREE);</span>
+<span class="nc" id="L68">		q.setEvent(this);</span>
+<span class="nc" id="L69">		q = addQuestion(&quot;Which formation will use the local team?&quot;, 2);</span>
+<span class="nc" id="L70">		q.setType(QuestionTypes.DYNAMIC);</span>
+<span class="nc" id="L71">		q.setEvent(this);</span>
+<span class="nc" id="L72">		q.addAnswer(&quot;2-3-5&quot;);</span>
+<span class="nc" id="L73">		q.addAnswer(&quot;2-3-2-3&quot;);</span>
+<span class="nc" id="L74">		q.addAnswer(&quot;3-2-2-3&quot;);</span>
+<span class="nc" id="L75">		q.addAnswer(&quot;3-3-4&quot;);</span>
+<span class="nc" id="L76">		q.addAnswer(&quot;4-2-4&quot;);</span>
+<span class="nc" id="L77">		q.addAnswer(&quot;4-4-2&quot;);</span>
+<span class="nc" id="L78">		q.addAnswer(&quot;4-3-3&quot;);</span>
+<span class="nc" id="L79">		q.addAnswer(&quot;4-4-1-1&quot;);</span>
+<span class="nc" id="L80">		q.addAnswer(&quot;4-3-2-1&quot;);</span>
+<span class="nc" id="L81">		q.addAnswer(&quot;5-3-2&quot;);</span>
+<span class="nc" id="L82">		q.addAnswer(&quot;3-4-3&quot;);</span>
+<span class="nc" id="L83">		q.addAnswer(&quot;3-5-2&quot;);</span>
+<span class="nc" id="L84">		q.addAnswer(&quot;3-6-1&quot;);</span>
+<span class="nc" id="L85">		q.addAnswer(&quot;4-5-1&quot;);</span>
+<span class="nc" id="L86">		q.addAnswer(&quot;4-2-3-1&quot;);</span>
+<span class="nc" id="L87">		q.addAnswer(&quot;5-4-1&quot;);</span>
+<span class="nc" id="L88">		q.addAnswer(&quot;4-2-2-2&quot;);</span>
+<span class="nc" id="L89">		q = addQuestion(&quot;Which formation will use the visitant team?&quot;, 2);</span>
+<span class="nc" id="L90">		q.setType(QuestionTypes.DYNAMIC);</span>
+<span class="nc" id="L91">		q.setEvent(this);</span>
+<span class="nc" id="L92">		q.addAnswer(&quot;2-3-5&quot;);</span>
+<span class="nc" id="L93">		q.addAnswer(&quot;2-3-2-3&quot;);</span>
+<span class="nc" id="L94">		q.addAnswer(&quot;3-2-2-3&quot;);</span>
+<span class="nc" id="L95">		q.addAnswer(&quot;3-3-4&quot;);</span>
+<span class="nc" id="L96">		q.addAnswer(&quot;4-2-4&quot;);</span>
+<span class="nc" id="L97">		q.addAnswer(&quot;4-4-2&quot;);</span>
+<span class="nc" id="L98">		q.addAnswer(&quot;4-3-3&quot;);</span>
+<span class="nc" id="L99">		q.addAnswer(&quot;4-4-1-1&quot;);</span>
+<span class="nc" id="L100">		q.addAnswer(&quot;4-3-2-1&quot;);</span>
+<span class="nc" id="L101">		q.addAnswer(&quot;5-3-2&quot;);</span>
+<span class="nc" id="L102">		q.addAnswer(&quot;3-4-3&quot;);</span>
+<span class="nc" id="L103">		q.addAnswer(&quot;3-5-2&quot;);</span>
+<span class="nc" id="L104">		q.addAnswer(&quot;3-6-1&quot;);</span>
+<span class="nc" id="L105">		q.addAnswer(&quot;4-5-1&quot;);</span>
+<span class="nc" id="L106">		q.addAnswer(&quot;4-2-3-1&quot;);</span>
+<span class="nc" id="L107">		q.addAnswer(&quot;5-4-1&quot;);</span>
+<span class="nc" id="L108">		q.addAnswer(&quot;4-2-2-2&quot;);</span>
+		
+<span class="nc" id="L110">	}</span>
+
+<span class="nc" id="L112">	public Event( String description,Date eventDate) {</span>
+<span class="nc" id="L113">		this.description = description;</span>
+<span class="nc" id="L114">		this.eventDate=eventDate;</span>
+<span class="nc" id="L115">	}</span>
+
+	public Integer getEventNumber() {
+<span class="nc" id="L118">		return eventNumber;</span>
+	}
+
+	public void setEventNumber(Integer eventNumber) {
+<span class="nc" id="L122">		this.eventNumber = eventNumber;</span>
+<span class="nc" id="L123">	}</span>
+
+	public String getDescription() {
+<span class="nc" id="L126">		return description;</span>
+	}
+
+	public void setDescription(String description) {
+<span class="nc" id="L130">		this.description=description;</span>
+<span class="nc" id="L131">	}</span>
+
+	public Date getEventDate() {
+<span class="nc" id="L134">		return eventDate;</span>
+	}
+
+	public void setEventDate(Date eventDate) {
+<span class="nc" id="L138">		this.eventDate = eventDate;</span>
+<span class="nc" id="L139">	}</span>
+
+
+	@Override
+	public String toString(){
+<span class="nc" id="L144">		return description;</span>
+	}
+
+	/**
+	 * This method creates a bet with a question, minimum bet ammount and percentual profit
+	 * 
+	 * @param question to be added to the event
+	 * @param betMinimum of that question
+	 * @return Bet
+	 */
+	public Question addQuestion(String question, float betMinimum)  {
+<span class="nc" id="L155">		Question q=new Question(question,betMinimum, this);</span>
+<span class="nc" id="L156">		questions.add(q);</span>
+<span class="nc" id="L157">		return q;</span>
+	}
+
+
+	/**
+	 * This method checks if the question already exists for that event
+	 * 
+	 * @param question that needs to be checked if there exists
+	 * @return true if the question exists and false in other case
+	 */
+	public boolean doesQuestionExist(String question)  {	
+<span class="nc bnc" id="L168" title="All 2 branches missed.">		for (Question q:this.getQuestions()){</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">			if (q.getQuestion().compareTo(question)==0)</span>
+<span class="nc" id="L170">				return true;</span>
+<span class="nc" id="L171">		}</span>
+<span class="nc" id="L172">		return false;</span>
+	}
+	
+	public boolean canBet() {
+<span class="nc" id="L176">		boolean ret = false;</span>
+<span class="nc" id="L177">		Date today = Calendar.getInstance().getTime();</span>
+<span class="nc" id="L178">		today.setTime(today.getTime() + 86400000);</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">		if(today.compareTo(eventDate) &lt; 0)</span>
+<span class="nc" id="L180">			ret = true;</span>
+<span class="nc" id="L181">		return ret;</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="nc" id="L186">		final int prime = 31;</span>
+<span class="nc" id="L187">		int result = 1;</span>
+<span class="nc" id="L188">		result = prime * result + eventNumber;</span>
+<span class="nc" id="L189">		return result;</span>
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="nc bnc" id="L194" title="All 2 branches missed.">		if (this == obj)</span>
+<span class="nc" id="L195">			return true;</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">		if (obj == null)</span>
+<span class="nc" id="L197">			return false;</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc" id="L199">			return false;</span>
+<span class="nc" id="L200">		Event other = (Event) obj;</span>
+<span class="nc" id="L201">		return eventNumber.equals(other.eventNumber);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

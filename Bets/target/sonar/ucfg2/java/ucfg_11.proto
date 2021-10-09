@@ -1,0 +1,69 @@
+
+idataAccess.DataAccess#changeUsername(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ldomain/User;V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÚ Ú("1*ò
+1V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÜ Ü(òï
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÜ Ü(B
+%0domain.User"ddataAccess.DataAccess#getUserWithUsernamePassword(Ljava/lang/String;Ljava/lang/String;)Ldomain/User;*
+dataAccess.DataAccess*
+
+usernamejava.lang.String*
+
+passwordjava.lang.String2AgetUserWithUsernamePassword(Ljava/lang/String;Ljava/lang/String;)‹
+ˆ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÜ Ü(C
+userdomain.User"__id*
+
+%0domain.User«
+¨
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÞ Þ(%
+%1javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+db˜•
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÞ Þ()
+%2#javax.persistence.EntityTransaction"Ujavax.persistence.EntityManager#getTransaction()Ljavax/persistence/EntityTransaction;*'
+%
+%1javax.persistence.EntityManager2getTransaction()ËÈ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaÞ Þ(
+
+%3void",javax.persistence.EntityTransaction#begin()V*+
+)
+%2#javax.persistence.EntityTransaction2begin()ðí
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaß ß(
+
+%4void",domain.User#setUsername(Ljava/lang/String;)V*
+
+userdomain.User*!
+
+newUsernamejava.lang.String2setUsername(Ljava/lang/String;)«
+¨
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaà à(%
+%5javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+db˜•
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaà à()
+%6#javax.persistence.EntityTransaction"Ujavax.persistence.EntityManager#getTransaction()Ljavax/persistence/EntityTransaction;*'
+%
+%5javax.persistence.EntityManager2getTransaction()ÍÊ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaà à(
+
+%7void"-javax.persistence.EntityTransaction#commit()V*+
+)
+%6#javax.persistence.EntityTransaction2commit()"o
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaâ â(
+
+userdomain.User:
+usernamejava.lang.String:
+passwordjava.lang.String:
+newUsernamejava.lang.StringB
+dataAccess.DataAccess

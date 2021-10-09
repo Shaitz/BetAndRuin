@@ -1,19 +1,14 @@
 package addPastBetTest;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import java.util.Vector;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +20,6 @@ import domain.Question;
 import domain.User;
 import enums.QuestionTypes;
 import exceptions.QuestionAlreadyExist;
-import utility.TestUtilityDataAccess;
 
 class AddPastBetDATest {
 

@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataAccess.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BetAndRuinCI</a> &gt; <a href="index.source.html" class="el_package">dataAccess</a> &gt; <span class="el_source">DataAccess.java</span></div><h1>DataAccess.java</h1><pre class="source lang-java linenums">package dataAccess;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
+import java.util.Vector;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
+import configuration.ConfigXML;
+import configuration.UtilDate;
+import domain.Bet;
+import domain.Event;
+import domain.Question;
+import domain.User;
+import enums.QuestionTypes;
+import exceptions.QuestionAlreadyExist;
+
+/**
+ * Implements the Data Access utility to the objectDb database
+ */
+public class DataAccess  {
+
+	protected EntityManager db;
+	protected EntityManagerFactory emf;
+
+<span class="nc" id="L34">	ConfigXML config = ConfigXML.getInstance();</span>
+
+<span class="nc" id="L36">	public DataAccess(boolean initializeMode)  {</span>
+<span class="nc" id="L37">		System.out.println(&quot;Creating DataAccess instance =&gt; isDatabaseLocal: &quot; + </span>
+<span class="nc" id="L38">				config.isDataAccessLocal() + &quot; getDatabBaseOpenMode: &quot; + config.getDataBaseOpenMode());</span>
+<span class="nc" id="L39">		open(initializeMode);</span>
+<span class="nc" id="L40">	}</span>
+
+	public DataAccess()  {	
+<span class="nc" id="L43">		this(false);</span>
+<span class="nc" id="L44">	}</span>
+
+
+	/**
+	 * This method initializes the database with some trial events and questions. 
+	 * It is invoked by the business logic when the option &quot;initialize&quot; is used 
+	 * in the tag dataBaseOpenMode of resources/config.xml file
+	 */	
+	public void initializeDB(){
+
+<span class="nc" id="L54">		db.getTransaction().begin();</span>
+
+		try {
+
+<span class="nc" id="L58">			Calendar today = Calendar.getInstance();</span>
+
+<span class="nc" id="L60">			int month = today.get(Calendar.MONTH);</span>
+<span class="nc" id="L61">			int aux = month + 1;</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">			if(today.get(Calendar.DAY_OF_MONTH) &gt; 17) {</span>
+<span class="nc" id="L63">				month++;</span>
+			}
+<span class="nc" id="L65">			int year = today.get(Calendar.YEAR);</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">			if (month == 12) { month = 0; year += 1;}  </span>
+
+<span class="nc" id="L68">			Event ev1 = new Event(1, &quot;Atlético-Athletic&quot;, UtilDate.newDate(year, month, 25));</span>
+<span class="nc" id="L69">			Event ev2 = new Event(2, &quot;Eibar-Barcelona&quot;, UtilDate.newDate(year, month, 17));</span>
+<span class="nc" id="L70">			Event ev3 = new Event(3, &quot;Getafe-Celta&quot;, UtilDate.newDate(year, month, 17));</span>
+<span class="nc" id="L71">			Event ev4 = new Event(4, &quot;Alavés-Deportivo&quot;, UtilDate.newDate(year, month, 17));</span>
+<span class="nc" id="L72">			Event ev5 = new Event(5, &quot;Español-Villareal&quot;, UtilDate.newDate(year, month, 17));</span>
+<span class="nc" id="L73">			Event ev6 = new Event(6, &quot;Las Palmas-Sevilla&quot;, UtilDate.newDate(year, month, 17));</span>
+<span class="nc" id="L74">			Event ev7 = new Event(7, &quot;Malaga-Valencia&quot;, UtilDate.newDate(year, month, 17));</span>
+<span class="nc" id="L75">			Event ev8 = new Event(8, &quot;Girona-Leganés&quot;, UtilDate.newDate(year, month, 17));</span>
+<span class="nc" id="L76">			Event ev9 = new Event(9, &quot;Real Sociedad-Levante&quot;, UtilDate.newDate(year, month, 17));</span>
+<span class="nc" id="L77">			Event ev10 = new Event(10, &quot;Betis-Real Madrid&quot;, UtilDate.newDate(year, month, 17));</span>
+
+<span class="nc" id="L79">			Event ev11 = new Event(11, &quot;Atletico-Athletic&quot;, UtilDate.newDate(year, aux, 1));</span>
+<span class="nc" id="L80">			Event ev12 = new Event(12, &quot;Eibar-Barcelona&quot;, UtilDate.newDate(year, aux, 1));</span>
+<span class="nc" id="L81">			Event ev13 = new Event(13, &quot;Getafe-Celta&quot;, UtilDate.newDate(year, aux, 1));</span>
+<span class="nc" id="L82">			Event ev14 = new Event(14, &quot;Alavés-Deportivo&quot;, UtilDate.newDate(year, aux, 1));</span>
+<span class="nc" id="L83">			Event ev15 = new Event(15, &quot;Español-Villareal&quot;, UtilDate.newDate(year, aux, 1));</span>
+<span class="nc" id="L84">			Event ev16 = new Event(16, &quot;Las Palmas-Sevilla&quot;, UtilDate.newDate(year, aux, 1));</span>
+
+
+<span class="nc" id="L87">			Event ev17 = new Event(17, &quot;Málaga-Valencia&quot;, UtilDate.newDate(year, month + 1, 28));</span>
+<span class="nc" id="L88">			Event ev18 = new Event(18, &quot;Girona-Leganés&quot;, UtilDate.newDate(year, month + 1, 28));</span>
+<span class="nc" id="L89">			Event ev19 = new Event(19, &quot;Real Sociedad-Levante&quot;, UtilDate.newDate(year, month + 1, 28));</span>
+<span class="nc" id="L90">			Event ev20 = new Event(20, &quot;Betis-Real Madrid&quot;, UtilDate.newDate(year, month + 1, 28));</span>
+
+<span class="nc" id="L92">			db.persist(ev1);</span>
+<span class="nc" id="L93">			db.persist(ev2);</span>
+<span class="nc" id="L94">			db.persist(ev3);</span>
+<span class="nc" id="L95">			db.persist(ev4);</span>
+<span class="nc" id="L96">			db.persist(ev5);</span>
+<span class="nc" id="L97">			db.persist(ev6);</span>
+<span class="nc" id="L98">			db.persist(ev7);</span>
+<span class="nc" id="L99">			db.persist(ev8);</span>
+<span class="nc" id="L100">			db.persist(ev9);</span>
+<span class="nc" id="L101">			db.persist(ev10);</span>
+<span class="nc" id="L102">			db.persist(ev11);</span>
+<span class="nc" id="L103">			db.persist(ev12);</span>
+<span class="nc" id="L104">			db.persist(ev13);</span>
+<span class="nc" id="L105">			db.persist(ev14);</span>
+<span class="nc" id="L106">			db.persist(ev15);</span>
+<span class="nc" id="L107">			db.persist(ev16);</span>
+<span class="nc" id="L108">			db.persist(ev17);</span>
+<span class="nc" id="L109">			db.persist(ev18);</span>
+<span class="nc" id="L110">			db.persist(ev19);</span>
+<span class="nc" id="L111">			db.persist(ev20);			</span>
+
+<span class="nc" id="L113">			db.getTransaction().commit();</span>
+<span class="nc" id="L114">			System.out.println(&quot;The database has been initialized&quot;);</span>
+		}
+<span class="nc" id="L116">		catch (Exception e){</span>
+<span class="nc" id="L117">			e.printStackTrace();</span>
+<span class="nc" id="L118">		}</span>
+<span class="nc" id="L119">	}</span>
+	
+	/**
+	 * This method creates a question for an event, with a question text and the minimum bet
+	 * 
+	 * @param event to which question is added
+	 * @param question text of the question
+	 * @param betMinimum minimum quantity of the bet
+	 * @return the created question, or null, or an exception
+	 * @throws QuestionAlreadyExist if the same question already exists for the event
+	 */
+	public Question createQuestion(Event event, String question, float betMinimum, QuestionTypes type) 
+			throws QuestionAlreadyExist {
+<span class="nc" id="L132">		System.out.println(&quot;&gt;&gt; DataAccess: createQuestion=&gt; event = &quot; + event + &quot; question = &quot; +</span>
+				question + &quot; minimum bet = &quot; + betMinimum);
+
+<span class="nc" id="L135">		Event ev = db.find(Event.class, event.getEventNumber());</span>
+
+<span class="nc bnc" id="L137" title="All 2 branches missed.">		if (ev.doesQuestionExist(question)) throw new QuestionAlreadyExist(</span>
+<span class="nc" id="L138">				ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;ErrorQuestionAlreadyExist&quot;));</span>
+
+<span class="nc" id="L140">		db.getTransaction().begin();</span>
+<span class="nc" id="L141">		Question q = ev.addQuestion(question, betMinimum);</span>
+<span class="nc" id="L142">		q.setEvent(ev);</span>
+<span class="nc" id="L143">		q.setType(type);</span>
+		//db.persist(q);
+<span class="nc" id="L145">		db.persist(ev); // db.persist(q) not required when CascadeType.PERSIST is added</span>
+		// in questions property of Event class
+		// @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+<span class="nc" id="L148">		db.getTransaction().commit();</span>
+<span class="nc" id="L149">		return q;</span>
+	}
+	
+	public Question getQuestion(Question q) {
+<span class="nc" id="L153">		Question ret = db.createQuery(&quot;SELECT q FROM Question q WHERE q.questionNumber = &quot; + q.getQuestionNumber(), Question.class).getSingleResult();</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">		if(ret.getAnswers() != null)</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">			if(ret.getAnswers().iterator().hasNext()) {</span>
+				@SuppressWarnings(&quot;unused&quot;)
+<span class="nc" id="L157">				String just4Use = ret.getAnswers().iterator().next();</span>
+			}
+<span class="nc" id="L159">		return ret;</span>
+	}
+	
+	public User createUser(String username, String password, String eMail) {
+<span class="nc" id="L163">		User nU = null;</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">		if(getUserWithUsernamePassword(username, password) == null)</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">			if(getUserWithEMail(eMail) == null) {</span>
+<span class="nc" id="L166">				nU = new User(username, password, eMail);</span>
+<span class="nc" id="L167">				db.getTransaction().begin();</span>
+<span class="nc" id="L168">				db.persist(nU);</span>
+<span class="nc" id="L169">				db.getTransaction().commit();</span>
+			}
+<span class="nc" id="L171">		return nU;</span>
+	}
+	
+	public List&lt;User&gt; getAllUsers(){
+<span class="nc" id="L175">		return db.createQuery(&quot;SELECT u FROM User u&quot;, User.class).getResultList();</span>
+	}
+	
+	public User getUserByID(Integer id) {
+		User ret;
+<span class="nc" id="L180">		List&lt;User&gt; checkList = db.createQuery(&quot;SELECT u FROM User u WHERE u.id = &quot; + id, User.class).getResultList();</span>
+		try {
+<span class="nc" id="L182">			ret = checkList.get(0);</span>
+		}
+<span class="nc" id="L184">		catch (Exception e) {</span>
+<span class="nc" id="L185">			ret = null;</span>
+<span class="nc" id="L186">		}</span>
+<span class="nc" id="L187">		return ret;</span>
+	}
+	
+	public List&lt;User&gt; getUserWithUsername(String username){
+<span class="nc" id="L191">		return db.createQuery(&quot;SELECT u FROM User u WHERE u.username == \&quot;&quot; + username + &quot;\&quot;&quot;, User.class).getResultList();</span>
+	}
+	
+	public User getUserWithUsernamePassword(String username, String password){
+		User ret;
+<span class="nc" id="L196">		List&lt;User&gt; checkList = db.createQuery(&quot;SELECT u FROM User u WHERE u.username = \&quot;&quot; + username + &quot;\&quot; and u.password = \&quot;&quot; + password + &quot;\&quot;&quot;, User.class).getResultList();</span>
+		try {
+<span class="nc" id="L198">			ret = checkList.get(0);</span>
+		}
+<span class="nc" id="L200">		catch(Exception e) {</span>
+<span class="nc" id="L201">			ret = null;</span>
+<span class="nc" id="L202">		}</span>
+<span class="nc" id="L203">		return ret;</span>
+	}
+	
+	public User getUserWithEMail(String eMail) {
+		User ret;
+<span class="nc" id="L208">		List&lt;User&gt; checkList = db.createQuery(&quot;SELECT u FROM User u WHERE u.eMail = \&quot;&quot; + eMail + &quot;\&quot;&quot;, User.class).getResultList();</span>
+		try {
+<span class="nc" id="L210">			ret = checkList.get(0);</span>
+		}
+<span class="nc" id="L212">		catch (Exception e) {</span>
+<span class="nc" id="L213">			ret = null;</span>
+<span class="nc" id="L214">		}</span>
+<span class="nc" id="L215">		return ret;</span>
+	}
+	
+	public User changeUsername(String username, String password, String newUsername)
+	{
+<span class="nc" id="L220">		User user = this.getUserWithUsernamePassword(username, password);</span>
+		
+<span class="nc" id="L222">		db.getTransaction().begin();</span>
+<span class="nc" id="L223">		user.setUsername(newUsername);</span>
+<span class="nc" id="L224">		db.getTransaction().commit();</span>
+		
+<span class="nc" id="L226">		return user;</span>
+	}
+	
+	public User changePasswordOfUser(String username, String password, String nPassword) {
+		try {
+<span class="nc" id="L231">			User toChange = getUserWithUsernamePassword(username, password);</span>
+<span class="nc" id="L232">			db.getTransaction().begin();</span>
+<span class="nc" id="L233">			toChange.setPassword(nPassword);</span>
+<span class="nc" id="L234">			db.getTransaction().commit();</span>
+<span class="nc" id="L235">			return toChange;</span>
+		}
+<span class="nc" id="L237">		catch (Exception e) {</span>
+<span class="nc" id="L238">			return null;</span>
+		}
+	}
+	
+	public double addMoneyToUser(int id, double amount) {
+<span class="nc" id="L243">		User user = this.getUserByID(id);</span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">		if(user == null)</span>
+<span class="nc" id="L245">			return -1;</span>
+<span class="nc" id="L246">		db.getTransaction().begin();</span>
+<span class="nc" id="L247">		double ret = user.increaseCurrency(amount);</span>
+<span class="nc" id="L248">		db.getTransaction().commit();</span>
+<span class="nc" id="L249">		return ret;</span>
+	}
+	
+	public boolean placeBet(User user, Question question, double amount, String answer) {
+<span class="nc" id="L253">		User userToChange = this.getUserWithUsernamePassword(user.getUsername(), user.getPassword());</span>
+<span class="nc" id="L254">		Question q = this.getQuestion(question);</span>
+<span class="nc" id="L255">		db.getTransaction().begin();</span>
+<span class="nc" id="L256">		boolean ret = userToChange.placeBet(question, amount, answer);</span>
+<span class="nc" id="L257">		q.addPool(amount);</span>
+<span class="nc" id="L258">		db.getTransaction().commit();</span>
+<span class="nc" id="L259">		return ret;</span>
+	}
+	
+	public boolean removeBet(User user, Bet bet) {
+<span class="nc" id="L263">		User userToChange = this.getUserWithUsernamePassword(user.getUsername(), user.getPassword());</span>
+<span class="nc" id="L264">		List&lt;Bet&gt; betlist = userToChange.getBets();</span>
+<span class="nc" id="L265">		Bet userBet = null;</span>
+		
+<span class="nc bnc" id="L267" title="All 2 branches missed.">		for (Bet b : betlist)</span>
+<span class="nc bnc" id="L268" title="All 2 branches missed.">			if (bet.getQuestion().getQuestionNumber().equals(b.getQuestion().getQuestionNumber()))</span>
+<span class="nc" id="L269">				userBet = b;</span>
+		
+<span class="nc" id="L271">		Question q = this.getQuestion(userBet.getQuestion());</span>
+<span class="nc" id="L272">		db.getTransaction().begin();</span>
+<span class="nc" id="L273">		boolean ret = userToChange.removeBet(userBet);</span>
+<span class="nc bnc" id="L274" title="All 2 branches missed.">		if(ret)</span>
+		{
+<span class="nc" id="L276">			q.addPool(userBet.getPlacedBet() * -1);</span>
+<span class="nc" id="L277">			userToChange.increaseCurrency(userBet.getPlacedBet() * 0.75);</span>
+		}
+<span class="nc" id="L279">		db.getTransaction().commit();</span>
+<span class="nc" id="L280">		return ret;</span>
+	}
+	
+	/**
+	 * This method retrieves from the database the events of a given date 
+	 * 
+	 * @param date in which events are retrieved
+	 * @return collection of events
+	 */
+	public Vector&lt;Event&gt; getEvents(Date date) {
+<span class="nc" id="L290">		System.out.println(&quot;&gt;&gt; DataAccess: getEvents&quot;);</span>
+<span class="nc" id="L291">		Vector&lt;Event&gt; res = new Vector&lt;Event&gt;();	</span>
+<span class="nc" id="L292">		TypedQuery&lt;Event&gt; query = db.createQuery(&quot;SELECT ev FROM Event ev WHERE ev.eventDate=?1&quot;, </span>
+				Event.class);   
+<span class="nc" id="L294">		query.setParameter(1, date);</span>
+<span class="nc" id="L295">		List&lt;Event&gt; events = query.getResultList();</span>
+<span class="nc bnc" id="L296" title="All 2 branches missed.">		for (Event ev:events){</span>
+<span class="nc" id="L297">			System.out.println(ev.toString());		 </span>
+<span class="nc" id="L298">			res.add(ev);</span>
+<span class="nc" id="L299">		}</span>
+<span class="nc" id="L300">		return res;</span>
+	}
+
+	/**
+	 * This method retrieves from the database the dates in a month for which there are events
+	 * 
+	 * @param date of the month for which days with events want to be retrieved 
+	 * @return collection of dates
+	 */
+	public Vector&lt;Date&gt; getEventsMonth(Date date) {
+<span class="nc" id="L310">		System.out.println(&quot;&gt;&gt; DataAccess: getEventsMonth&quot;);</span>
+<span class="nc" id="L311">		Vector&lt;Date&gt; res = new Vector&lt;Date&gt;();	</span>
+
+<span class="nc" id="L313">		Date firstDayMonthDate= UtilDate.firstDayMonth(date);</span>
+<span class="nc" id="L314">		Date lastDayMonthDate= UtilDate.lastDayMonth(date);</span>
+
+
+<span class="nc" id="L317">		TypedQuery&lt;Date&gt; query = db.createQuery(&quot;SELECT DISTINCT ev.eventDate FROM Event ev &quot;</span>
+				+ &quot;WHERE ev.eventDate BETWEEN ?1 and ?2&quot;, Date.class);   
+<span class="nc" id="L319">		query.setParameter(1, firstDayMonthDate);</span>
+<span class="nc" id="L320">		query.setParameter(2, lastDayMonthDate);</span>
+<span class="nc" id="L321">		List&lt;Date&gt; dates = query.getResultList();</span>
+<span class="nc bnc" id="L322" title="All 2 branches missed.">		for (Date d:dates){</span>
+<span class="nc" id="L323">			System.out.println(d.toString());		 </span>
+<span class="nc" id="L324">			res.add(d);</span>
+<span class="nc" id="L325">		}</span>
+<span class="nc" id="L326">		return res;</span>
+	}
+
+
+	public void open(boolean initializeMode){
+
+<span class="nc" id="L332">		System.out.println(&quot;Opening DataAccess instance =&gt; isDatabaseLocal: &quot; + </span>
+<span class="nc" id="L333">				config.isDataAccessLocal() + &quot; getDatabBaseOpenMode: &quot; + config.getDataBaseOpenMode());</span>
+
+<span class="nc" id="L335">		String fileName = config.getDataBaseFilename();</span>
+<span class="nc bnc" id="L336" title="All 2 branches missed.">		if (initializeMode) {</span>
+<span class="nc" id="L337">			fileName = fileName + &quot;;drop&quot;;</span>
+<span class="nc" id="L338">			System.out.println(&quot;Deleting the DataBase&quot;);</span>
+		}
+
+<span class="nc bnc" id="L341" title="All 2 branches missed.">		if (config.isDataAccessLocal()) {</span>
+<span class="nc" id="L342">			emf = Persistence.createEntityManagerFactory(&quot;objectdb:&quot; + fileName);</span>
+<span class="nc" id="L343">			db = emf.createEntityManager();</span>
+		} else {
+<span class="nc" id="L345">			Map&lt;String, String&gt; properties = new HashMap&lt;String, String&gt;();</span>
+<span class="nc" id="L346">			properties.put(&quot;javax.persistence.jdbc.user&quot;, config.getDataBaseUser());</span>
+<span class="nc" id="L347">			properties.put(&quot;javax.persistence.jdbc.password&quot;, config.getDataBasePassword());</span>
+
+<span class="nc" id="L349">			emf = Persistence.createEntityManagerFactory(&quot;objectdb://&quot; + config.getDataAccessNode() +</span>
+<span class="nc" id="L350">					&quot;:&quot;+config.getDataAccessPort() + &quot;/&quot; + fileName, properties);</span>
+
+<span class="nc" id="L352">			db = emf.createEntityManager();</span>
+		}
+<span class="nc" id="L354">	}</span>
+
+	public boolean existQuestion(Event event, String question) {
+<span class="nc" id="L357">		System.out.println(&quot;&gt;&gt; DataAccess: existQuestion =&gt; event = &quot; + event + </span>
+				&quot; question = &quot; + question);
+<span class="nc" id="L359">		Event ev = db.find(Event.class, event.getEventNumber());</span>
+<span class="nc" id="L360">		return ev.doesQuestionExist(question);</span>
+	}
+	
+	public boolean addAnswer(Question q, String a) {
+		boolean ret;
+<span class="nc" id="L365">		Question question = getQuestion(q);</span>
+<span class="nc" id="L366">		db.getTransaction().begin();</span>
+<span class="nc" id="L367">		ret = question.addAnswer(a);</span>
+<span class="nc" id="L368">		db.getTransaction().commit();</span>
+<span class="nc" id="L369">		return ret;</span>
+	}
+	
+	public boolean removeAnswer(Question q, String a) {
+		boolean ret;
+<span class="nc" id="L374">		Question question = getQuestion(q);</span>
+<span class="nc" id="L375">		db.getTransaction().begin();</span>
+<span class="nc" id="L376">		ret = question.removeAnswer(a);</span>
+<span class="nc" id="L377">		db.getTransaction().commit();</span>
+<span class="nc" id="L378">		return ret;</span>
+	}
+	
+	public ArrayList&lt;String&gt; getAnswerList(Question q) {
+<span class="nc" id="L382">		Question question = getQuestion(q);</span>
+<span class="nc" id="L383">		return question.getAnswers();</span>
+	}
+
+	public void close(){
+<span class="nc" id="L387">		db.close();</span>
+<span class="nc" id="L388">		System.out.println(&quot;DataBase is closed&quot;);</span>
+<span class="nc" id="L389">	}</span>
+	
+	public void setResult(Question q, String s) {
+<span class="nc" id="L392">		db.getTransaction().begin();</span>
+<span class="nc" id="L393">		Question question = getQuestion(q);</span>
+<span class="nc" id="L394">		question.setResult(s);</span>
+<span class="nc" id="L395">		db.getTransaction().commit();</span>
+<span class="nc" id="L396">	}</span>
+	
+	/**
+	* Añade una bet a la lista de bets pasados del usuario y
+	* remueve de sus apuestas activas ese mismo bet.
+	*
+	* @param  u usuario al que se le van a actualizar las apuestas
+	* @param  b apuesta a actualizar
+	*/
+	public void addPastBet(User u, Bet b, double benefitUser) 
+	{
+<span class="nc bnc" id="L407" title="All 6 branches missed.">		if(u == null || b == null ||  benefitUser &lt; 0) throw new RuntimeException(&quot;Usuario es null o Bet es null o benefit es null.&quot;);</span>
+<span class="nc" id="L408">		User us = this.getUserWithUsernamePassword(u.getUsername(), u.getPassword());</span>
+		
+<span class="nc bnc" id="L410" title="All 2 branches missed.">		if(us == null) throw new RuntimeException(&quot;Usuario no en BD.&quot;);</span>
+<span class="nc" id="L411">		Bet userBet = null;</span>
+		
+<span class="nc" id="L413">		List&lt;Bet&gt; betlist = us.getBets();</span>
+<span class="nc bnc" id="L414" title="All 2 branches missed.">		if (betlist.isEmpty()) throw new RuntimeException(&quot;El usuario no tiene apuestas.&quot;);</span>
+		
+<span class="nc bnc" id="L416" title="All 2 branches missed.">		for (Bet b2 : betlist)</span>
+		{
+<span class="nc bnc" id="L418" title="All 2 branches missed.">			if (b.getQuestion().getQuestionNumber().equals(b2.getQuestion().getQuestionNumber()))</span>
+			{
+<span class="nc" id="L420">				userBet = b2;</span>
+			}
+<span class="nc" id="L422">		}</span>
+		
+<span class="nc bnc" id="L424" title="All 2 branches missed.">		if (userBet == null) throw new RuntimeException(&quot;El usuario no ha apostado en esa apuesta.&quot;);</span>
+		
+<span class="nc" id="L426">		userBet.setBenefits(benefitUser);</span>
+<span class="nc" id="L427">		db.getTransaction().begin();</span>
+<span class="nc" id="L428">		us.addToPastBets(userBet);</span>
+<span class="nc" id="L429">		db.getTransaction().commit();</span>
+<span class="nc" id="L430">		db.getTransaction().begin();</span>
+<span class="nc" id="L431">		us.removeBet(userBet);</span>
+<span class="nc" id="L432">		db.getTransaction().commit();</span>
+<span class="nc" id="L433">	}</span>
+	
+	public Event addEventWithQuestion(String desc, Date d, String question, float qty) {
+<span class="nc" id="L436">		System.out.println(&quot;&gt;&gt; DataAccessTest: addEvent&quot;);</span>
+<span class="nc" id="L437">		Event ev=null;</span>
+<span class="nc" id="L438">			db.getTransaction().begin();</span>
+			try {
+<span class="nc" id="L440">			    ev=new Event(desc,d);</span>
+<span class="nc" id="L441">			    ev.addQuestion(question,  qty);</span>
+<span class="nc" id="L442">				db.persist(ev);</span>
+<span class="nc" id="L443">				db.getTransaction().commit();</span>
+			}
+<span class="nc" id="L445">			catch (Exception e){</span>
+<span class="nc" id="L446">				e.printStackTrace();</span>
+<span class="nc" id="L447">			}</span>
+<span class="nc" id="L448">			return ev;</span>
+    }
+	
+	public boolean removeEvent(Event ev) {
+<span class="nc" id="L452">		System.out.println(&quot;&gt;&gt; DataAccessTest: removeEvent&quot;);</span>
+<span class="nc" id="L453">		Event e = db.find(Event.class, ev.getEventNumber());</span>
+<span class="nc bnc" id="L454" title="All 2 branches missed.">		if (e!=null) {</span>
+<span class="nc" id="L455">			db.getTransaction().begin();</span>
+<span class="nc" id="L456">			db.remove(e);</span>
+<span class="nc" id="L457">			db.getTransaction().commit();</span>
+<span class="nc" id="L458">			return true;</span>
+		} else 
+<span class="nc" id="L460">		return false;</span>
+    }
+	
+	public boolean removeUser(User u) {
+<span class="nc" id="L464">		System.out.println(&quot;&gt;&gt; DataAccessTest: removeUser&quot;);</span>
+<span class="nc" id="L465">		User us = this.getUserWithUsernamePassword(u.getUsername(), u.getPassword());</span>
+<span class="nc bnc" id="L466" title="All 2 branches missed.">		if (us!=null) {</span>
+<span class="nc" id="L467">			db.getTransaction().begin();</span>
+<span class="nc" id="L468">			db.remove(us);</span>
+<span class="nc" id="L469">			db.getTransaction().commit();</span>
+<span class="nc" id="L470">			return true;</span>
+		} else 
+<span class="nc" id="L472">		return false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

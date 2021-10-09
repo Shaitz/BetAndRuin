@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ObjectDbManagerServer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BetAndRuinCI</a> &gt; <a href="index.source.html" class="el_package">dataAccess</a> &gt; <span class="el_source">ObjectDbManagerServer.java</span></div><h1>ObjectDbManagerServer.java</h1><pre class="source lang-java linenums">package dataAccess;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
+import javax.swing.border.EmptyBorder;
+
+import configuration.ConfigXML;
+
+/**
+ * Runs the Data Access node as a separate, possibly remote process.
+ */
+public class ObjectDbManagerServer extends JDialog {
+
+	private static final long serialVersionUID = 1L;
+	
+<span class="nc" id="L26">	private ConfigXML config  = ConfigXML.getInstance();</span>
+
+	private final JPanel contentPanel;
+	private JTextArea textArea;
+
+
+<span class="nc" id="L32">	public ObjectDbManagerServer() {</span>
+		
+<span class="nc" id="L34">		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);</span>
+<span class="nc" id="L35">		setTitle(&quot;Data Access Server&quot;);</span>
+<span class="nc" id="L36">		setBounds(100, 700, 450, 225);</span>
+
+<span class="nc" id="L38">		contentPanel = new JPanel(new BorderLayout(0, 0));</span>
+<span class="nc" id="L39">		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L40">		this.add(contentPanel);</span>
+
+<span class="nc" id="L42">		textArea = new JTextArea();</span>
+<span class="nc" id="L43">		contentPanel.add(textArea);</span>
+
+<span class="nc" id="L45">		JPanel buttonPane = new JPanel();</span>
+<span class="nc" id="L46">		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));</span>
+<span class="nc" id="L47">		contentPanel.add(buttonPane, BorderLayout.SOUTH);</span>
+
+<span class="nc" id="L49">		JButton okButton = new JButton(&quot;Stop DATA ACCESS&quot;);</span>
+<span class="nc" id="L50">		okButton.addActionListener(new ActionListener() {</span>
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+<span class="nc" id="L55">				textArea.append(&quot;\nClosing the database... &quot;);</span>
+				try {
+<span class="nc" id="L57">					TimeUnit.SECONDS.sleep(1);</span>
+<span class="nc" id="L58">					Runtime.getRuntime().exec(&quot;java -cp resources/objectdb.jar &quot; +</span>
+<span class="nc" id="L59">							&quot;com.objectdb.Server -port &quot; + config.getDataAccessPort() +</span>
+							&quot; stop&quot;);
+<span class="nc" id="L61">				} catch (Exception ioe) {</span>
+<span class="nc" id="L62">					System.out.println (ioe);</span>
+<span class="nc" id="L63">				}</span>
+
+<span class="nc" id="L65">				System.out.println(&quot;Server closed&quot;);</span>
+<span class="nc" id="L66">				System.exit(1);</span>
+<span class="nc" id="L67">			}</span>
+		});
+
+<span class="nc" id="L70">		buttonPane.add(okButton);</span>
+<span class="nc" id="L71">		getRootPane().setDefaultButton(okButton);</span>
+
+<span class="nc bnc" id="L73" title="All 2 branches missed.">		if (config.isDataAccessLocal())</span>
+<span class="nc" id="L74">			textArea.append(&quot;\nERROR, the database is configured as local&quot;);</span>
+
+		else {
+			try {
+<span class="nc" id="L78">				System.out.println(&quot;Launching ObjectDb server&quot;);</span>
+
+<span class="nc" id="L80">				Runtime.getRuntime().exec(&quot;java -cp resources/objectdb.jar com.objectdb.Server &quot; +</span>
+<span class="nc" id="L81">						&quot;-port &quot; + config.getDataAccessPort() + &quot; start&quot;);</span>
+
+<span class="nc" id="L83">				textArea.append(&quot;\nObjectDbManagerServer: running the database server&quot;);</span>
+<span class="nc" id="L84">				textArea.append(&quot;\n\nAccess granted to: &quot; + config.getDataBaseUser());</span>
+<span class="nc" id="L85">				textArea.append(&quot;\n\nPress button to stop this database server... &quot;);</span>
+
+<span class="nc" id="L87">			} catch (IOException ioe) {</span>
+<span class="nc" id="L88">				System.out.println (ioe);</span>
+<span class="nc" id="L89">			} catch (Exception e) {</span>
+<span class="nc" id="L90">				textArea.append(&quot;\nUnexpected error in ObjectDbManagerServer: &quot; + e.toString());</span>
+<span class="nc" id="L91">			}</span>
+		}
+<span class="nc" id="L93">	}</span>
+
+
+	public static void main(String[] args) {
+		try {
+<span class="nc" id="L98">			ObjectDbManagerServer dialog = new ObjectDbManagerServer();</span>
+<span class="nc" id="L99">			dialog.setVisible(true);</span>
+<span class="nc" id="L100">		} catch (Exception e) {</span>
+<span class="nc" id="L101">			e.printStackTrace();</span>
+<span class="nc" id="L102">		}</span>
+<span class="nc" id="L103">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

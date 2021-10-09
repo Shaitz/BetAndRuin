@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BlFacadeImplementation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BetAndRuinCI</a> &gt; <a href="index.source.html" class="el_package">businessLogic</a> &gt; <span class="el_source">BlFacadeImplementation.java</span></div><h1>BlFacadeImplementation.java</h1><pre class="source lang-java linenums">package businessLogic;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.Vector;
+
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+import configuration.ConfigXML;
+import dataAccess.DataAccess;
+import domain.Bet;
+import domain.Event;
+import domain.Question;
+import domain.User;
+import enums.QuestionTypes;
+import exceptions.EventFinished;
+import exceptions.QuestionAlreadyExist;
+
+
+/**
+ * Implements the business logic as a web service.
+ */
+@WebService(endpointInterface = &quot;businessLogic.BlFacade&quot;)
+public class BlFacadeImplementation implements BlFacade {
+
+	DataAccess dbManager;
+<span class="nc" id="L30">	ConfigXML config = ConfigXML.getInstance();</span>
+<span class="nc" id="L31">	private User user = null;</span>
+
+<span class="nc" id="L33">	public BlFacadeImplementation()  {		</span>
+<span class="nc" id="L34">		System.out.println(&quot;Creating BlFacadeImplementation instance&quot;);</span>
+<span class="nc" id="L35">		boolean initialize = config.getDataBaseOpenMode().equals(&quot;initialize&quot;);</span>
+<span class="nc" id="L36">		dbManager = new DataAccess(initialize);</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">		if (initialize)</span>
+<span class="nc" id="L38">			dbManager.initializeDB();</span>
+<span class="nc" id="L39">		dbManager.close();</span>
+<span class="nc" id="L40">	}</span>
+
+<span class="nc" id="L42">	public BlFacadeImplementation(DataAccess dam)  {</span>
+<span class="nc" id="L43">		System.out.println(&quot;Creating BlFacadeImplementation instance with DataAccess parameter&quot;);</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">		if (config.getDataBaseOpenMode().equals(&quot;initialize&quot;)) {</span>
+<span class="nc" id="L45">			dam.open(true);</span>
+<span class="nc" id="L46">			dam.initializeDB();</span>
+<span class="nc" id="L47">			dam.close();</span>
+		}
+<span class="nc" id="L49">		dbManager = dam;		</span>
+<span class="nc" id="L50">	}</span>
+
+
+	/**
+	 * This method creates a question for an event, with a question text and the minimum bet
+	 * 
+	 * @param event to which question is added
+	 * @param question text of the question
+	 * @param betMinimum minimum quantity of the bet
+	 * @param type Indicates the format of the answer when making a bet
+	 * @return the created question, or null, or an exception
+	 * @throws EventFinished if current data is after data of the event
+	 * @throws QuestionAlreadyExist if the same question already exists for the event
+	 */
+	@Override
+	@WebMethod
+	public Question createQuestion(Event event, String question, float betMinimum, QuestionTypes type) 
+			throws EventFinished, QuestionAlreadyExist {
+
+		//The minimum bid must be greater than 0
+<span class="nc" id="L70">		dbManager.open(false);</span>
+<span class="nc" id="L71">		Question qry = null;</span>
+
+<span class="nc bnc" id="L73" title="All 2 branches missed.">		if (new Date().compareTo(event.getEventDate()) &gt; 0)</span>
+<span class="nc" id="L74">			throw new EventFinished(ResourceBundle.getBundle(&quot;Etiquetas&quot;).</span>
+<span class="nc" id="L75">					getString(&quot;ErrorEventHasFinished&quot;));</span>
+
+<span class="nc" id="L77">		qry = dbManager.createQuestion(event, question, betMinimum, type);		</span>
+<span class="nc" id="L78">		dbManager.close();</span>
+<span class="nc" id="L79">		return qry;</span>
+	}
+
+	/**
+	 * This method invokes the data access to retrieve the events of a given date 
+	 * 
+	 * @param date in which events are retrieved
+	 * @return collection of events
+	 */
+	@Override
+	@WebMethod	
+	public Vector&lt;Event&gt; getEvents(Date date)  {
+<span class="nc" id="L91">		dbManager.open(false);</span>
+<span class="nc" id="L92">		Vector&lt;Event&gt;  events = dbManager.getEvents(date);</span>
+<span class="nc" id="L93">		dbManager.close();</span>
+<span class="nc" id="L94">		return events;</span>
+	}
+
+
+	/**
+	 * This method invokes the data access to retrieve the dates a month for which there are events
+	 * 
+	 * @param date of the month for which days with events want to be retrieved 
+	 * @return collection of dates
+	 */
+	@Override
+	@WebMethod
+	public Vector&lt;Date&gt; getEventsMonth(Date date) {
+<span class="nc" id="L107">		dbManager.open(false);</span>
+<span class="nc" id="L108">		Vector&lt;Date&gt;  dates = dbManager.getEventsMonth(date);</span>
+<span class="nc" id="L109">		dbManager.close();</span>
+<span class="nc" id="L110">		return dates;</span>
+	}
+
+	@WebMethod
+	public boolean validateLogin(String username, String password)
+	{
+<span class="nc" id="L116">		dbManager.open(false);</span>
+<span class="nc" id="L117">		this.user = dbManager.getUserWithUsernamePassword(username, password);</span>
+<span class="nc" id="L118">		dbManager.close();</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">		return this.user != null;</span>
+	}
+	@WebMethod
+	public boolean registerUser(String username, String password, String eMail)
+	{
+<span class="nc" id="L124">		dbManager.open(false);</span>
+<span class="nc" id="L125">		this.user = dbManager.createUser(username, password, eMail);</span>
+<span class="nc" id="L126">		dbManager.close();</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">		return this.user != null;</span>
+	}
+	@WebMethod
+	public User getRegisteredUser(String username, String password) 
+	{
+<span class="nc" id="L132">		dbManager.open(false);</span>
+<span class="nc" id="L133">		User u = dbManager.getUserWithUsernamePassword(username, password);</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">		User ret = u != null ? u : null;</span>
+<span class="nc" id="L135">		dbManager.close();</span>
+<span class="nc" id="L136">		return ret;</span>
+	}
+	@WebMethod
+	public User changeUsername(String username, String password, String newUsername)
+	{
+<span class="nc" id="L141">		dbManager.open(false);</span>
+<span class="nc" id="L142">		this.user = dbManager.changeUsername(username, password, newUsername);</span>
+<span class="nc" id="L143">		dbManager.close();</span>
+<span class="nc" id="L144">		this.refreshUser();</span>
+<span class="nc" id="L145">		return this.user;</span>
+	}
+	@WebMethod
+	public User changePassword(String username, String password, String newPassword)
+	{
+<span class="nc" id="L150">		dbManager.open(false);</span>
+<span class="nc" id="L151">		this.user = dbManager.changePasswordOfUser(username, password, newPassword);</span>
+<span class="nc" id="L152">		dbManager.close();</span>
+<span class="nc" id="L153">		this.refreshUser();</span>
+<span class="nc" id="L154">		return this.user;</span>
+	}
+	
+	/**
+	 * Places a bet in the indicated question with the indicated amount and registers it if the amount is no less than the minimum
+	 * @param question Question in which place the bet
+	 * @param bet Amount to put
+	 * @return True if the bet was placed successfully, false otherwise
+	 */
+	@WebMethod
+	public boolean placeBet(Question question, double bet, String answer) 
+	{
+<span class="nc" id="L166">		dbManager.open(false);</span>
+<span class="nc" id="L167">		boolean betState = dbManager.placeBet(this.user, question, bet, answer);</span>
+<span class="nc" id="L168">		dbManager.close();</span>
+<span class="nc" id="L169">		this.refreshUser();</span>
+<span class="nc" id="L170">		return betState;</span>
+	}
+	@WebMethod
+	public boolean removeBet(Bet bet) {
+<span class="nc" id="L174">		dbManager.open(false);</span>
+<span class="nc" id="L175">		boolean removeState = dbManager.removeBet(this.user, bet);</span>
+<span class="nc" id="L176">		dbManager.close();</span>
+<span class="nc" id="L177">		this.refreshUser();</span>
+<span class="nc" id="L178">		return removeState;</span>
+	}
+	@WebMethod
+	public User getUser()
+	{
+<span class="nc" id="L183">		return this.user;</span>
+	}
+	@WebMethod
+	public void refreshUser()
+	{
+<span class="nc" id="L188">		this.user = this.getRegisteredUser(this.user.getUsername(), this.getUser().getPassword());</span>
+<span class="nc" id="L189">	}</span>
+	@WebMethod
+	public double addMoneyToUser(int id, double amount) 
+	{
+<span class="nc" id="L193">		dbManager.open(false);</span>
+<span class="nc" id="L194">		double ret = dbManager.addMoneyToUser(id, amount);</span>
+<span class="nc" id="L195">		dbManager.close();</span>
+<span class="nc" id="L196">		this.refreshUser();</span>
+<span class="nc" id="L197">		return ret;</span>
+	}
+	
+	public void close() {
+<span class="nc" id="L201">		dbManager.close();</span>
+<span class="nc" id="L202">	}</span>
+
+	/**
+	 * This method invokes the data access to initialize the database with some events and questions.
+	 * It is invoked only when the option &quot;initialize&quot; is declared in the tag dataBaseOpenMode of resources/config.xml file
+	 */	
+	@WebMethod	
+	public void initializeBD(){
+<span class="nc" id="L210">		dbManager.open(false);</span>
+<span class="nc" id="L211">		dbManager.initializeDB();</span>
+<span class="nc" id="L212">		dbManager.close();</span>
+<span class="nc" id="L213">	}</span>
+	@WebMethod
+	@Override
+	public boolean addAnswerToQuestion(Question q, String answer) {
+<span class="nc" id="L217">		dbManager.open(false);</span>
+<span class="nc" id="L218">		boolean ret = dbManager.addAnswer(q, answer);</span>
+<span class="nc" id="L219">		dbManager.close();</span>
+<span class="nc" id="L220">		return ret;</span>
+	}
+	@WebMethod
+	@Override
+	public boolean removeAnswerFromQuestion(Question q, String answer) {
+<span class="nc" id="L225">		dbManager.open(false);</span>
+<span class="nc" id="L226">		boolean ret = dbManager.removeAnswer(q, answer);</span>
+<span class="nc" id="L227">		dbManager.close();</span>
+<span class="nc" id="L228">		return ret;</span>
+	}
+	@WebMethod
+	@Override
+	public ArrayList&lt;String&gt; getAnswersOfQuestion(Question q) {
+<span class="nc" id="L233">		dbManager.open(false);</span>
+<span class="nc" id="L234">		ArrayList&lt;String&gt; ret = dbManager.getAnswerList(q);</span>
+<span class="nc" id="L235">		dbManager.close();</span>
+<span class="nc" id="L236">		return ret;</span>
+	}
+	@WebMethod
+	@Override
+	public void setResult(Question q, String s) {
+<span class="nc" id="L241">		dbManager.open(false);</span>
+<span class="nc" id="L242">		dbManager.setResult(q, s);</span>
+<span class="nc" id="L243">		dbManager.close();</span>
+<span class="nc" id="L244">	}</span>
+	
+	@WebMethod
+	public Question retrieveQuestion(Question quest)
+	{
+<span class="nc" id="L249">		dbManager.open(false);</span>
+<span class="nc" id="L250">		Question q = dbManager.getQuestion(quest);</span>
+<span class="nc" id="L251">		dbManager.close();</span>
+<span class="nc" id="L252">		return q;</span>
+	}
+	
+	/**
+	* Distribuye el dinero de la pregunta especificada a
+	* todo los usuarios que han apostado y ganado en ella
+	* y actualiza las apuestas de todos los usuarios.
+	* 
+	*
+	* @param  q pregunta finalizada del cuál el dinero se va a distribuir
+	*/
+	@WebMethod public void giveRewards(Question q)
+	{
+<span class="nc bnc" id="L265" title="All 2 branches missed.">		if (q == null) throw new RuntimeException(&quot;La pregunta es null.&quot;);</span>
+<span class="nc bnc" id="L266" title="All 2 branches missed.">		if (q.getResult() == null) throw new RuntimeException(&quot;La pregunta no tiene resultado.&quot;);</span>
+		
+<span class="nc" id="L268">		dbManager.open(false);</span>
+<span class="nc" id="L269">		List&lt;User&gt; users = dbManager.getAllUsers();</span>
+<span class="nc" id="L270">		dbManager.close();</span>
+		
+<span class="nc bnc" id="L272" title="All 2 branches missed.">		if (users.isEmpty()) throw new RuntimeException(&quot;La BD está vacía.&quot;);		</span>
+<span class="nc" id="L273">		List&lt;User&gt; winners = new ArrayList&lt;User&gt;();</span>
+<span class="nc" id="L274">		double winnersMoney = 0;</span>
+<span class="nc bnc" id="L275" title="All 2 branches missed.">		for(User u : users)</span>
+		{
+<span class="nc" id="L277">			List&lt;Bet&gt; bets = u.getBets();			</span>
+<span class="nc bnc" id="L278" title="All 2 branches missed.">			if (bets.isEmpty())</span>
+			{
+<span class="nc" id="L280">				break;</span>
+			}	
+<span class="nc bnc" id="L282" title="All 2 branches missed.">			for(Bet b : bets)</span>
+			{
+<span class="nc bnc" id="L284" title="All 4 branches missed.">				if(b.getQuestion().toString().equals(q.toString()) &amp;&amp; b.getAnswer().equals(q.getResult()))</span>
+				{
+<span class="nc" id="L286">					winners.add(u);</span>
+<span class="nc" id="L287">					winnersMoney += b.getPlacedBet();</span>
+<span class="nc" id="L288">					break;</span>
+				}
+<span class="nc bnc" id="L290" title="All 4 branches missed.">				else if (b.getQuestion().toString().equals(q.toString()) &amp;&amp; !b.getAnswer().equals(q.getResult()))</span>
+				{
+<span class="nc" id="L292">					dbManager.open(false);</span>
+<span class="nc" id="L293">					dbManager.addPastBet(u, b, 0);</span>
+<span class="nc" id="L294">					dbManager.close();</span>
+<span class="nc" id="L295">					break;</span>
+				}
+<span class="nc" id="L297">			}</span>
+<span class="nc" id="L298">		}</span>
+<span class="nc" id="L299">		double benefits = (q.getPool() - winnersMoney) / 2;</span>
+<span class="nc bnc" id="L300" title="All 2 branches missed.">		if (!winners.isEmpty())</span>
+		{
+<span class="nc bnc" id="L302" title="All 2 branches missed.">			for(User u : winners)</span>
+			{
+<span class="nc" id="L304">				double benefitUser = 0;</span>
+<span class="nc" id="L305">				List&lt;Bet&gt; bets = u.getBets();</span>
+				
+<span class="nc bnc" id="L307" title="All 2 branches missed.">				for(Bet b : bets)</span>
+				{
+<span class="nc bnc" id="L309" title="All 2 branches missed.">					if(b.getQuestion().toString().equals(q.toString()))</span>
+					{
+<span class="nc" id="L311">						benefitUser = ((b.getPlacedBet() / winnersMoney) * benefits) + b.getPlacedBet();</span>
+<span class="nc" id="L312">						dbManager.open(false);</span>
+<span class="nc" id="L313">						dbManager.addPastBet(u, b, benefitUser);</span>
+<span class="nc" id="L314">						dbManager.close();</span>
+					}
+<span class="nc" id="L316">				}</span>
+<span class="nc" id="L317">				dbManager.open(false);</span>
+<span class="nc" id="L318">				dbManager.addMoneyToUser(u.getId(), benefitUser);</span>
+<span class="nc" id="L319">				dbManager.close();</span>
+<span class="nc" id="L320">			}</span>
+		}
+<span class="nc" id="L322">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

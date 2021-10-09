@@ -1,0 +1,71 @@
+
+)dataAccess.DataAccess#addMoneyToUser(ID)DV
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaò ò("3*½
+2V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaõ õ("`
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaõ õ(
+""*ì
+3V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaó ó(øõ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaó ó("
+%0domain.User"CdataAccess.DataAccess#getUserByID(Ljava/lang/Integer;)Ldomain/User;*
+dataAccess.DataAccess*
+""2 getUserByID(Ljava/lang/Integer;)‹
+ˆ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaó ó(#
+userdomain.User"__id*
+
+%0domain.User*
+2
+1*¯
+1V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaö ö(«
+¨
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaö ö(%
+%1javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+db˜•
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaö ö()
+%2#javax.persistence.EntityTransaction"Ujavax.persistence.EntityManager#getTransaction()Ljavax/persistence/EntityTransaction;*'
+%
+%1javax.persistence.EntityManager2getTransaction()ËÈ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaö ö(
+
+%3void",javax.persistence.EntityTransaction#begin()V*+
+)
+%2#javax.persistence.EntityTransaction2begin()¿¼
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.java÷ ÷(,
+%4double" domain.User#increaseCurrency(D)D*
+
+userdomain.User*
+""2increaseCurrency(D)«
+¨
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaø ø(%
+%5javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+db˜•
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaø ø()
+%6#javax.persistence.EntityTransaction"Ujavax.persistence.EntityManager#getTransaction()Ljavax/persistence/EntityTransaction;*'
+%
+%5javax.persistence.EntityManager2getTransaction()ÍÊ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaø ø(
+
+%7void"-javax.persistence.EntityTransaction#commit()V*+
+)
+%6#javax.persistence.EntityTransaction2commit()"`
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaù ù(
+"":
+"":
+""B
+dataAccess.DataAccess

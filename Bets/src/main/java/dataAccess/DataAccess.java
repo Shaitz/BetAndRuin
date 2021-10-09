@@ -217,7 +217,7 @@ public class DataAccess  {
 	
 	public User changeUsername(String username, String password, String newUsername)
 	{
-		User user = this.getUserWithUsernamePassword(username, password);
+		var user = this.getUserWithUsernamePassword(username, password);
 		
 		db.getTransaction().begin();
 		user.setUsername(newUsername);
@@ -228,7 +228,7 @@ public class DataAccess  {
 	
 	public User changePasswordOfUser(String username, String password, String nPassword) {
 		try {
-			User toChange = getUserWithUsernamePassword(username, password);
+			var toChange = getUserWithUsernamePassword(username, password);
 			db.getTransaction().begin();
 			toChange.setPassword(nPassword);
 			db.getTransaction().commit();
@@ -240,9 +240,11 @@ public class DataAccess  {
 	}
 	
 	public double addMoneyToUser(int id, double amount) {
-		User user = this.getUserByID(id);
+		var user = this.getUserByID(id);
 		if(user == null)
+		{
 			return -1;
+		}
 		db.getTransaction().begin();
 		double ret = user.increaseCurrency(amount);
 		db.getTransaction().commit();
@@ -251,7 +253,7 @@ public class DataAccess  {
 	
 	public boolean placeBet(User user, Question question, double amount, String answer) {
 		User userToChange = this.getUserWithUsernamePassword(user.getUsername(), user.getPassword());
-		Question q = this.getQuestion(question);
+		var q = this.getQuestion(question);
 		db.getTransaction().begin();
 		boolean ret = userToChange.placeBet(question, amount, answer);
 		q.addPool(amount);
@@ -260,7 +262,7 @@ public class DataAccess  {
 	}
 	
 	public boolean removeBet(User user, Bet bet) {
-		User userToChange = this.getUserWithUsernamePassword(user.getUsername(), user.getPassword());
+		var userToChange = this.getUserWithUsernamePassword(user.getUsername(), user.getPassword());
 		List<Bet> betlist = userToChange.getBets();
 		Bet userBet = null;
 		

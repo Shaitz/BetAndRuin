@@ -1,5 +1,4 @@
-createQuestionTest\CreateQuestionBLMockTest.class
-createQuestionTest\CreateQuestionBLTest.class
+addPastBetTest\AddPastBetDATest.class
 utility\TestUtilityFacadeImplementation.class
-createQuestionTest\CreateQuestionDATest.class
+addPastBetTest\GiveRewardsBLMockTest.class
 utility\TestUtilityDataAccess.class

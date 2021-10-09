@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BetQuestionDynamicGUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BetAndRuinCI</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">BetQuestionDynamicGUI.java</span></div><h1>BetQuestionDynamicGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Iterator;
+import java.util.ResourceBundle;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import businessLogic.BlFacade;
+import domain.Event;
+import domain.Question;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+
+public class BetQuestionDynamicGUI extends JFrame
+{
+	private static final long serialVersionUID = 1L;
+	private JFrame frame;
+<span class="nc" id="L28">	private JButton closeBtn = new JButton(&quot;Close&quot;);</span>
+<span class="nc" id="L29">	private JButton btnPlaceBet = new JButton(&quot;Place Bet&quot;);</span>
+<span class="nc" id="L30">	private JLabel lbBetQuestion = new JLabel(&quot;Question:&quot;);</span>
+<span class="nc" id="L31">	private JTextArea textBetQuestion = new JTextArea();</span>
+<span class="nc" id="L32">	private JLabel lbAmountBet = new JLabel(&quot;Amount Bet:&quot;);	</span>
+<span class="nc" id="L33">	private JLabel lbEventDate = new JLabel(&quot;Event Date:&quot;);</span>
+<span class="nc" id="L34">	private JLabel lbAnswer = new JLabel(&quot;Answer:&quot;);</span>
+<span class="nc" id="L35">	private JLabel lbAmountLeft = new JLabel(&quot;Amount Left:&quot;);</span>
+<span class="nc" id="L36">	private JTextArea textAmountLeft = new JTextArea();</span>
+<span class="nc" id="L37">	private JTextArea textDate = new JTextArea();</span>
+<span class="nc" id="L38">	private JTextArea textPrint = new JTextArea();</span>
+<span class="nc" id="L39">	private JButton btnCheck = new JButton(&quot;Check&quot;);</span>
+	private BlFacade businessLogic;
+	private Event ev;
+	private Question q;
+	private JTextField textAmount;
+<span class="nc" id="L44">	private final JComboBox&lt;String&gt; comboBox = new JComboBox&lt;String&gt;();</span>
+
+	public void setBusinessLogic(BlFacade bl) {
+<span class="nc" id="L47">		businessLogic = bl;</span>
+<span class="nc" id="L48">	}</span>
+	
+	/**
+	 * Create the application.
+	 */
+	public BetQuestionDynamicGUI(BlFacade bl, Event ev, Question q) 
+<span class="nc" id="L54">	{</span>
+<span class="nc" id="L55">		businessLogic = bl;</span>
+<span class="nc" id="L56">		this.ev = ev;</span>
+<span class="nc" id="L57">		this.q = q;</span>
+		try 
+		{
+<span class="nc" id="L60">			jbInit();</span>
+		}
+<span class="nc" id="L62">		catch(Exception e) {</span>
+<span class="nc" id="L63">			e.printStackTrace();</span>
+<span class="nc" id="L64">		}</span>
+<span class="nc" id="L65">	}</span>
+
+	
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void jbInit() throws Exception
+	{
+<span class="nc" id="L73">		frame = new JFrame();</span>
+<span class="nc" id="L74">		this.setSize(new Dimension(550, 380));</span>
+<span class="nc" id="L75">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;&quot;));</span>
+<span class="nc" id="L76">		frame.setBounds(100, 100, 450, 300);</span>
+<span class="nc" id="L77">		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+		
+<span class="nc" id="L79">		closeBtn.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L82">				jButton_actionPerformed(e);</span>
+<span class="nc" id="L83">			}</span>
+		});		
+<span class="nc" id="L85">		textBetQuestion.setEditable(false);</span>
+<span class="nc" id="L86">		textDate.setEditable(false);</span>
+<span class="nc" id="L87">		textAmountLeft.setEditable(false);</span>
+<span class="nc" id="L88">		textAmount = new JTextField();</span>
+<span class="nc" id="L89">		textAmount.setColumns(10);</span>
+<span class="nc" id="L90">		textPrint.setEditable(false);</span>
+<span class="nc" id="L91">		textBetQuestion.setText(this.q.getQuestion());</span>
+<span class="nc" id="L92">		textDate.setText(ev.getEventDate().toString());</span>
+		
+<span class="nc" id="L94">		Iterator&lt;String&gt; it = businessLogic.getAnswersOfQuestion(q).iterator();</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">		while(it.hasNext())</span>
+<span class="nc" id="L96">			comboBox.addItem(it.next());</span>
+		
+		
+<span class="nc" id="L99">		this.btnPlaceBet.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+<span class="nc bnc" id="L103" title="All 2 branches missed.">				if (!textAmount.getText().equals(&quot;&quot;))</span>
+				{
+//					Iterator&lt;Question&gt; it = ev.getQuestions().iterator();
+//					boolean found = false;
+//					Question actual = null;
+//					System.out.println(ev);
+//					while (it.hasNext() &amp;&amp; !found) {
+//						actual = (Question) it.next();
+//						if(actual.getQuestionNumber().equals(q.getQuestionNumber()))
+//							found = true;
+//					}
+//					if(found &amp;&amp; businessLogic.placeBet(actual, Double.parseDouble(textAmount.getText()), textAnswer.getText()))
+<span class="nc bnc" id="L115" title="All 2 branches missed.">					if(businessLogic.placeBet(q, Double.parseDouble(textAmount.getText()), (String) comboBox.getSelectedItem()))</span>
+					{
+<span class="nc" id="L117">						textPrint.setText(&quot;Bet Successful!&quot;);</span>
+					}
+					else
+<span class="nc" id="L120">						textPrint.setText(&quot;Error. Try Again&quot;);			</span>
+				}
+				else
+<span class="nc" id="L123">					textPrint.setText(&quot;Error. Try Again&quot;);</span>
+<span class="nc" id="L124">				businessLogic.refreshUser();</span>
+<span class="nc" id="L125">			}</span>
+		});
+		
+<span class="nc" id="L128">		this.btnCheck.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+<span class="nc" id="L132">				checkAmount();</span>
+<span class="nc" id="L133">			}</span>
+		});
+		
+<span class="nc" id="L136">		GroupLayout groupLayout = new GroupLayout(getContentPane());</span>
+<span class="nc" id="L137">		groupLayout.setHorizontalGroup(</span>
+<span class="nc" id="L138">			groupLayout.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L139">				.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L140">					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)</span>
+<span class="nc" id="L141">						.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L142">							.addGap(20)</span>
+<span class="nc" id="L143">							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L144">								.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L145">									.addComponent(lbBetQuestion)</span>
+<span class="nc" id="L146">									.addGap(18)</span>
+<span class="nc" id="L147">									.addComponent(textBetQuestion, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L148">								.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L149">									.addComponent(lbEventDate)</span>
+<span class="nc" id="L150">									.addPreferredGap(ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L151">									.addComponent(textDate, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L152">								.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L153">									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)</span>
+<span class="nc" id="L154">										.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L155">											.addComponent(lbAnswer)</span>
+<span class="nc" id="L156">											.addPreferredGap(ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L157">											.addComponent(comboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</span>
+<span class="nc" id="L158">										.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L159">											.addComponent(lbAmountBet)</span>
+<span class="nc" id="L160">											.addPreferredGap(ComponentPlacement.RELATED)</span>
+<span class="nc" id="L161">											.addComponent(textAmount, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L162">											.addGap(11)</span>
+<span class="nc" id="L163">											.addComponent(lbAmountLeft)))</span>
+<span class="nc" id="L164">									.addPreferredGap(ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L165">									.addComponent(textAmountLeft, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L166">									.addPreferredGap(ComponentPlacement.RELATED, 24, Short.MAX_VALUE)</span>
+<span class="nc" id="L167">									.addComponent(btnCheck, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L168">							.addPreferredGap(ComponentPlacement.RELATED))</span>
+<span class="nc" id="L169">						.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L170">							.addContainerGap(178, Short.MAX_VALUE)</span>
+<span class="nc" id="L171">							.addComponent(btnPlaceBet)</span>
+<span class="nc" id="L172">							.addGap(26)</span>
+<span class="nc" id="L173">							.addComponent(textPrint, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L174">					.addContainerGap(79, Short.MAX_VALUE))</span>
+<span class="nc" id="L175">				.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L176">					.addGap(208)</span>
+<span class="nc" id="L177">					.addComponent(closeBtn, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L178">					.addContainerGap(255, Short.MAX_VALUE))</span>
+		);
+<span class="nc" id="L180">		groupLayout.setVerticalGroup(</span>
+<span class="nc" id="L181">			groupLayout.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L182">				.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L183">					.addGap(23)</span>
+<span class="nc" id="L184">					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L185">						.addComponent(lbBetQuestion)</span>
+<span class="nc" id="L186">						.addComponent(textBetQuestion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L187">					.addGap(18)</span>
+<span class="nc" id="L188">					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L189">						.addComponent(lbEventDate)</span>
+<span class="nc" id="L190">						.addComponent(textDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L191">					.addGap(42)</span>
+<span class="nc" id="L192">					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L193">						.addComponent(lbAmountBet)</span>
+<span class="nc" id="L194">						.addComponent(lbAmountLeft)</span>
+<span class="nc" id="L195">						.addComponent(textAmountLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L196">						.addComponent(textAmount, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L197">						.addComponent(btnCheck))</span>
+<span class="nc" id="L198">					.addGap(18)</span>
+<span class="nc" id="L199">					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L200">						.addComponent(lbAnswer)</span>
+<span class="nc" id="L201">						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L202">					.addGap(26)</span>
+<span class="nc" id="L203">					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L204">						.addComponent(btnPlaceBet, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L205">						.addComponent(textPrint, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L206">					.addPreferredGap(ComponentPlacement.RELATED, 43, Short.MAX_VALUE)</span>
+<span class="nc" id="L207">					.addComponent(closeBtn)</span>
+<span class="nc" id="L208">					.addGap(31))</span>
+		);
+<span class="nc" id="L210">		getContentPane().setLayout(groupLayout);</span>
+<span class="nc" id="L211">	}</span>
+	
+	private void checkAmount()
+	{
+<span class="nc" id="L215">		Double currentAmount = businessLogic.getUser().getWallet().getCurrency();</span>
+<span class="nc" id="L216">		Double amountBet = Double.parseDouble(textAmount.getText());</span>
+<span class="nc" id="L217">		Double answer = currentAmount - amountBet;</span>
+<span class="nc" id="L218">		textAmountLeft.setText(Double.toString(answer)); // wallet - amount bet</span>
+<span class="nc" id="L219">	}</span>
+	
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void jButton_actionPerformed(ActionEvent e) {
+<span class="nc" id="L225">		this.setVisible(false);</span>
+<span class="nc" id="L226">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

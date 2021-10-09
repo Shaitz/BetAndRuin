@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LoginGUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BetAndRuinCI</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">LoginGUI.java</span></div><h1>LoginGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import javax.swing.JFrame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
+
+import javax.swing.LayoutStyle.ComponentPlacement;
+
+import businessLogic.BlFacade;
+
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.JButton;
+import javax.swing.JTextArea;
+import java.awt.Color;
+
+public class LoginGUI extends JFrame{
+
+	private static final long serialVersionUID = 1L;
+	private JTextField textUsernameReg;
+	private JPasswordField textPasswordReg;
+<span class="nc" id="L30">	JButton buttonLogin = new JButton(&quot;LOGIN&quot;);</span>
+<span class="nc" id="L31">	JButton buttonRegister = new JButton(&quot;REGISTER&quot;);</span>
+<span class="nc" id="L32">	private JButton closeBtn = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).</span>
+<span class="nc" id="L33">			getString(&quot;Close&quot;));</span>
+	private BlFacade businessLogic;
+	protected MainGUI previous;
+
+	public void setBusinessLogic(BlFacade bl) {
+<span class="nc" id="L38">		businessLogic = bl;</span>
+<span class="nc" id="L39">	}</span>
+	
+	public LoginGUI(MainGUI main, BlFacade bl)
+<span class="nc" id="L42">	{</span>
+<span class="nc" id="L43">		businessLogic = bl;</span>
+<span class="nc" id="L44">		previous = main;</span>
+		try {
+<span class="nc" id="L46">			jbInit();</span>
+		}
+<span class="nc" id="L48">		catch(Exception e) {</span>
+<span class="nc" id="L49">			e.printStackTrace();</span>
+<span class="nc" id="L50">		}</span>
+<span class="nc" id="L51">	}</span>
+	
+	private void jbInit() throws Exception
+	{	
+<span class="nc" id="L55">		this.getContentPane().setLayout(null);</span>
+<span class="nc" id="L56">		this.setSize(new Dimension(400, 300));</span>
+<span class="nc" id="L57">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;LoginRegister&quot;));</span>
+		
+<span class="nc" id="L59">		closeBtn.setBounds(new Rectangle(130, 220, 130, 30));</span>
+
+<span class="nc" id="L61">		closeBtn.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L64">				goBack();</span>
+<span class="nc" id="L65">			}</span>
+		});
+		
+<span class="nc" id="L68">		this.getContentPane().add(closeBtn, null);</span>
+		
+<span class="nc" id="L70">		JLabel labelRegister = new JLabel(&quot;Register/Login&quot;);</span>
+<span class="nc" id="L71">		labelRegister.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 16));</span>
+		
+<span class="nc" id="L73">		JLabel labelUsernameReg = new JLabel(&quot;Username:&quot;);</span>
+		
+<span class="nc" id="L75">		JLabel labelPasswordReg = new JLabel(&quot;Password:&quot;);</span>
+		
+<span class="nc" id="L77">		textUsernameReg = new JTextField();</span>
+<span class="nc" id="L78">		textUsernameReg.setColumns(10);</span>
+		
+<span class="nc" id="L80">		textPasswordReg = new JPasswordField();</span>
+		
+		
+<span class="nc" id="L83">		JTextArea validText = new JTextArea();</span>
+<span class="nc" id="L84">		validText.setBackground(new Color(240, 240, 240));</span>
+<span class="nc" id="L85">		validText.setEditable(false);</span>
+		
+<span class="nc" id="L87">		this.buttonLogin.addActionListener(new ActionListener()</span>
+<span class="nc" id="L88">		{</span>
+			public void actionPerformed(ActionEvent e)
+			{
+<span class="nc" id="L91">				String username = textUsernameReg.getText();</span>
+<span class="nc" id="L92">				String password = String.valueOf(textPasswordReg.getPassword());</span>
+				
+<span class="nc bnc" id="L94" title="All 4 branches missed.">				if(username.isEmpty() || password.isEmpty()) </span>
+<span class="nc" id="L95">					validText.setText(&quot;At least one compulsory area was not filled correctly&quot;);</span>
+				else {
+<span class="nc bnc" id="L97" title="All 2 branches missed.">					if (businessLogic.validateLogin(username, password)) {</span>
+<span class="nc" id="L98">						previous.setUser(businessLogic.getRegisteredUser(username, password));</span>
+<span class="nc" id="L99">						goBack();</span>
+					}
+					else
+<span class="nc" id="L102">						validText.setText(&quot;Error. Try again.&quot;);</span>
+				}
+<span class="nc" id="L104">			}</span>
+		});
+		
+<span class="nc" id="L107">		this.buttonRegister.addActionListener(new ActionListener()</span>
+<span class="nc" id="L108">		{</span>
+			public void actionPerformed(ActionEvent e)
+			{
+<span class="nc" id="L111">				RegisterGUI rg = new RegisterGUI(getThis(), businessLogic);</span>
+<span class="nc" id="L112">				rg.setVisible(true);</span>
+<span class="nc" id="L113">				close();</span>
+<span class="nc" id="L114">			}</span>
+		});
+		
+<span class="nc" id="L117">		GroupLayout groupLayout = new GroupLayout(this.getContentPane());</span>
+<span class="nc" id="L118">		groupLayout.setHorizontalGroup(</span>
+<span class="nc" id="L119">			groupLayout.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L120">				.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L121">					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L122">						.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L123">							.addGap(20)</span>
+<span class="nc" id="L124">							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)</span>
+<span class="nc" id="L125">								.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L126">									.addPreferredGap(ComponentPlacement.RELATED)</span>
+<span class="nc" id="L127">									.addComponent(labelPasswordReg)</span>
+<span class="nc" id="L128">									.addPreferredGap(ComponentPlacement.RELATED)</span>
+<span class="nc" id="L129">									.addComponent(textPasswordReg))</span>
+<span class="nc" id="L130">								.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L131">									.addComponent(labelUsernameReg)</span>
+<span class="nc" id="L132">									.addPreferredGap(ComponentPlacement.RELATED)</span>
+<span class="nc" id="L133">									.addComponent(textUsernameReg, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE))))</span>
+<span class="nc" id="L134">						.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L135">							.addGap(96)</span>
+<span class="nc" id="L136">							.addComponent(buttonRegister, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L137">							.addGap(18)</span>
+<span class="nc" id="L138">							.addComponent(buttonLogin, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L139">						.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L140">							.addContainerGap()</span>
+<span class="nc" id="L141">							.addComponent(labelRegister, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L142">						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L143">							.addContainerGap(20, Short.MAX_VALUE)</span>
+<span class="nc" id="L144">							.addComponent(validText, GroupLayout.PREFERRED_SIZE, 348, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L145">							.addPreferredGap(ComponentPlacement.RELATED)))</span>
+<span class="nc" id="L146">					.addContainerGap(63, Short.MAX_VALUE))</span>
+		);
+<span class="nc" id="L148">		groupLayout.setVerticalGroup(</span>
+<span class="nc" id="L149">			groupLayout.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L150">				.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L151">					.addContainerGap()</span>
+<span class="nc" id="L152">					.addComponent(labelRegister)</span>
+<span class="nc" id="L153">					.addPreferredGap(ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L154">					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L155">						.addComponent(labelUsernameReg)</span>
+<span class="nc" id="L156">						.addComponent(textUsernameReg, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L157">					.addGap(9)</span>
+<span class="nc" id="L158">					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L159">						.addComponent(textPasswordReg, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L160">						.addComponent(labelPasswordReg))</span>
+<span class="nc" id="L161">					.addGap(18)</span>
+<span class="nc" id="L162">					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L163">						.addComponent(buttonLogin, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L164">						.addComponent(buttonRegister, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L165">					.addGap(50)</span>
+<span class="nc" id="L166">					.addComponent(validText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L167">					.addContainerGap(49, Short.MAX_VALUE))</span>
+		);
+<span class="nc" id="L169">		this.getContentPane().setLayout(groupLayout);</span>
+<span class="nc" id="L170">	}</span>
+
+	private void goBack() {
+<span class="nc" id="L173">		this.setVisible(false);</span>
+<span class="nc" id="L174">		previous.setVisible(true);</span>
+<span class="nc" id="L175">	}</span>
+	
+	private void close() {
+<span class="nc" id="L178">		this.setVisible(false);</span>
+<span class="nc" id="L179">	}</span>
+	
+	private LoginGUI getThis(){
+<span class="nc" id="L182">		return this;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

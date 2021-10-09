@@ -1,0 +1,64 @@
+
+EdataAccess.DataAccess#addAnswer(Ldomain/Question;Ljava/lang/String;)ZV
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaë ë("1*Š
+1V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaì ì(Œ‰
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaí í($
+%0domain.Question"EdataAccess.DataAccess#getQuestion(Ldomain/Question;)Ldomain/Question;*
+dataAccess.DataAccess*
+
+qdomain.Question2getQuestion(Ldomain/Question;)—
+”
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaí í(%
+questiondomain.Question"__id*
+
+%0domain.Question«
+¨
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaî î(%
+%1javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+db˜•
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaî î()
+%2#javax.persistence.EntityTransaction"Ujavax.persistence.EntityManager#getTransaction()Ljavax/persistence/EntityTransaction;*'
+%
+%1javax.persistence.EntityManager2getTransaction()ËÈ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaî î(
+
+%3void",javax.persistence.EntityTransaction#begin()V*+
+)
+%2#javax.persistence.EntityTransaction2begin()ñî
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaï ï(
+%4boolean".domain.Question#addAnswer(Ljava/lang/String;)Z*
+
+questiondomain.Question*
+
+ajava.lang.String2addAnswer(Ljava/lang/String;)«
+¨
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javað ð(%
+%5javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+db˜•
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javað ð()
+%6#javax.persistence.EntityTransaction"Ujavax.persistence.EntityManager#getTransaction()Ljavax/persistence/EntityTransaction;*'
+%
+%5javax.persistence.EntityManager2getTransaction()ÍÊ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javað ð(
+
+%7void"-javax.persistence.EntityTransaction#commit()V*+
+)
+%6#javax.persistence.EntityTransaction2commit()"`
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javañ ñ(
+"":
+qdomain.Question:
+ajava.lang.StringB
+dataAccess.DataAccess

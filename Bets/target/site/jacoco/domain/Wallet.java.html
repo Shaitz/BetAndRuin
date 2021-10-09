@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Wallet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BetAndRuinCI</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">Wallet.java</span></div><h1>Wallet.java</h1><pre class="source lang-java linenums">package domain;
+
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+@XmlAccessorType(XmlAccessType.FIELD)
+@Embeddable
+public class Wallet {
+	
+	private double currency;
+	private String bankAccount;
+	
+<span class="nc" id="L13">	public Wallet() {</span>
+<span class="nc" id="L14">		currency = 0;</span>
+<span class="nc" id="L15">	}</span>
+	
+<span class="nc" id="L17">	public Wallet(double initialAmount) {</span>
+<span class="nc" id="L18">		currency = initialAmount;</span>
+<span class="nc" id="L19">	}</span>
+	
+	public double getCurrency() {
+<span class="nc" id="L22">		return currency;</span>
+	}
+	
+	public String getAccount() {
+<span class="nc" id="L26">		return bankAccount;</span>
+	}
+	
+	public void setAccount(String newAccount) {
+<span class="nc" id="L30">		bankAccount = newAccount;</span>
+<span class="nc" id="L31">	}</span>
+	
+	public void addMoney(double amount) {
+<span class="nc" id="L34">		currency += amount;</span>
+<span class="nc" id="L35">	}</span>
+	
+	public boolean removeMoney(double amount) {
+<span class="nc bnc" id="L38" title="All 2 branches missed.">		if(currency - amount &lt; 0)</span>
+<span class="nc" id="L39">			return false;</span>
+		else 
+<span class="nc" id="L41">			currency -= amount;</span>
+<span class="nc" id="L42">		return true;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

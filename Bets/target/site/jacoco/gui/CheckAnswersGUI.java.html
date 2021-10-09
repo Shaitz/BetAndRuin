@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CheckAnswersGUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BetAndRuinCI</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">CheckAnswersGUI.java</span></div><h1>CheckAnswersGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import businessLogic.BlFacade;
+import domain.Question;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.util.Iterator;
+import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
+import javax.swing.JComboBox;
+
+@SuppressWarnings(&quot;serial&quot;)
+public class CheckAnswersGUI extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField answerTextField;
+	private Question question;
+	private BlFacade businessLogic;
+	private EventInfoGUI previous;
+	private JTextField warningTextField;
+	private JComboBox&lt;String&gt; answerBox;
+
+	/**
+	 * Create the frame.
+	 */
+<span class="nc" id="L37">	public CheckAnswersGUI(BlFacade bl, Question q, EventInfoGUI eig) {</span>
+<span class="nc" id="L38">		question = q;</span>
+<span class="nc" id="L39">		previous = eig;</span>
+<span class="nc" id="L40">		businessLogic = bl;</span>
+		
+<span class="nc" id="L42">		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L43">		setBounds(100, 100, 565, 180);</span>
+<span class="nc" id="L44">		contentPane = new JPanel();</span>
+<span class="nc" id="L45">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L46">		setContentPane(contentPane);</span>
+		
+<span class="nc" id="L48">		JLabel newAnswerLabel = new JLabel(&quot;New answer:&quot;);</span>
+<span class="nc" id="L49">		newAnswerLabel.setHorizontalAlignment(SwingConstants.TRAILING);</span>
+		
+<span class="nc" id="L51">		answerTextField = new JTextField();</span>
+<span class="nc" id="L52">		answerTextField.setColumns(10);</span>
+		
+<span class="nc" id="L54">		JButton addAnswerBtn = new JButton(&quot;Add answer&quot;);</span>
+		
+<span class="nc" id="L56">		JButton goBackBtn = new JButton(&quot;Go back&quot;);</span>
+		
+<span class="nc" id="L58">		warningTextField = new JTextField();</span>
+<span class="nc" id="L59">		warningTextField.setEditable(false);</span>
+<span class="nc" id="L60">		warningTextField.setBackground(SystemColor.menu);</span>
+<span class="nc" id="L61">		warningTextField.setColumns(10);</span>
+		
+<span class="nc" id="L63">		JButton removeBtn = new JButton(&quot;Remove answer&quot;);</span>
+		
+<span class="nc" id="L65">		JLabel lblNewLabel = new JLabel(&quot;Existing answers:&quot;);</span>
+		
+<span class="nc" id="L67">		answerBox = new JComboBox&lt;String&gt;();</span>
+<span class="nc" id="L68">		Iterable&lt;String&gt; answerList = bl.getAnswersOfQuestion(q);</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">		if(answerList != null) {</span>
+<span class="nc" id="L70">			Iterator&lt;String&gt; it = answerList.iterator();</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">			while (it.hasNext())</span>
+<span class="nc" id="L72">				answerBox.addItem(it.next());</span>
+		}
+		
+<span class="nc" id="L75">		GroupLayout gl_contentPane = new GroupLayout(contentPane);</span>
+<span class="nc" id="L76">		gl_contentPane.setHorizontalGroup(</span>
+<span class="nc" id="L77">			gl_contentPane.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L78">				.addGroup(gl_contentPane.createSequentialGroup()</span>
+<span class="nc" id="L79">					.addContainerGap()</span>
+<span class="nc" id="L80">					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L81">						.addComponent(warningTextField, GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)</span>
+<span class="nc" id="L82">						.addGroup(gl_contentPane.createSequentialGroup()</span>
+<span class="nc" id="L83">							.addComponent(newAnswerLabel)</span>
+<span class="nc" id="L84">							.addGap(18)</span>
+<span class="nc" id="L85">							.addComponent(answerTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L86">							.addGap(18)</span>
+<span class="nc" id="L87">							.addComponent(lblNewLabel)</span>
+<span class="nc" id="L88">							.addGap(18)</span>
+<span class="nc" id="L89">							.addComponent(answerBox, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L90">						.addGroup(gl_contentPane.createSequentialGroup()</span>
+<span class="nc" id="L91">							.addComponent(addAnswerBtn)</span>
+<span class="nc" id="L92">							.addGap(18)</span>
+<span class="nc" id="L93">							.addComponent(removeBtn)</span>
+<span class="nc" id="L94">							.addPreferredGap(ComponentPlacement.RELATED, 170, Short.MAX_VALUE)</span>
+<span class="nc" id="L95">							.addComponent(goBackBtn, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L96">					.addContainerGap())</span>
+		);
+<span class="nc" id="L98">		gl_contentPane.setVerticalGroup(</span>
+<span class="nc" id="L99">			gl_contentPane.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L100">				.addGroup(gl_contentPane.createSequentialGroup()</span>
+<span class="nc" id="L101">					.addContainerGap()</span>
+<span class="nc" id="L102">					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L103">						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L104">							.addComponent(answerTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L105">							.addComponent(lblNewLabel)</span>
+<span class="nc" id="L106">							.addComponent(answerBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L107">						.addComponent(newAnswerLabel))</span>
+<span class="nc" id="L108">					.addGap(26)</span>
+<span class="nc" id="L109">					.addComponent(warningTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L110">					.addPreferredGap(ComponentPlacement.RELATED, 18, Short.MAX_VALUE)</span>
+<span class="nc" id="L111">					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L112">						.addComponent(addAnswerBtn)</span>
+<span class="nc" id="L113">						.addComponent(removeBtn)</span>
+<span class="nc" id="L114">						.addComponent(goBackBtn))</span>
+<span class="nc" id="L115">					.addContainerGap())</span>
+		);
+<span class="nc" id="L117">		contentPane.setLayout(gl_contentPane);</span>
+		
+<span class="nc" id="L119">		addAnswerBtn.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L121" title="All 2 branches missed.">				if(!answerTextField.getText().equals(&quot;&quot;)) {</span>
+<span class="nc" id="L122">					String answer = answerTextField.getText();</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">					if(businessLogic.addAnswerToQuestion(question, answer)) {</span>
+<span class="nc" id="L124">						answerBox.addItem(answer);</span>
+<span class="nc" id="L125">						warningTextField.setText(&quot;Answer added successfully&quot;);</span>
+					}
+					else
+<span class="nc" id="L128">						warningTextField.setText(&quot;This answer already exists&quot;);</span>
+<span class="nc" id="L129">				}</span>
+				else
+<span class="nc" id="L131">					warningTextField.setText(&quot;Please insert something in the text area&quot;);</span>
+<span class="nc" id="L132">			}</span>
+		});
+		
+<span class="nc" id="L135">		removeBtn.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+				try {
+<span class="nc" id="L138">					String answer = (String) answerBox.getSelectedItem();</span>
+<span class="nc" id="L139">					businessLogic.removeAnswerFromQuestion(q, answer);</span>
+<span class="nc" id="L140">					answerBox.removeItem(answer);</span>
+				}
+<span class="nc" id="L142">				catch(NullPointerException j){</span>
+<span class="nc" id="L143">					warningTextField.setText(&quot;You haven't selected any answer to delete&quot;);</span>
+<span class="nc" id="L144">				}</span>
+<span class="nc" id="L145">			}</span>
+		});
+		
+<span class="nc" id="L148">		goBackBtn.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L150">				close();</span>
+<span class="nc" id="L151">			}</span>
+		});
+<span class="nc" id="L153">	}</span>
+	
+	public void close() {
+<span class="nc" id="L156">		this.setVisible(false);</span>
+<span class="nc" id="L157">		previous.setVisible(true);</span>
+<span class="nc" id="L158">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

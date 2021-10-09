@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BetQuestionFixedGUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BetAndRuinCI</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">BetQuestionFixedGUI.java</span></div><h1>BetQuestionFixedGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import businessLogic.BlFacade;
+import domain.Event;
+import domain.Question;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTextField;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
+
+public class BetQuestionFixedGUI extends JFrame
+{
+	private static final long serialVersionUID = 1L;
+	private JFrame frame;
+<span class="nc" id="L28">	private JButton closeBtn = new JButton(&quot;Close&quot;);</span>
+<span class="nc" id="L29">	private JButton btnPlaceBet = new JButton(&quot;Place Bet&quot;);</span>
+<span class="nc" id="L30">	private JLabel lbBetQuestion = new JLabel(&quot;Question:&quot;);</span>
+<span class="nc" id="L31">	private JTextArea textBetQuestion = new JTextArea();</span>
+<span class="nc" id="L32">	private JLabel lbAmountBet = new JLabel(&quot;Amount Bet:&quot;);	</span>
+<span class="nc" id="L33">	private JLabel lbEventDate = new JLabel(&quot;Event Date:&quot;);</span>
+<span class="nc" id="L34">	private JLabel lbAnswer = new JLabel(&quot;Answer:&quot;);</span>
+<span class="nc" id="L35">	private JLabel lbAmountLeft = new JLabel(&quot;Amount Left:&quot;);</span>
+<span class="nc" id="L36">	private JTextArea textAmountLeft = new JTextArea();</span>
+<span class="nc" id="L37">	private JTextArea textDate = new JTextArea();</span>
+<span class="nc" id="L38">	private JTextArea textPrint = new JTextArea();</span>
+<span class="nc" id="L39">	private JButton btnCheck = new JButton(&quot;Check&quot;);</span>
+	private BlFacade businessLogic;
+	private Event ev;
+	private Question q;
+	private JTextField textAmount;
+<span class="nc" id="L44">	private final JRadioButton rdbtn1 = new JRadioButton(&quot;1&quot;);</span>
+<span class="nc" id="L45">	private final JRadioButton rdbtnX = new JRadioButton(&quot;X&quot;);</span>
+<span class="nc" id="L46">	private final JRadioButton rdbtn2 = new JRadioButton(&quot;2&quot;);</span>
+<span class="nc" id="L47">	private final ButtonGroup buttonGroup = new ButtonGroup();</span>
+
+	public void setBusinessLogic(BlFacade bl) {
+<span class="nc" id="L50">		businessLogic = bl;</span>
+<span class="nc" id="L51">	}</span>
+	
+	/**
+	 * Create the application.
+	 */
+	public BetQuestionFixedGUI(BlFacade bl, Event ev, Question q) 
+<span class="nc" id="L57">	{</span>
+<span class="nc" id="L58">		buttonGroup.add(rdbtn1);</span>
+<span class="nc" id="L59">		buttonGroup.add(rdbtnX);</span>
+<span class="nc" id="L60">		buttonGroup.add(rdbtn2);</span>
+<span class="nc" id="L61">		businessLogic = bl;</span>
+<span class="nc" id="L62">		this.ev = ev;</span>
+<span class="nc" id="L63">		this.q = q;</span>
+		try 
+		{
+<span class="nc" id="L66">			jbInit();</span>
+		}
+<span class="nc" id="L68">		catch(Exception e) {</span>
+<span class="nc" id="L69">			e.printStackTrace();</span>
+<span class="nc" id="L70">		}</span>
+<span class="nc" id="L71">	}</span>
+
+	
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void jbInit() throws Exception
+	{
+<span class="nc" id="L79">		frame = new JFrame();</span>
+<span class="nc" id="L80">		this.setSize(new Dimension(550, 380));</span>
+<span class="nc" id="L81">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;&quot;));</span>
+<span class="nc" id="L82">		frame.setBounds(100, 100, 450, 300);</span>
+<span class="nc" id="L83">		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+		
+<span class="nc" id="L85">		closeBtn.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L88">				jButton_actionPerformed(e);</span>
+<span class="nc" id="L89">			}</span>
+		});		
+<span class="nc" id="L91">		textBetQuestion.setEditable(false);</span>
+<span class="nc" id="L92">		textDate.setEditable(false);</span>
+<span class="nc" id="L93">		textAmountLeft.setEditable(false);</span>
+<span class="nc" id="L94">		textAmount = new JTextField();</span>
+<span class="nc" id="L95">		textAmount.setColumns(10);</span>
+<span class="nc" id="L96">		textPrint.setEditable(false);</span>
+<span class="nc" id="L97">		textBetQuestion.setText(this.q.getQuestion());</span>
+<span class="nc" id="L98">		textDate.setText(ev.getEventDate().toString());</span>
+<span class="nc" id="L99">		rdbtn1.setActionCommand(&quot;one&quot;);</span>
+<span class="nc" id="L100">		rdbtnX.setActionCommand(&quot;X&quot;);</span>
+<span class="nc" id="L101">		rdbtn2.setActionCommand(&quot;two&quot;);</span>
+		
+<span class="nc" id="L103">		this.btnPlaceBet.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+<span class="nc bnc" id="L107" title="All 2 branches missed.">				if (!textAmount.getText().equals(&quot;&quot;))</span>
+				{
+//					Iterator&lt;Question&gt; it = ev.getQuestions().iterator();
+//					boolean found = false;
+//					Question actual = null;
+//					System.out.println(ev);
+//					while (it.hasNext() &amp;&amp; !found) {
+//						actual = (Question) it.next();
+//						if(actual.getQuestionNumber().equals(q.getQuestionNumber()))
+//							found = true;
+//					}
+//					if(found &amp;&amp; businessLogic.placeBet(actual, Double.parseDouble(textAmount.getText()), textAnswer.getText()))
+<span class="nc" id="L119">					String ans = null;</span>
+					
+<span class="nc bnc" id="L121" title="All 2 branches missed.">					if(buttonGroup.getSelection().getActionCommand().equals(&quot;one&quot;)) {</span>
+<span class="nc" id="L122">						ans = &quot;1&quot;;</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">					}else if(buttonGroup.getSelection().getActionCommand().equals(&quot;X&quot;)) {</span>
+<span class="nc" id="L124">						ans = &quot;X&quot;;</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">					}else if(buttonGroup.getSelection().getActionCommand().equals(&quot;two&quot;)) {</span>
+<span class="nc" id="L126">						ans = &quot;2&quot;;</span>
+					}
+					
+<span class="nc bnc" id="L129" title="All 2 branches missed.">					if(businessLogic.placeBet(q, Double.parseDouble(textAmount.getText()), ans))</span>
+					{
+<span class="nc" id="L131">						textPrint.setText(&quot;Bet Successful!&quot;);</span>
+					}
+					else
+<span class="nc" id="L134">						textPrint.setText(&quot;Error. Try Again&quot;);			</span>
+<span class="nc" id="L135">				}</span>
+				else
+<span class="nc" id="L137">					textPrint.setText(&quot;Error. Try Again&quot;);</span>
+<span class="nc" id="L138">				businessLogic.refreshUser();</span>
+<span class="nc" id="L139">			}</span>
+		});
+		
+<span class="nc" id="L142">		this.btnCheck.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+<span class="nc bnc" id="L146" title="All 2 branches missed.">				if (textAmountLeft.getText() != null)</span>
+<span class="nc" id="L147">					checkAmount();</span>
+<span class="nc" id="L148">			}</span>
+		});
+		
+<span class="nc" id="L151">		GroupLayout groupLayout = new GroupLayout(getContentPane());</span>
+<span class="nc" id="L152">		groupLayout.setHorizontalGroup(</span>
+<span class="nc" id="L153">			groupLayout.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L154">				.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L155">					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)</span>
+<span class="nc" id="L156">						.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L157">							.addGap(20)</span>
+<span class="nc" id="L158">							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L159">								.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L160">									.addComponent(lbAnswer)</span>
+<span class="nc" id="L161">									.addPreferredGap(ComponentPlacement.RELATED)</span>
+<span class="nc" id="L162">									.addComponent(rdbtn1)</span>
+<span class="nc" id="L163">									.addPreferredGap(ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L164">									.addComponent(rdbtnX)</span>
+<span class="nc" id="L165">									.addPreferredGap(ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L166">									.addComponent(rdbtn2))</span>
+<span class="nc" id="L167">								.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L168">									.addComponent(lbBetQuestion)</span>
+<span class="nc" id="L169">									.addGap(18)</span>
+<span class="nc" id="L170">									.addComponent(textBetQuestion, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L171">								.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L172">									.addComponent(lbEventDate)</span>
+<span class="nc" id="L173">									.addPreferredGap(ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L174">									.addComponent(textDate, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L175">								.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L176">									.addComponent(lbAmountBet)</span>
+<span class="nc" id="L177">									.addPreferredGap(ComponentPlacement.RELATED)</span>
+<span class="nc" id="L178">									.addComponent(textAmount, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L179">									.addGap(11)</span>
+<span class="nc" id="L180">									.addComponent(lbAmountLeft)</span>
+<span class="nc" id="L181">									.addPreferredGap(ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L182">									.addComponent(textAmountLeft, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L183">									.addPreferredGap(ComponentPlacement.RELATED, 24, Short.MAX_VALUE)</span>
+<span class="nc" id="L184">									.addComponent(btnCheck, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L185">							.addPreferredGap(ComponentPlacement.RELATED))</span>
+<span class="nc" id="L186">						.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L187">							.addContainerGap(178, Short.MAX_VALUE)</span>
+<span class="nc" id="L188">							.addComponent(btnPlaceBet)</span>
+<span class="nc" id="L189">							.addGap(26)</span>
+<span class="nc" id="L190">							.addComponent(textPrint, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L191">					.addContainerGap(79, Short.MAX_VALUE))</span>
+<span class="nc" id="L192">				.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L193">					.addGap(208)</span>
+<span class="nc" id="L194">					.addComponent(closeBtn, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L195">					.addContainerGap(255, Short.MAX_VALUE))</span>
+		);
+<span class="nc" id="L197">		rdbtn1.setSelected(true);</span>
+<span class="nc" id="L198">		groupLayout.setVerticalGroup(</span>
+<span class="nc" id="L199">			groupLayout.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L200">				.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L201">					.addGap(23)</span>
+<span class="nc" id="L202">					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L203">						.addComponent(lbBetQuestion)</span>
+<span class="nc" id="L204">						.addComponent(textBetQuestion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L205">					.addGap(18)</span>
+<span class="nc" id="L206">					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L207">						.addComponent(lbEventDate)</span>
+<span class="nc" id="L208">						.addComponent(textDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L209">					.addGap(42)</span>
+<span class="nc" id="L210">					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L211">						.addComponent(lbAmountBet)</span>
+<span class="nc" id="L212">						.addComponent(lbAmountLeft)</span>
+<span class="nc" id="L213">						.addComponent(textAmountLeft, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L214">						.addComponent(textAmount, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L215">						.addComponent(btnCheck))</span>
+<span class="nc" id="L216">					.addGap(18)</span>
+<span class="nc" id="L217">					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L218">						.addComponent(lbAnswer)</span>
+<span class="nc" id="L219">						.addComponent(rdbtn1)</span>
+<span class="nc" id="L220">						.addComponent(rdbtnX)</span>
+<span class="nc" id="L221">						.addComponent(rdbtn2))</span>
+<span class="nc" id="L222">					.addGap(26)</span>
+<span class="nc" id="L223">					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L224">						.addComponent(btnPlaceBet, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L225">						.addComponent(textPrint, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L226">					.addPreferredGap(ComponentPlacement.RELATED, 41, Short.MAX_VALUE)</span>
+<span class="nc" id="L227">					.addComponent(closeBtn)</span>
+<span class="nc" id="L228">					.addGap(31))</span>
+		);
+<span class="nc" id="L230">		getContentPane().setLayout(groupLayout);</span>
+<span class="nc" id="L231">	}</span>
+	
+	private void checkAmount()
+	{
+<span class="nc" id="L235">		Double currentAmount = businessLogic.getUser().getWallet().getCurrency();</span>
+<span class="nc" id="L236">		Double amountBet = Double.parseDouble(textAmount.getText());</span>
+<span class="nc" id="L237">		Double answer = currentAmount - amountBet;</span>
+<span class="nc" id="L238">		textAmountLeft.setText(Double.toString(answer)); // wallet - amount bet</span>
+<span class="nc" id="L239">	}</span>
+	
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void jButton_actionPerformed(ActionEvent e) {
+<span class="nc" id="L245">		this.setVisible(false);</span>
+<span class="nc" id="L246">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

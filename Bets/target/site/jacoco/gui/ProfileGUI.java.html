@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProfileGUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BetAndRuinCI</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">ProfileGUI.java</span></div><h1>ProfileGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.ResourceBundle;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import businessLogic.BlFacade;
+import domain.Bet;
+
+import java.awt.SystemColor;
+import javax.swing.JComboBox;
+import java.awt.Color;
+
+public class ProfileGUI extends JFrame{
+
+	private static final long serialVersionUID = 1L;
+	private BlFacade businessLogic;
+<span class="nc" id="L27">	private JButton closeBtn = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).</span>
+<span class="nc" id="L28">			getString(&quot;Close&quot;));</span>
+<span class="nc" id="L29">	private JButton buttonChange = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;ChangeUP&quot;));</span>
+<span class="nc" id="L30">	private JButton buttonAccept = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Accept&quot;));</span>
+<span class="nc" id="L31">	private JButton btnViewBetInfo = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;BetInfo&quot;));</span>
+<span class="nc" id="L32">	private JButton btnAddMoney = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;AddMoney&quot;));</span>
+<span class="nc" id="L33">	private JButton btnPastBets = new JButton(&quot;Past Bets&quot;);</span>
+<span class="nc" id="L34">	private JComboBox&lt;String&gt; comboBets = new JComboBox&lt;String&gt;();</span>
+	private JTextField textID;
+	private JTextField textUsername;
+	private JTextField textPassword;
+<span class="nc" id="L38">	private JTextArea removeText = new JTextArea();</span>
+	private MainGUI previous;
+<span class="nc" id="L40">	private HashMap&lt;String, Bet&gt; betsAndNames = new HashMap&lt;String, Bet&gt;();</span>
+<span class="nc" id="L41">	private final JLabel eMailLabel = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;eMail&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L42">	private final JTextField eMailTextField = new JTextField();</span>
+	
+	public void setBusinessLogic(BlFacade bl) {
+<span class="nc" id="L45">		businessLogic = bl;</span>
+<span class="nc" id="L46">	}</span>
+	
+	public ProfileGUI(MainGUI main, BlFacade bl) 
+<span class="nc" id="L49">	{</span>
+<span class="nc" id="L50">		businessLogic = bl;</span>
+<span class="nc" id="L51">		previous = main;</span>
+		try {
+<span class="nc" id="L53">			jbInit();</span>
+		}
+<span class="nc" id="L55">		catch(Exception e) {</span>
+<span class="nc" id="L56">			e.printStackTrace();</span>
+<span class="nc" id="L57">		}</span>
+<span class="nc" id="L58">	}</span>
+	
+	private void jbInit() throws Exception
+	{
+<span class="nc" id="L62">		this.setSize(new Dimension(400, 470));</span>
+<span class="nc" id="L63">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Profile&quot;));</span>
+<span class="nc" id="L64">		closeBtn.setBounds(115, 390, 130, 30);</span>
+
+<span class="nc" id="L66">		closeBtn.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L69">				jButton_actionPerformed(e);</span>
+<span class="nc" id="L70">			}</span>
+		});
+		
+<span class="nc" id="L73">		btnAddMoney.addActionListener(new java.awt.event.ActionListener() {</span>
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent e) 
+			{
+<span class="nc" id="L77">				AddFundsGUI addMoneyGUI = new AddFundsGUI(businessLogic);</span>
+<span class="nc" id="L78">				addMoneyGUI.setVisible(true);</span>
+<span class="nc" id="L79">				jButton_actionPerformed(e);</span>
+<span class="nc" id="L80">			}</span>
+		});
+		
+<span class="nc" id="L83">		btnPastBets.addActionListener(new java.awt.event.ActionListener() {</span>
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent e) 
+			{
+<span class="nc bnc" id="L87" title="All 2 branches missed.">				if(businessLogic.getUser().getPastBets() != null)</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">					if (businessLogic.getUser().getPastBets().size() &gt; 0)</span>
+					{
+<span class="nc" id="L90">						PastBetsGUI PastBetsGUI = new PastBetsGUI(businessLogic);</span>
+<span class="nc" id="L91">						PastBetsGUI.setVisible(true);</span>
+<span class="nc" id="L92">						jButton_actionPerformed(e);</span>
+					}
+<span class="nc" id="L94">			}</span>
+		});
+		
+<span class="nc bnc" id="L97" title="All 2 branches missed.">		if(businessLogic.getUser().getBets() != null) {</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">			if (!businessLogic.getUser().getBets().isEmpty())</span>
+<span class="nc" id="L99">				this.initializeBrowseQuestionsBtn();</span>
+			else
+<span class="nc" id="L101">				btnViewBetInfo.setEnabled(false);</span>
+		}
+<span class="nc" id="L103">		eMailTextField.setEditable(false);</span>
+<span class="nc" id="L104">		eMailTextField.setText(businessLogic.getUser().getMail()); //$NON-NLS-1$ //$NON-NLS-2$</span>
+<span class="nc" id="L105">		eMailTextField.setBounds(138, 160, 153, 20);</span>
+<span class="nc" id="L106">		eMailTextField.setColumns(10);</span>
+		
+<span class="nc" id="L108">		JTextArea textArea = new JTextArea();</span>
+<span class="nc" id="L109">		textArea.setBounds(92, 21, 282, 35);</span>
+<span class="nc" id="L110">		textArea.setEditable(false);</span>
+<span class="nc" id="L111">		textArea.setFont(new Font(&quot;Times New Roman&quot;, Font.BOLD, 17));</span>
+<span class="nc" id="L112">		textArea.setBackground(SystemColor.menu);</span>
+<span class="nc" id="L113">		textArea.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Profile&quot;));</span>
+		
+<span class="nc" id="L115">		JLabel labelID = new JLabel(&quot;ID: &quot;);</span>
+<span class="nc" id="L116">		labelID.setBounds(47, 67, 81, 24);</span>
+<span class="nc" id="L117">		JLabel lbMoney = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Money&quot;));</span>
+<span class="nc" id="L118">		lbMoney.setBounds(47, 213, 74, 14);</span>
+<span class="nc" id="L119">		JLabel labelUsername = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Username&quot;));</span>
+<span class="nc" id="L120">		labelUsername.setBounds(47, 102, 81, 14);</span>
+<span class="nc" id="L121">		JLabel labelPassword = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Password&quot;));</span>
+<span class="nc" id="L122">		labelPassword.setBounds(47, 132, 81, 14);</span>
+		
+<span class="nc" id="L124">		textID = new JTextField(String.valueOf(businessLogic.getUser().getId()));</span>
+<span class="nc" id="L125">		textID.setBounds(138, 67, 107, 20);</span>
+<span class="nc" id="L126">		textID.setEditable(false);</span>
+<span class="nc" id="L127">		textID.setColumns(10);</span>
+		
+<span class="nc" id="L129">		textUsername = new JTextField(businessLogic.getUser().getUsername());</span>
+<span class="nc" id="L130">		textUsername.setBounds(138, 98, 153, 20);</span>
+<span class="nc" id="L131">		textUsername.setEditable(false);</span>
+<span class="nc" id="L132">		textUsername.setColumns(10);</span>
+		
+<span class="nc" id="L134">		textPassword = new JTextField(businessLogic.getUser().getPassword());</span>
+<span class="nc" id="L135">		textPassword.setBounds(138, 129, 153, 20);</span>
+<span class="nc" id="L136">		textPassword.setEditable(false);</span>
+<span class="nc" id="L137">		textPassword.setColumns(10);</span>
+<span class="nc" id="L138">		buttonAccept.setBounds(151, 347, 65, 23);</span>
+		
+<span class="nc" id="L140">		buttonAccept.setVisible(false);</span>
+		
+<span class="nc" id="L142">		JLabel labelBets = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Bets&quot;));</span>
+<span class="nc" id="L143">		labelBets.setBounds(47, 260, 65, 14);</span>
+<span class="nc" id="L144">		buttonChange.setBounds(82, 317, 226, 23);</span>
+		
+<span class="nc" id="L146">		this.buttonChange.addActionListener(new ActionListener()</span>
+<span class="nc" id="L147">		{</span>
+			public void actionPerformed(ActionEvent e)
+			{
+<span class="nc" id="L150">				buttonChange.setVisible(false);</span>
+				
+<span class="nc" id="L152">				textUsername.setEditable(true);</span>
+<span class="nc" id="L153">				textPassword.setEditable(true);</span>
+				
+<span class="nc" id="L155">				buttonAccept.setVisible(true);</span>
+<span class="nc" id="L156">			}</span>
+		});
+		
+<span class="nc" id="L159">		this.buttonAccept.addActionListener(new ActionListener()</span>
+<span class="nc" id="L160">		{</span>
+			public void actionPerformed(ActionEvent e)
+			{
+<span class="nc" id="L163">				buttonAccept.setVisible(false);</span>
+				
+<span class="nc" id="L165">				String username = null;</span>
+<span class="nc" id="L166">				String password = null;</span>
+<span class="nc" id="L167">				boolean uChange = false;</span>
+<span class="nc" id="L168">				boolean pChange = false;</span>
+				
+<span class="nc bnc" id="L170" title="All 6 branches missed.">				if (textUsername.getText() != null &amp;&amp; !textUsername.getText().equals(&quot;&quot;) &amp;&amp; !textUsername.getText().equals(businessLogic.getUser().getUsername()))</span>
+//					businessLogic.changeUsername(businessLogic.getUser().getUsername(), businessLogic.getUser().getPassword(), textUsername.getText());
+<span class="nc" id="L172">					username = textUsername.getText();</span>
+				
+<span class="nc bnc" id="L174" title="All 6 branches missed.">				if (textPassword.getText() != null &amp;&amp; !textPassword.getText().equals(&quot;&quot;) &amp;&amp; !textPassword.getText().equals(businessLogic.getUser().getPassword()))</span>
+//					businessLogic.changePassword(businessLogic.getUser().getUsername(), businessLogic.getUser().getPassword(), textPassword.getText());
+<span class="nc" id="L176">					password = textPassword.getText();</span>
+				
+<span class="nc bnc" id="L178" title="All 4 branches missed.">				if(username != null &amp;&amp; password != null)</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">					if(businessLogic.getRegisteredUser(username, password) == null) {</span>
+<span class="nc" id="L180">						uChange = true;</span>
+<span class="nc" id="L181">						pChange = true;</span>
+					}
+<span class="nc bnc" id="L183" title="All 2 branches missed.">				else if(username != null)</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">					if(businessLogic.getRegisteredUser(username, businessLogic.getUser().getPassword()) == null)</span>
+<span class="nc" id="L185">						uChange = true;</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">				else if(password != null)</span>
+<span class="nc bnc" id="L187" title="All 2 branches missed.">					if(businessLogic.getRegisteredUser(businessLogic.getUser().getUsername(), password) == null)</span>
+<span class="nc" id="L188">						pChange = true;</span>
+				
+<span class="nc bnc" id="L190" title="All 2 branches missed.">				if(uChange)</span>
+<span class="nc" id="L191">					businessLogic.changeUsername(businessLogic.getUser().getUsername(), businessLogic.getUser().getPassword(), textUsername.getText());</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">				if(pChange)</span>
+<span class="nc" id="L193">					businessLogic.changePassword(businessLogic.getUser().getUsername(), businessLogic.getUser().getPassword(), textPassword.getText());</span>
+				
+<span class="nc" id="L195">				textUsername.setEditable(false);</span>
+<span class="nc" id="L196">				textPassword.setEditable(false);</span>
+				
+<span class="nc" id="L198">				buttonChange.setVisible(true);</span>
+				
+<span class="nc" id="L200">				previous.setUser(businessLogic.getUser());</span>
+<span class="nc" id="L201">			}</span>
+		});
+		
+<span class="nc" id="L204">		removeText.setBounds(222, 346, 5, 22);</span>
+		
+<span class="nc" id="L206">		removeText.setBackground(new Color(240, 240, 240));</span>
+<span class="nc" id="L207">		removeText.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;ProfileGUI.removeText.text&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+		
+		
+<span class="nc" id="L210">		JTextArea textMoney = new JTextArea(Double.toString(businessLogic.getUser().getWallet().getCurrency()));</span>
+<span class="nc" id="L211">		textMoney.setBounds(136, 208, 55, 22);</span>
+<span class="nc" id="L212">		textMoney.setEditable(false);</span>
+<span class="nc" id="L213">		getContentPane().setLayout(null);</span>
+<span class="nc" id="L214">		getContentPane().add(textArea);</span>
+<span class="nc" id="L215">		getContentPane().add(labelID);</span>
+<span class="nc" id="L216">		getContentPane().add(textID);</span>
+<span class="nc" id="L217">		getContentPane().add(labelUsername);</span>
+<span class="nc" id="L218">		getContentPane().add(textUsername);</span>
+<span class="nc" id="L219">		getContentPane().add(buttonAccept);</span>
+<span class="nc" id="L220">		getContentPane().add(removeText);</span>
+<span class="nc" id="L221">		getContentPane().add(closeBtn);</span>
+<span class="nc" id="L222">		getContentPane().add(lbMoney);</span>
+<span class="nc" id="L223">		getContentPane().add(textMoney);</span>
+<span class="nc" id="L224">		getContentPane().add(labelPassword);</span>
+<span class="nc" id="L225">		getContentPane().add(textPassword);</span>
+<span class="nc" id="L226">		getContentPane().add(buttonChange);</span>
+<span class="nc" id="L227">		getContentPane().add(labelBets);</span>
+<span class="nc" id="L228">		comboBets.setBounds(133, 256, 175, 22);</span>
+<span class="nc" id="L229">		getContentPane().add(comboBets);</span>
+<span class="nc" id="L230">		btnViewBetInfo.setBounds(201, 289, 107, 23);</span>
+<span class="nc" id="L231">		getContentPane().add(btnViewBetInfo);</span>
+		
+<span class="nc" id="L233">		btnAddMoney.setBounds(201, 209, 107, 23);</span>
+<span class="nc" id="L234">		getContentPane().add(btnAddMoney);</span>
+<span class="nc" id="L235">		eMailLabel.setBounds(47, 163, 46, 14);</span>
+		
+<span class="nc" id="L237">		getContentPane().add(eMailLabel);</span>
+		
+<span class="nc" id="L239">		getContentPane().add(eMailTextField);</span>
+		
+<span class="nc" id="L241">		btnPastBets.setBounds(82, 289, 109, 23);</span>
+<span class="nc" id="L242">		getContentPane().add(btnPastBets);</span>
+		
+		// Adds all the bets of the user to the comboBox so it shows a list with bets
+		String question;
+<span class="nc bnc" id="L246" title="All 2 branches missed.">		if(businessLogic.getUser().getBets() != null)</span>
+<span class="nc bnc" id="L247" title="All 2 branches missed.">			for(Bet b : businessLogic.getUser().getBets()) {</span>
+<span class="nc" id="L248">				question = b.getQuestion().getQuestion() + &quot; || &quot; + b.getPlacedBet();</span>
+<span class="nc" id="L249">				betsAndNames.put(question, b);</span>
+<span class="nc" id="L250">				comboBets.addItem(question);</span>
+<span class="nc" id="L251">			}</span>
+<span class="nc" id="L252">}</span>
+	
+	private void initializeBrowseQuestionsBtn() {
+<span class="nc" id="L255">		btnViewBetInfo.addActionListener(new java.awt.event.ActionListener() {</span>
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent e) 
+			{
+<span class="nc" id="L259">				BetInfoGUI viewBetInfo = new BetInfoGUI(businessLogic, betsAndNames, (String)comboBets.getSelectedItem());</span>
+<span class="nc" id="L260">				viewBetInfo.setVisible(true);</span>
+<span class="nc" id="L261">				jButton_actionPerformed(e);</span>
+<span class="nc" id="L262">			}</span>
+		});
+<span class="nc" id="L264">	}</span>
+	
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void jButton_actionPerformed(ActionEvent e) {
+<span class="nc" id="L270">		this.setVisible(false);</span>
+<span class="nc" id="L271">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

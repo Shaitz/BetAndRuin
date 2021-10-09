@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EventInfoGUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BetAndRuinCI</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">EventInfoGUI.java</span></div><h1>EventInfoGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import businessLogic.BlFacade;
+import domain.Event;
+import domain.Question;
+import enums.QuestionTypes;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.SystemColor;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JComboBox;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+@SuppressWarnings(&quot;serial&quot;)
+public class EventInfoGUI extends JFrame {
+
+	private JPanel contentPane;
+	private Event event;
+	private CreateQuestionGUI previous;
+	private BlFacade businessLogic;
+
+	/**
+	 * Create the frame.
+	 */
+<span class="nc" id="L34">	public EventInfoGUI(BlFacade bl, Event e, CreateQuestionGUI cqg) {</span>
+		
+<span class="nc" id="L36">		event = e;</span>
+<span class="nc" id="L37">		previous = cqg;</span>
+<span class="nc" id="L38">		businessLogic = bl;</span>
+		
+<span class="nc" id="L40">		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L41">		setBounds(100, 100, 430, 246);</span>
+<span class="nc" id="L42">		contentPane = new JPanel();</span>
+<span class="nc" id="L43">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L44">		setContentPane(contentPane);</span>
+		
+<span class="nc" id="L46">		JLabel eventLabel = new JLabel(&quot;Event:&quot;);</span>
+		
+<span class="nc" id="L48">		JLabel dateLabel = new JLabel(&quot;Date:&quot;);</span>
+		
+<span class="nc" id="L50">		JTextArea dateTextArea = new JTextArea();</span>
+<span class="nc" id="L51">		dateTextArea.setBackground(SystemColor.menu);</span>
+<span class="nc" id="L52">		dateTextArea.setEditable(false);</span>
+<span class="nc" id="L53">		dateTextArea.setText(event.getEventDate().toString());</span>
+		
+<span class="nc" id="L55">		JTextArea eventTextArea = new JTextArea();</span>
+<span class="nc" id="L56">		eventTextArea.setBackground(SystemColor.menu);</span>
+<span class="nc" id="L57">		eventTextArea.setEditable(false);</span>
+<span class="nc" id="L58">		eventTextArea.setText(event.toString());</span>
+		
+<span class="nc" id="L60">		JComboBox&lt;Question&gt; questionComboBox = new JComboBox&lt;Question&gt;();</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">		for(Question q : event.getQuestions())</span>
+<span class="nc" id="L62">			questionComboBox.addItem(q);</span>
+		
+<span class="nc" id="L64">		JLabel questionLabel = new JLabel(&quot;Question:&quot;);</span>
+		
+<span class="nc" id="L66">		JButton returnButton = new JButton(&quot;Return&quot;);</span>
+<span class="nc" id="L67">		returnButton.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L69">				goBack();</span>
+<span class="nc" id="L70">			}</span>
+		});
+		
+<span class="nc" id="L73">		JButton checkQuestionButton = new JButton(&quot;Check Question&quot;);</span>
+		
+<span class="nc" id="L75">		JTextArea warningTextArea = new JTextArea();</span>
+<span class="nc" id="L76">		warningTextArea.setBackground(SystemColor.menu);</span>
+		
+<span class="nc" id="L78">		GroupLayout gl_contentPane = new GroupLayout(contentPane);</span>
+<span class="nc" id="L79">		gl_contentPane.setHorizontalGroup(</span>
+<span class="nc" id="L80">			gl_contentPane.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L81">				.addGroup(gl_contentPane.createSequentialGroup()</span>
+<span class="nc" id="L82">					.addContainerGap()</span>
+<span class="nc" id="L83">					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L84">						.addComponent(warningTextArea, GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)</span>
+<span class="nc" id="L85">						.addGroup(gl_contentPane.createSequentialGroup()</span>
+<span class="nc" id="L86">							.addComponent(eventLabel)</span>
+<span class="nc" id="L87">							.addGap(18)</span>
+<span class="nc" id="L88">							.addComponent(eventTextArea, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L89">							.addGap(18)</span>
+<span class="nc" id="L90">							.addComponent(dateLabel)</span>
+<span class="nc" id="L91">							.addGap(18)</span>
+<span class="nc" id="L92">							.addComponent(dateTextArea, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L93">						.addGroup(gl_contentPane.createSequentialGroup()</span>
+<span class="nc" id="L94">							.addComponent(questionLabel)</span>
+<span class="nc" id="L95">							.addGap(18)</span>
+<span class="nc" id="L96">							.addComponent(questionComboBox, 0, 323, Short.MAX_VALUE))</span>
+<span class="nc" id="L97">						.addGroup(gl_contentPane.createSequentialGroup()</span>
+<span class="nc" id="L98">							.addComponent(checkQuestionButton)</span>
+<span class="nc" id="L99">							.addPreferredGap(ComponentPlacement.RELATED, 216, Short.MAX_VALUE)</span>
+<span class="nc" id="L100">							.addComponent(returnButton)))</span>
+<span class="nc" id="L101">					.addContainerGap())</span>
+		);
+<span class="nc" id="L103">		gl_contentPane.setVerticalGroup(</span>
+<span class="nc" id="L104">			gl_contentPane.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L105">				.addGroup(gl_contentPane.createSequentialGroup()</span>
+<span class="nc" id="L106">					.addContainerGap()</span>
+<span class="nc" id="L107">					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L108">						.addComponent(eventLabel)</span>
+<span class="nc" id="L109">						.addComponent(dateLabel)</span>
+<span class="nc" id="L110">						.addComponent(dateTextArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L111">						.addComponent(eventTextArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L112">					.addGap(18)</span>
+<span class="nc" id="L113">					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L114">						.addComponent(questionLabel)</span>
+<span class="nc" id="L115">						.addComponent(questionComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L116">					.addGap(18)</span>
+<span class="nc" id="L117">					.addComponent(warningTextArea, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L118">					.addPreferredGap(ComponentPlacement.RELATED)</span>
+<span class="nc" id="L119">					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L120">						.addComponent(checkQuestionButton)</span>
+<span class="nc" id="L121">						.addComponent(returnButton))</span>
+<span class="nc" id="L122">					.addContainerGap(43, Short.MAX_VALUE))</span>
+		);
+<span class="nc" id="L124">		contentPane.setLayout(gl_contentPane);</span>
+		
+<span class="nc" id="L126">		checkQuestionButton.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L128" title="All 2 branches missed.">				if(((Question) questionComboBox.getSelectedItem()).getType() == QuestionTypes.DYNAMIC) {</span>
+<span class="nc" id="L129">					CheckAnswersGUI cag = new CheckAnswersGUI(businessLogic, (Question) questionComboBox.getSelectedItem(), getThis());</span>
+<span class="nc" id="L130">					warningTextArea.setText(&quot;&quot;);</span>
+<span class="nc" id="L131">					cag.setVisible(true);</span>
+<span class="nc" id="L132">					close();</span>
+<span class="nc" id="L133">				}</span>
+				else
+<span class="nc" id="L135">					warningTextArea.setText(&quot;The selected question is not dynamic type. Question type: &quot; + ((Question) questionComboBox.getSelectedItem()).getType());</span>
+<span class="nc" id="L136">			}</span>
+		});
+<span class="nc" id="L138">	}</span>
+	
+	public EventInfoGUI getThis() {
+<span class="nc" id="L141">		return this;</span>
+	}
+	
+	public void close() {
+<span class="nc" id="L145">		this.setVisible(false);</span>
+<span class="nc" id="L146">	}</span>
+	
+	public void goBack() {
+<span class="nc" id="L149">		this.setVisible(false);</span>
+<span class="nc" id="L150">		previous.setVisible(true);</span>
+<span class="nc" id="L151">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

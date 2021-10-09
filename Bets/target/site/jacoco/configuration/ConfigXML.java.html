@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConfigXML.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BetAndRuinCI</a> &gt; <a href="index.source.html" class="el_package">configuration</a> &gt; <span class="el_source">ConfigXML.java</span></div><h1>ConfigXML.java</h1><pre class="source lang-java linenums">package configuration;
+
+import java.io.File;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+
+/**
+ * Provides the configuration data from the resources/config.xml file
+ */
+public class ConfigXML {
+
+	private static final String CONFIGURATION_FILENAME = &quot;src/main/resources/config.xml&quot;;
+
+	public static ConfigXML getInstance() {
+<span class="fc" id="L22">		return theInstance;</span>
+	}
+
+<span class="fc" id="L25">	private static ConfigXML theInstance = new ConfigXML();</span>
+
+	private String locale;
+
+	private String businessLogicNode;
+	private String businessLogicPort;
+	private String businessLogicName;
+
+	// If true business logic node is created locally,
+	// otherwise BusinessLogicServer needs to be run first
+	private boolean businessLogicIsLocal;
+
+	private String dataAccessNode;
+	private int dataAccessPort;
+
+	// If true data access node is created locally,
+	// otherwise ObjectDbManagerServer needs to be run first
+	private boolean dataAccessIsLocal;
+
+	private String dataBaseFilename;
+
+	// If &quot;open&quot; a pre-existing database will be opened. If &quot;initialize&quot; a new one will be 
+	// created with some initial values, eventually deleting a pre-existing one.
+	private String dataBaseOpenMode;
+
+	private String dataBaseUser;
+	private String dataBasePassword;
+
+
+	public String getLocale() {
+<span class="nc" id="L55">		return locale;</span>
+	}
+
+	public String getBusinessLogicNode() {
+<span class="nc" id="L59">		return businessLogicNode;</span>
+	}
+
+	public String getBusinessLogicPort() {
+<span class="nc" id="L63">		return businessLogicPort;</span>
+	}
+
+	public String getBusinessLogicName() {
+<span class="nc" id="L67">		return businessLogicName;</span>
+	}
+
+	public boolean isBusinessLogicLocal() {
+<span class="nc" id="L71">		return businessLogicIsLocal;</span>
+	}
+
+	public String getDataAccessNode() {
+<span class="nc" id="L75">		return dataAccessNode;</span>
+	}
+
+	public int getDataAccessPort() {
+<span class="nc" id="L79">		return dataAccessPort;</span>
+	}
+
+	public boolean isDataAccessLocal() {
+<span class="fc" id="L83">		return dataAccessIsLocal;</span>
+	}
+
+	public String getDataBaseFilename(){
+<span class="fc" id="L87">		return dataBaseFilename;</span>
+	}
+
+	public String getDataBaseOpenMode(){
+<span class="nc" id="L91">		return dataBaseOpenMode;</span>
+	}
+
+	public String getDataBaseUser() {
+<span class="nc" id="L95">		return dataBaseUser;</span>
+	}
+
+	public String getDataBasePassword() {
+<span class="nc" id="L99">		return dataBasePassword;</span>
+	}
+
+
+<span class="fc" id="L103">	private ConfigXML(){</span>
+
+		try {
+<span class="fc" id="L106">			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();</span>
+<span class="fc" id="L107">			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();</span>
+<span class="fc" id="L108">			Document doc = dBuilder.parse(new File(CONFIGURATION_FILENAME));</span>
+<span class="fc" id="L109">			doc.getDocumentElement().normalize();</span>
+
+<span class="fc" id="L111">			NodeList list = doc.getElementsByTagName(&quot;config&quot;);</span>
+<span class="fc" id="L112">			Element config = (Element) list.item(0); // list.item(0) is a Node that is an Element</span>
+
+<span class="fc" id="L114">			locale = getTagValue(&quot;locale&quot;, config);</span>
+<span class="fc" id="L115">			businessLogicNode = getTagValue(&quot;businessLogicNode&quot;, config);</span>
+<span class="fc" id="L116">			businessLogicPort = getTagValue(&quot;businessLogicPort&quot;, config);</span>
+<span class="fc" id="L117">			businessLogicName = getTagValue(&quot;businessLogicName&quot;, config);</span>
+
+<span class="fc" id="L119">			String value = ((Element)config.getElementsByTagName(&quot;businessLogic&quot;).item(0)).</span>
+<span class="fc" id="L120">					getAttribute(&quot;local&quot;);</span>
+<span class="fc" id="L121">			businessLogicIsLocal = value.equals(&quot;true&quot;);</span>
+
+<span class="fc" id="L123">			dataAccessNode = getTagValue(&quot;dataAccessNode&quot;, config);</span>
+<span class="fc" id="L124">			dataAccessPort = Integer.parseInt(getTagValue(&quot;dataAccessPort&quot;, config));</span>
+
+<span class="fc" id="L126">			value = ((Element)config.getElementsByTagName(&quot;dataAccess&quot;).item(0)).</span>
+<span class="fc" id="L127">					getAttribute(&quot;local&quot;);</span>
+<span class="fc" id="L128">			dataAccessIsLocal=value.equals(&quot;true&quot;);</span>
+
+<span class="fc" id="L130">			dataBaseFilename = getTagValue(&quot;dataBaseFilename&quot;, config);</span>
+
+			//Two possible values: &quot;open&quot; or &quot;initialize&quot;
+<span class="fc" id="L133">			dataBaseOpenMode= getTagValue(&quot;dataBaseOpenMode&quot;, config);</span>
+
+<span class="fc" id="L135">			dataBaseUser = getTagValue(&quot;dataBaseUser&quot;, config);</span>
+<span class="fc" id="L136">			dataBasePassword=getTagValue(&quot;dataBasePassword&quot;, config);</span>
+
+<span class="fc" id="L138">			System.out.print(&quot;Configuration parameters read from config.xml: &quot;);</span>
+<span class="fc" id="L139">			System.out.print(&quot;\n\tBusiness Logic is local = &quot; + businessLogicIsLocal);</span>
+<span class="fc" id="L140">			System.out.print(&quot;\n\tData Access is local = &quot; + dataAccessIsLocal);</span>
+<span class="fc" id="L141">			System.out.println(&quot;\n\tDataBase open mode = &quot; + dataBaseOpenMode); </span>
+
+<span class="nc" id="L143">		} catch (Exception e) {</span>
+<span class="nc" id="L144">			System.out.println(&quot;Error in ConfigXML.java: problems with &quot; + CONFIGURATION_FILENAME);</span>
+<span class="nc" id="L145">			e.printStackTrace();</span>
+<span class="fc" id="L146">		}</span>
+<span class="fc" id="L147">	}</span>
+
+	private static String getTagValue(String sTag, Element eElement) {
+<span class="fc" id="L150">		NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();</span>
+<span class="fc" id="L151">		Node nValue = nlList.item(0);</span>
+<span class="fc" id="L152">		return nValue.getNodeValue();</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

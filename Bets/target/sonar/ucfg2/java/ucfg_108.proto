@@ -1,0 +1,60 @@
+
+,domain.Question#toString()Ljava/lang/String;P
+DC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Question.javaÃ Ã("1*À
+
+1P
+DC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Question.javaÕ	 Õ(ù
+ö
+P
+DC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Question.javaÕ	 Õ(
+%0java.lang.Integer"__id*'*%
+domain.Question"
+questionNumberô
+ñ
+P
+DC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Question.javaÕ	 Õ(
+%1java.lang.String"__concat*
+
+%0java.lang.Integer*
+;ñ
+ì
+P
+DC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Question.javaÕ  Õ((
+%2java.lang.String"__id*!*
+domain.Question"
+
+question´
+®
+P
+DC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Question.javaÕ	 Õ((
+%3java.lang.String"__concat*
+
+%1java.lang.String*
+
+%2java.lang.Stringò
+ï
+P
+DC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Question.javaÕ	 Õ(.
+%4java.lang.String"__concat*
+
+%3java.lang.String*
+;π
+∂
+P
+DC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Question.javaÕ1 Õ(K
+%5java.lang.String"-java.lang.Float#toString(F)Ljava/lang/String;*"
+java.lang.Float*
+""´
+®
+P
+DC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Question.javaÕ	 Õ(K
+%6java.lang.String"__concat*
+
+%4java.lang.String*
+
+%5java.lang.String"l
+P
+DC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Question.javaÕ Õ(L
+
+%6java.lang.StringB
+domain.Question

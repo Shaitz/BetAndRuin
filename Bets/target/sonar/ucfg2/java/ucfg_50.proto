@@ -1,0 +1,72 @@
+
+YbusinessLogic.BlFacadeImplementation#retrieveQuestion(Ldomain/Question;)Ldomain/Question;e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java÷ ÷(!"startingBlock*Ì
+startingBlocke
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java÷! ÷(1±
+®
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.javaö ö(
+%6"
+__annotate*
+javax.jws.WebMethod*
+
+questdomain.Questionš
+—
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java÷+ ÷(0
+questdomain.Question"__annotation*
+
+%6*
+1*˜
+1e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.javaù ù(Æ
+Ã
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.javaù ù(
+%0dataAccess.DataAccess"__id*7*5&
+$businessLogic.BlFacadeImplementation"
+	dbManagerÆÃ
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.javaù ù(
+
+%1void"dataAccess.DataAccess#open(Z)V*
+
+%0dataAccess.DataAccess*
+""2open(Z)Æ
+Ã
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.javaú ú(
+%2dataAccess.DataAccess"__id*7*5&
+$businessLogic.BlFacadeImplementation"
+	dbManager£ 
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.javaú ú(+
+%3domain.Question"EdataAccess.DataAccess#getQuestion(Ldomain/Question;)Ldomain/Question;*
+
+%2dataAccess.DataAccess*
+
+questdomain.Question2getQuestion(Ldomain/Question;)Ÿ
+œ
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.javaú ú(,
+qdomain.Question"__id*
+
+%3domain.QuestionÆ
+Ã
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.javaû û(
+%4dataAccess.DataAccess"__id*7*5&
+$businessLogic.BlFacadeImplementation"
+	dbManager¾»
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.javaû û(
+
+%5void"dataAccess.DataAccess#close()V*
+
+%4dataAccess.DataAccess2close()"
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.javaü ü(
+
+qdomain.Question:
+questdomain.QuestionB(&
+$businessLogic.BlFacadeImplementation

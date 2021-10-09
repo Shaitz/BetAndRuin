@@ -1,0 +1,104 @@
+
+cbusinessLogic.BlFacadeImplementation#removeAnswerFromQuestion(Ldomain/Question;Ljava/lang/String;)Ze
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java‡ ‡(("startingBlock*ç	
+startingBlocke
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java‡( ‡(C≠
+™
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.javaﬁ ﬁ(
+%6"
+__annotate*
+javax.jws.WebMethod*
+
+qdomain.Question¨
+©
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.javaﬂ ﬂ(
+
+%7"
+__annotate*
+java.lang.Override*
+
+qdomain.Questionû
+õ
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java‡2 ‡(3
+qdomain.Question"__annotation*
+
+%6*
+
+%7≥
+∞
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.javaﬁ ﬁ(
+%8"
+__annotate*
+javax.jws.WebMethod*
+
+answerjava.lang.String≤
+Ø
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.javaﬂ ﬂ(
+
+%9"
+__annotate*
+java.lang.Override*
+
+answerjava.lang.String§
+°
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java‡< ‡(B
+answerjava.lang.String"__annotation*
+
+%8*
+
+%9*
+1*é
+1e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java· ·(∆
+√
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java· ·(
+%0dataAccess.DataAccess"__id*7*5&
+$businessLogic.BlFacadeImplementation"
+	dbManager∆√
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java· ·(
+
+%1void"dataAccess.DataAccess#open(Z)V*
+
+%0dataAccess.DataAccess*
+""2open(Z)∆
+√
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java‚ ‚(
+%2dataAccess.DataAccess"__id*7*5&
+$businessLogic.BlFacadeImplementation"
+	dbManagerÀ»
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java‚ ‚(1
+%3boolean"HdataAccess.DataAccess#removeAnswer(Ldomain/Question;Ljava/lang/String;)Z*
+
+%2dataAccess.DataAccess*
+
+qdomain.Question*
+
+answerjava.lang.String21removeAnswer(Ldomain/Question;Ljava/lang/String;)∆
+√
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java„ „(
+%4dataAccess.DataAccess"__id*7*5&
+$businessLogic.BlFacadeImplementation"
+	dbManageræª
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java„ „(
+
+%5void"dataAccess.DataAccess#close()V*
+
+%4dataAccess.DataAccess2close()"o
+e
+YC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/businessLogic/BlFacadeImplementation.java‰ ‰(
+"":
+qdomain.Question:
+answerjava.lang.StringB(&
+$businessLogic.BlFacadeImplementation

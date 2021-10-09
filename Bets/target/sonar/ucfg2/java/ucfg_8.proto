@@ -1,0 +1,45 @@
+
+MdataAccess.DataAccess#getUserWithUsername(Ljava/lang/String;)Ljava/util/List;V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.java¾ ¾(&"1*Æ
+
+1V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.java¿	 ¿(«
+¨
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.java¿	 ¿(%
+%0javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+dbÎ
+Ë
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.java¿ ¿(P
+%1java.lang.String"__concat*/-
++SELECT u FROM User u WHERE u.username == \"*
+
+usernamejava.lang.StringŸ
+œ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.java¿ ¿(W
+%2java.lang.String"__concat*
+
+%1java.lang.String*
+\"ìé
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.java¿	 ¿(d"
+%3javax.persistence.TypedQuery"njavax.persistence.EntityManager#createQuery(Ljava/lang/String;Ljava/lang/Class;)Ljavax/persistence/TypedQuery;*'
+%
+%0javax.persistence.EntityManager*
+
+%2java.lang.String*
+""20createQuery(Ljava/lang/String;Ljava/lang/Class;)æã
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.java¿	 ¿(t
+%4java.util.List"<javax.persistence.TypedQuery#getResultList()Ljava/util/List;*$
+"
+%3javax.persistence.TypedQuery2getResultList()"p
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.java¿ ¿(u
+
+%4java.util.List:
+usernamejava.lang.StringB
+dataAccess.DataAccess

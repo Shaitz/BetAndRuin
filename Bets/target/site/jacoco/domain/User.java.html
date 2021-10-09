@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BetAndRuinCI</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.*;
+import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@Entity
+public class User 
+{
+	@Id
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
+	@GeneratedValue (strategy=GenerationType.IDENTITY)
+	private Integer id;
+	private String username;
+	private String password;
+	@ManyToOne
+	@ElementCollection
+	private ArrayList&lt;Bet&gt; betList;
+	@ManyToOne
+	@ElementCollection
+	private List&lt;Bet&gt; pastBets;
+	private boolean admin;
+	@Embedded
+	private Wallet personalWallet;
+	private String eMail;
+	
+	public User()
+	{
+<span class="nc" id="L33">		super();</span>
+<span class="nc" id="L34">	}</span>
+	
+	public User(Integer id, String username, String password, String mail)
+	{
+<span class="nc" id="L38">		super();</span>
+<span class="nc" id="L39">		this.id = id;</span>
+<span class="nc" id="L40">		this.username = username;</span>
+<span class="nc" id="L41">		this.password = password;</span>
+<span class="nc" id="L42">		this.betList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L43">		this.pastBets = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">		if(password.equals(&quot;admin123&quot;))</span>
+<span class="nc" id="L45">			admin = true;</span>
+		else
+<span class="nc" id="L47">			admin = false;</span>
+<span class="nc" id="L48">		personalWallet = new Wallet();</span>
+<span class="nc" id="L49">		eMail = mail;</span>
+<span class="nc" id="L50">	}</span>
+
+	public User(Integer id, String username, String password, String mail, int initialCurrency)
+	{
+<span class="nc" id="L54">		super();</span>
+<span class="nc" id="L55">		this.id = id;</span>
+<span class="nc" id="L56">		this.username = username;</span>
+<span class="nc" id="L57">		this.password = password;</span>
+<span class="nc" id="L58">		this.betList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L59">		this.pastBets = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">		if(password.equals(&quot;admin123&quot;))</span>
+<span class="nc" id="L61">			admin = true;</span>
+		else
+<span class="nc" id="L63">			admin = false;</span>
+<span class="nc" id="L64">		personalWallet = new Wallet(initialCurrency);</span>
+<span class="nc" id="L65">		eMail = mail;</span>
+<span class="nc" id="L66">	}</span>
+	
+	public User(String username, String password, String mail)
+	{
+<span class="nc" id="L70">		super();</span>
+<span class="nc" id="L71">		this.username = username;</span>
+<span class="nc" id="L72">		this.password = password;</span>
+<span class="nc" id="L73">		this.betList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L74">		this.pastBets = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">		if(password.equals(&quot;admin123&quot;))</span>
+<span class="nc" id="L76">			admin = true;</span>
+		else
+<span class="nc" id="L78">			admin = false;</span>
+<span class="nc" id="L79">		personalWallet = new Wallet();</span>
+<span class="nc" id="L80">		eMail = mail;</span>
+<span class="nc" id="L81">	}</span>
+	
+	public User(String username, String password, String mail, int initialCurrency)
+	{
+<span class="nc" id="L85">		super();</span>
+<span class="nc" id="L86">		this.username = username;</span>
+<span class="nc" id="L87">		this.password = password;</span>
+<span class="nc" id="L88">		this.betList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L89">		this.pastBets = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">		if(password.equals(&quot;admin123&quot;))</span>
+<span class="nc" id="L91">			admin = true;</span>
+		else
+<span class="nc" id="L93">			admin = false;</span>
+<span class="nc" id="L94">		personalWallet = new Wallet(initialCurrency);</span>
+<span class="nc" id="L95">		eMail = mail;</span>
+<span class="nc" id="L96">	}</span>
+	
+	/**
+	 * Gets the user's id
+	 */
+	public int getId()
+	{
+<span class="nc" id="L103">		return id;</span>
+	}
+	
+	/**
+	 * Gets the user's name
+	 */
+	public String getUsername() 
+	{ 
+<span class="nc" id="L111">		return this.username;</span>
+	}
+	
+	/**
+	 * Gets the user's password
+	 */
+	public String getPassword() 
+	{ 
+<span class="nc" id="L119">		return this.password; </span>
+	}
+	
+	/**
+	 * Sets the user's name with the given one
+	 * @param username to be set
+	 */
+	public void setUsername(String username)
+	{
+<span class="nc" id="L128">		this.username = username;</span>
+<span class="nc" id="L129">	}</span>
+	
+	/**
+	 * Sets the user's password with the given one
+	 * @param password to be set
+	 */
+	public void setPassword(String password)
+	{
+<span class="nc" id="L137">		this.password = password;</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">		if(password.equals(&quot;admin123&quot;))</span>
+<span class="nc" id="L139">			admin=true;</span>
+		else
+<span class="nc" id="L141">			admin=false;</span>
+<span class="nc" id="L142">	}</span>
+	
+	/**
+	 * Places a bet in the indicated question with the indicated amount and registers it if the amount is no less than the minimum
+	 * @param question Question in which place the bet
+	 * @param bet Amount to put
+	 * @return True if the bet was placed successfully, false otherwise
+	 */
+	public boolean placeBet(Question question, double bet, String answer) {
+		
+		//System.out.println(increaseCurrency(22)); // for testing purposes, only admins can add money
+		
+<span class="nc bnc" id="L154" title="All 4 branches missed.">		if(bet &lt;= question.getBetMinimum() || personalWallet.getCurrency() &lt; bet)</span>
+<span class="nc" id="L155">			return false;</span>
+		else
+		{
+<span class="nc bnc" id="L158" title="All 2 branches missed.">			if (betList == null)</span>
+<span class="nc" id="L159">				betList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L160">			List&lt;Bet&gt; userBets = this.getBets();</span>
+			
+			// check if user has already bet this question
+<span class="nc bnc" id="L163" title="All 2 branches missed.">			for (Bet b : userBets)</span>
+			{
+<span class="nc bnc" id="L165" title="All 2 branches missed.">				if (b.getQuestion().getQuestionNumber().equals(question.getQuestionNumber()))</span>
+<span class="nc" id="L166">					return false;</span>
+<span class="nc" id="L167">			}</span>
+			
+<span class="nc" id="L169">			this.betList.add(new Bet(question, bet, 1.2, answer));</span>
+<span class="nc" id="L170">			decreaseCurrency(bet);</span>
+<span class="nc" id="L171">			return true;</span>
+		}
+	}
+	
+	public boolean removeBet(Bet bet) 
+	{
+<span class="nc" id="L177">		boolean toCheck = false;</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">		if(betList.contains(bet)) </span>
+		{
+<span class="nc" id="L180">			betList.remove(bet);</span>
+<span class="nc" id="L181">			toCheck = true;</span>
+		}
+<span class="nc" id="L183">		return toCheck;</span>
+	}
+	
+	public void addToPastBets(Bet bet)
+	{
+<span class="nc" id="L188">		this.pastBets.add(bet);</span>
+<span class="nc" id="L189">	}</span>
+	
+	/**
+	 * Returns a list containing the list of bets made by this user
+	 * @return List with bets
+	 */
+	public List&lt;Bet&gt; getBets(){
+<span class="nc" id="L196">		return betList;</span>
+	}
+	
+	public boolean isAdmin() {
+<span class="nc" id="L200">		return admin;</span>
+	}
+	
+	public Wallet getWallet()
+	{
+<span class="nc" id="L205">		return this.personalWallet;</span>
+	}
+	
+	public double increaseCurrency(double amount) {
+<span class="nc" id="L209">		personalWallet.addMoney(amount);</span>
+<span class="nc" id="L210">		return personalWallet.getCurrency();</span>
+	}
+	
+	public double decreaseCurrency(double amount) {
+<span class="nc" id="L214">		personalWallet.removeMoney(amount);</span>
+<span class="nc" id="L215">		return personalWallet.getCurrency();</span>
+	}
+	
+	public String getMail() {
+<span class="nc" id="L219">		return eMail;</span>
+	}
+	
+	public void setMail(String mail) {
+<span class="nc" id="L223">		eMail = mail;</span>
+<span class="nc" id="L224">	}</span>
+	
+	public List&lt;Bet&gt; getPastBets()
+	{
+<span class="nc" id="L228">		return this.pastBets;</span>
+	}
+	
+	public String toString()
+	{
+<span class="nc" id="L233">		return id + &quot;\t&quot; + username + &quot;\t&quot; + password;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,96 @@
+
+EdataAccess.DataAccess#getQuestion(Ldomain/Question;)Ldomain/Question;V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaò ò("4*”
+2V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaù ù(—Œ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaù ù(&
+%9java.util.ArrayList"1domain.Question#getAnswers()Ljava/util/ArrayList;*
+
+retdomain.Question2getAnswers()”–
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaù ù(1
+%10java.util.Iterator"2java.util.ArrayList#iterator()Ljava/util/Iterator;*
+
+%9java.util.ArrayList2
+iterator()∆√
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaù ù(8
+%11java.lang.String"+java.util.Iterator#next()Ljava/lang/Object;*
+
+%10java.util.Iterator2next()*
+1*ø
+3V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaõ õ(	—Œ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaõ õ(
+%6java.util.ArrayList"1domain.Question#getAnswers()Ljava/util/ArrayList;*
+
+retdomain.Question2getAnswers()“œ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaõ õ(!
+%7java.util.Iterator"2java.util.ArrayList#iterator()Ljava/util/Iterator;*
+
+%6java.util.ArrayList2
+iterator()∞≠
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaõ õ(+
+%8boolean"java.util.Iterator#hasNext()Z*
+
+%7java.util.Iterator2	hasNext()*
+2
+1*ä
+4V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaô ô(´
+®
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaô ô(%
+%0javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+dbŸ÷
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaôW ô(l
+%1java.lang.Integer"6domain.Question#getQuestionNumber()Ljava/lang/Integer;*
+
+qdomain.Question2getQuestionNumber()–
+Õ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaô  ô(l
+%2java.lang.String"__concat*64
+2SELECT q FROM Question q WHERE q.questionNumber = *
+
+%1java.lang.IntegerÏÈ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaô ô(}"
+%3javax.persistence.TypedQuery"njavax.persistence.EntityManager#createQuery(Ljava/lang/String;Ljava/lang/Class;)Ljavax/persistence/TypedQuery;*'
+%
+%0javax.persistence.EntityManager*
+
+%2java.lang.String*
+""20createQuery(Ljava/lang/String;Ljava/lang/Class;)ÓÎ
+W
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaô ô(è
+%4domain.Question"@javax.persistence.TypedQuery#getSingleResult()Ljava/lang/Object;*$
+"
+%3javax.persistence.TypedQuery2getSingleResult()ì
+ê
+W
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaô ô(ê
+retdomain.Question"__id*
+
+%4domain.Question—Œ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaö ö(
+%5java.util.ArrayList"1domain.Question#getAnswers()Ljava/util/ArrayList;*
+
+retdomain.Question2getAnswers()*
+3
+1*œ
+1V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaü	 ü("r
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaü ü(
+
+retdomain.Question:
+qdomain.QuestionB
+dataAccess.DataAccess

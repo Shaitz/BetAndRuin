@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Bet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BetAndRuinCI</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">Bet.java</span></div><h1>Bet.java</h1><pre class="source lang-java linenums">package domain;
+
+import javax.persistence.*;
+
+@Entity
+public class Bet 
+{
+	@Id
+	@GeneratedValue (strategy=GenerationType.IDENTITY)
+	private int questionId;
+	private Question question;
+	private double placedBet;
+	private double benefits;
+	private String answer;
+	
+<span class="nc" id="L16">	public Bet(Question question, double placedBet, double benefits, String answer) {</span>
+<span class="nc" id="L17">		this.question = question;</span>
+<span class="nc" id="L18">		this.placedBet = placedBet;</span>
+<span class="nc" id="L19">		this.benefits = benefits;</span>
+<span class="nc" id="L20">		this.answer = answer;</span>
+<span class="nc" id="L21">	}</span>
+	
+	public Question getQuestion() {
+<span class="nc" id="L24">		return question;</span>
+	}
+
+	public void setQuestion(Question question) {
+<span class="nc" id="L28">		this.question = question;</span>
+<span class="nc" id="L29">	}</span>
+
+	public double getPlacedBet() {
+<span class="nc" id="L32">		return placedBet;</span>
+	}
+
+	public void setPlacedBet(double placedBet) {
+<span class="nc" id="L36">		this.placedBet = placedBet;</span>
+<span class="nc" id="L37">	}</span>
+
+	public double getBenefits() {
+<span class="nc" id="L40">		return benefits;</span>
+	}
+
+	public void setBenefits(double benefits) {
+<span class="nc" id="L44">		this.benefits = benefits;</span>
+<span class="nc" id="L45">	}</span>
+	
+	public String getAnswer()
+	{
+<span class="nc" id="L49">		return this.answer;</span>
+	}
+	
+	public void setAnswer(String answer)
+	{
+<span class="nc" id="L54">		this.answer = answer;</span>
+<span class="nc" id="L55">	}</span>
+	
+	public String toString()
+	{
+<span class="nc" id="L59">		return this.questionId + &quot;      &quot; + this.question.toString() + &quot;      &quot; + this.answer + &quot;      &quot; + this.placedBet;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

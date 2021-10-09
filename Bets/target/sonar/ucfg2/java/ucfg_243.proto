@@ -1,0 +1,89 @@
+
+(domain.Event#equals(Ljava/lang/Object;)ZM
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÁ Á("startingBlock*«
+2M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÇ
+ Ç("W
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÇ Ç(
+""*Ó
+3M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÆ Æ(µ²
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÆ Æ(
+%0java.lang.Class",java.lang.Object#getClass()Ljava/lang/Class;*
+domain.Event2
+getClass()¾»
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÆ Æ("
+%1java.lang.Class",java.lang.Object#getClass()Ljava/lang/Class;*
+
+objjava.lang.Object2
+getClass()*
+2
+1*†
+startingBlockM
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÁ Á("—
+”
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÀ À(
+
+%5"
+__annotate*
+java.lang.Override*
+
+objjava.lang.Object€
+~
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÁ Á(!
+objjava.lang.Object"__annotation*
+
+%5*	
+3
+4
+6*«
+4M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÅ
+ Å("W
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÅ Å(
+""*«
+6M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÃ
+ Ã("W
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÃ Ã(
+""*Ò
+1M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÈ È(Š
+‡
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÈ È(
+otherdomain.Event"__id*
+
+objjava.lang.Object”
+‘
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÉ	 É(
+%2java.lang.Integer"__id*!*
+domain.Event"
+eventNumber›
+˜
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÉ É(-
+%3java.lang.Integer"__id*(*&
+
+otherdomain.Event"
+eventNumberâß
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÉ	 É(.
+%4boolean"-java.lang.Integer#equals(Ljava/lang/Object;)Z*
+
+%2java.lang.Integer*
+
+%3java.lang.Integer2equals(Ljava/lang/Object;)"W
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaÉ É(/
+"":
+objjava.lang.ObjectB
+domain.Event

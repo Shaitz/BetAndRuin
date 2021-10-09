@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegisterGUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BetAndRuinCI</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">RegisterGUI.java</span></div><h1>RegisterGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import javax.swing.JFrame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
+
+import javax.swing.LayoutStyle.ComponentPlacement;
+
+import businessLogic.BlFacade;
+
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.JButton;
+import javax.swing.JTextArea;
+import java.awt.Color;
+
+public class RegisterGUI extends JFrame{
+
+	private static final long serialVersionUID = 1L;
+	private JTextField textUsernameReg;
+	private JPasswordField textPasswordReg;
+<span class="nc" id="L29">	JButton buttonRegister = new JButton(&quot;REGISTER&quot;);</span>
+	private BlFacade businessLogic;
+	private LoginGUI previous;
+	private JTextField eMailTextField;
+	private JPasswordField cPasswordField;
+
+	public void setBusinessLogic(BlFacade bl) {
+<span class="nc" id="L36">		businessLogic = bl;</span>
+<span class="nc" id="L37">	}</span>
+	
+	public RegisterGUI(LoginGUI login, BlFacade bl)
+<span class="nc" id="L40">	{</span>
+<span class="nc" id="L41">		businessLogic = bl;</span>
+<span class="nc" id="L42">		previous = login;</span>
+		try {
+<span class="nc" id="L44">			jbInit();</span>
+		}
+<span class="nc" id="L46">		catch(Exception e) {</span>
+<span class="nc" id="L47">			e.printStackTrace();</span>
+<span class="nc" id="L48">		}</span>
+<span class="nc" id="L49">	}</span>
+	
+	private void jbInit() throws Exception
+	{	
+<span class="nc" id="L53">		this.getContentPane().setLayout(null);</span>
+<span class="nc" id="L54">		this.setSize(new Dimension(400, 300));</span>
+<span class="nc" id="L55">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;LoginRegister&quot;));</span>
+		
+<span class="nc" id="L57">		JLabel labelRegister = new JLabel(&quot;Register/Login&quot;);</span>
+<span class="nc" id="L58">		labelRegister.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 16));</span>
+		
+<span class="nc" id="L60">		JLabel labelUsernameReg = new JLabel(&quot;Username:&quot;);</span>
+		
+<span class="nc" id="L62">		JLabel labelPasswordReg = new JLabel(&quot;Password:&quot;);</span>
+		
+<span class="nc" id="L64">		textUsernameReg = new JTextField();</span>
+<span class="nc" id="L65">		textUsernameReg.setColumns(10);</span>
+		
+<span class="nc" id="L67">		textPasswordReg = new JPasswordField();</span>
+		
+		
+<span class="nc" id="L70">		JTextArea validText = new JTextArea();</span>
+<span class="nc" id="L71">		validText.setBackground(new Color(240, 240, 240));</span>
+<span class="nc" id="L72">		validText.setEditable(false);</span>
+		
+<span class="nc" id="L74">		this.buttonRegister.addActionListener(new ActionListener()</span>
+<span class="nc" id="L75">		{</span>
+			public void actionPerformed(ActionEvent e)
+			{
+<span class="nc" id="L78">				String username = textUsernameReg.getText();</span>
+<span class="nc" id="L79">				String password = String.valueOf(textPasswordReg.getPassword());</span>
+<span class="nc" id="L80">				String cPassword = String.valueOf(cPasswordField.getPassword());</span>
+<span class="nc" id="L81">				String eMail = eMailTextField.getText();</span>
+				
+<span class="nc bnc" id="L83" title="All 8 branches missed.">				if(username.isEmpty() || password.isEmpty() || cPassword.isEmpty() || eMail.isEmpty())</span>
+<span class="nc" id="L84">					validText.setText(&quot;At least one compulsory area was not filled correctly&quot;);</span>
+				else {
+<span class="nc bnc" id="L86" title="All 2 branches missed.">					if(password.equals(cPassword)) {</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">						if(checkEmail(eMail)) {</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">							if (businessLogic.registerUser(username, password, eMail)) {</span>
+<span class="nc" id="L89">								previous.previous.setUser(businessLogic.getRegisteredUser(username, password));</span>
+<span class="nc" id="L90">								close();</span>
+							}
+							else
+<span class="nc" id="L93">								validText.setText(&quot;Error. Try again.&quot;);</span>
+						}
+						else
+<span class="nc" id="L96">							validText.setText(&quot;Invalid eMail.&quot;);</span>
+					}
+					else
+<span class="nc" id="L99">						validText.setText(&quot;Passwords don't match.&quot;);</span>
+				}
+<span class="nc" id="L101">			}</span>
+		});
+		
+<span class="nc" id="L104">		JButton closeBtn = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Close&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+		
+<span class="nc" id="L106">		closeBtn.addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L109">				goBack();</span>
+<span class="nc" id="L110">			}</span>
+		});
+		
+<span class="nc" id="L113">		JLabel cPasswordLable = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;RepeatPassword&quot;));</span>
+		
+<span class="nc" id="L115">		eMailTextField = new JTextField();</span>
+<span class="nc" id="L116">		eMailTextField.setColumns(10);</span>
+		
+<span class="nc" id="L118">		JLabel eMailLabel = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;eMail&quot;)); //$NON-NLS-1$ //$NON-NLS-2$</span>
+		
+<span class="nc" id="L120">		cPasswordField = new JPasswordField();</span>
+		
+<span class="nc" id="L122">		GroupLayout groupLayout = new GroupLayout(this.getContentPane());</span>
+<span class="nc" id="L123">		groupLayout.setHorizontalGroup(</span>
+<span class="nc" id="L124">			groupLayout.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L125">				.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L126">					.addContainerGap()</span>
+<span class="nc" id="L127">					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L128">						.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L129">							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)</span>
+<span class="nc" id="L130">								.addComponent(eMailLabel)</span>
+<span class="nc" id="L131">								.addComponent(labelUsernameReg)</span>
+<span class="nc" id="L132">								.addComponent(labelPasswordReg)</span>
+<span class="nc" id="L133">								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L134">									.addComponent(buttonRegister, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L135">									.addComponent(cPasswordLable)))</span>
+<span class="nc" id="L136">							.addGap(18)</span>
+<span class="nc" id="L137">							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L138">								.addComponent(cPasswordField, GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)</span>
+<span class="nc" id="L139">								.addComponent(textPasswordReg, GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)</span>
+<span class="nc" id="L140">								.addComponent(labelRegister, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L141">								.addComponent(textUsernameReg, GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)</span>
+<span class="nc" id="L142">								.addComponent(eMailTextField, GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))</span>
+<span class="nc" id="L143">							.addPreferredGap(ComponentPlacement.RELATED)</span>
+<span class="nc" id="L144">							.addComponent(closeBtn))</span>
+<span class="nc" id="L145">						.addComponent(validText, GroupLayout.PREFERRED_SIZE, 348, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L146">					.addContainerGap())</span>
+		);
+<span class="nc" id="L148">		groupLayout.setVerticalGroup(</span>
+<span class="nc" id="L149">			groupLayout.createParallelGroup(Alignment.LEADING)</span>
+<span class="nc" id="L150">				.addGroup(groupLayout.createSequentialGroup()</span>
+<span class="nc" id="L151">					.addContainerGap()</span>
+<span class="nc" id="L152">					.addComponent(labelRegister)</span>
+<span class="nc" id="L153">					.addGap(11)</span>
+<span class="nc" id="L154">					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L155">						.addComponent(textUsernameReg, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L156">						.addComponent(labelUsernameReg))</span>
+<span class="nc" id="L157">					.addGap(9)</span>
+<span class="nc" id="L158">					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L159">						.addComponent(labelPasswordReg)</span>
+<span class="nc" id="L160">						.addComponent(textPasswordReg, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L161">					.addPreferredGap(ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L162">					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L163">						.addComponent(cPasswordLable)</span>
+<span class="nc" id="L164">						.addComponent(cPasswordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L165">					.addGap(17)</span>
+<span class="nc" id="L166">					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L167">						.addComponent(eMailTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L168">						.addComponent(eMailLabel))</span>
+<span class="nc" id="L169">					.addPreferredGap(ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L170">					.addComponent(validText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L171">					.addPreferredGap(ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L172">					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)</span>
+<span class="nc" id="L173">						.addComponent(buttonRegister)</span>
+<span class="nc" id="L174">						.addComponent(closeBtn))</span>
+<span class="nc" id="L175">					.addContainerGap(41, Short.MAX_VALUE))</span>
+		);
+<span class="nc" id="L177">		this.getContentPane().setLayout(groupLayout);</span>
+<span class="nc" id="L178">	}</span>
+	
+	private boolean checkEmail(String eMail){
+<span class="nc" id="L181">		boolean ret = false;</span>
+<span class="nc bnc" id="L182" title="All 2 branches missed.">		if(eMail.contains(&quot;@&quot;)) {</span>
+<span class="nc" id="L183">			String[] split = eMail.split(&quot;@&quot;);</span>
+<span class="nc bnc" id="L184" title="All 6 branches missed.">			if(split.length == 2 &amp;&amp; split[0].length() &gt; 1 &amp;&amp; split[1].contains(&quot;.&quot;)) {</span>
+<span class="nc" id="L185">				ret = true;</span>
+			}
+		}
+<span class="nc" id="L188">		return ret;</span>
+	}
+	
+	private void goBack() {
+<span class="nc" id="L192">		this.setVisible(false);</span>
+<span class="nc" id="L193">		previous.setVisible(true);</span>
+<span class="nc" id="L194">	}</span>
+	
+	private void close() {
+<span class="nc" id="L197">		this.setVisible(false);</span>
+<span class="nc" id="L198">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

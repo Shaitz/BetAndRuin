@@ -1,0 +1,78 @@
+
+FdataAccess.DataAccess#existQuestion(Ldomain/Event;Ljava/lang/String;)ZV
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaä ä("1*¶
+1V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaå å(„
+
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaå å(
+%0java.io.PrintStream"__id*
+""Ä
+Á
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaå å(G
+%1java.lang.String"__concat*,*
+(>> DataAccess: existQuestion => event = *
+
+eventdomain.Event©
+¦
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaå æ(
+%2java.lang.String"__concat*
+
+%1java.lang.String*
+ question = ·
+´
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaå æ(
+%3java.lang.String"__concat*
+
+%2java.lang.String*
+
+questionjava.lang.Stringíê
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaå æ(
+
+%4void"0java.io.PrintStream#println(Ljava/lang/String;)V*
+
+%0java.io.PrintStream*
+
+%3java.lang.String2println(Ljava/lang/String;)«
+¨
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaç ç(%
+%5javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+dbÑÎ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaç" ç(8
+%6java.lang.Integer"0domain.Event#getEventNumber()Ljava/lang/Integer;*
+
+eventdomain.Event2getEventNumber()ÃÀ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaç ç(9
+%7domain.Event"[javax.persistence.EntityManager#find(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/Object;*'
+%
+%5javax.persistence.EntityManager*
+""*
+
+%6java.lang.Integer2)find(Ljava/lang/Class;Ljava/lang/Object;)‹
+ˆ
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaç ç(:
+evdomain.Event"__id*
+
+%7domain.Eventüù
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaè	 è('
+%8boolean"3domain.Event#doesQuestionExist(Ljava/lang/String;)Z*
+
+evdomain.Event*
+
+questionjava.lang.String2%doesQuestionExist(Ljava/lang/String;)"`
+V
+JC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/dataAccess/DataAccess.javaè è((
+"":
+eventdomain.Event:
+questionjava.lang.StringB
+dataAccess.DataAccess

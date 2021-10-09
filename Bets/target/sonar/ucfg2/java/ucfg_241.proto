@@ -1,0 +1,56 @@
+
+domain.Event#canBet()ZM
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.java¯ ¯("3*
+
+3M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.java° °(º
+·
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.java± ±(%
+%0java.util.Calendar"4java.util.Calendar#getInstance()Ljava/util/Calendar;*"
+java.util.Calendar½º
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.java± ±(/
+%1java.util.Date",java.util.Calendar#getTime()Ljava/util/Date;*
+
+%0java.util.Calendar2	getTime()‰
+†
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.java± ±(0
+todayjava.util.Date"__id*
+
+%1java.util.DateŸœ
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.java² ²(
+
+%2long"java.util.Date#getTime()J*
+
+todayjava.util.Date2	getTime()©¦
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.java² ²(+
+
+%3void"java.util.Date#setTime(J)V*
+
+todayjava.util.Date*
+""2
+setTime(J)
+Œ
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.java³ ³(
+%4java.util.Date"__id**
+domain.Event"
+	eventDateÚ×
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.java³ ³(	
+%5int"+java.util.Date#compareTo(Ljava/util/Date;)I*
+
+todayjava.util.Date*
+
+%4java.util.Date2compareTo(Ljava/util/Date;)*
+1*«
+1M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaµ	 µ("W
+M
+AC:/Users/Unai/git/BetAndRuin/Bets/src/main/java/domain/Event.javaµ µ(
+""B
+domain.Event
